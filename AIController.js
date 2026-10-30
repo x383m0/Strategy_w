@@ -1,5 +1,5 @@
-import {typeOf,typeLabel,TRANSFORM_COST} from '../game/BuildingTypes.js';
-import {freeSpace,defenseOf,predictedGarrison} from '../game/BuildingStats.js';
+import {typeOf,typeLabel,TRANSFORM_COST,canTransform,upgradeCost,levelOf} from '../game/BuildingTypes.js';
+import {freeSpace,defenseOf,predictedGarrison,transformationOverflow} from '../game/BuildingStats.js';
 import {targetScore,travelTime,incoming} from './Evaluation.js';
 import {analyzeThreats,reserveFor} from './ThreatAnalysis.js';
 import {allocateAttack} from './Planning.js';
@@ -23,12 +23,20 @@ export class AIController{
    if(threat.eta<2&&b.units>3){const safe=own.filter(d=>d!==b&&!threats.some(t=>t.id===d.id&&t.deficit>0)).sort((a,c)=>travelTime(b,a)-travelTime(b,c))[0];if(safe&&this.send(b.id,safe.id,Math.min(b.units,freeSpace(s,safe)))){this.debug.strategy='Repli';this.debug.routes.push({from:b.id,to:safe.id,kind:'defend'});this.log(`Évacuation de ${b.name} vers ${safe.name}.`);return;}}
   }}
   // Specialize at most one house per strategic decision; pay the same cost as the player.
-  const houses=own.filter(b=>typeOf(b)==='house'&&b.units>=TRANSFORM_COST+12&&!threats.some(t=>t.id===b.id));
+  const houses=own.filter(b=>canTransform(b)&&b.units>=TRANSFORM_COST+12&&!threats.some(t=>t.id===b.id));
   const enemiesForFort=s.buildings.filter(b=>b.owner!==0&&b.owner!==p);
   const frontHouse=[...houses].sort((a,b)=>Math.min(...enemiesForFort.map(e=>Math.hypot(a.x-e.x,a.y-e.y)))-Math.min(...enemiesForFort.map(e=>Math.hypot(b.x-e.x,b.y-e.y))))[0];
   const buildFort=config.defend&&own.length>=3&&!own.some(b=>typeOf(b)==='fort')&&frontHouse&&enemiesForFort.some(e=>Math.hypot(frontHouse.x-e.x,frontHouse.y-e.y)<550);
   const specialization=buildFort?{b:frontHouse,type:'fort'}:houses.length?{b:houses[0],type:'barracks'}:null;
-  if(specialization){const r=this.game.command({type:'transform',player:p,building:specialization.b.id,buildingType:specialization.type});if(r.ok){this.debug.strategy='Spécialisation';this.log(`${specialization.b.name} devient ${typeLabel(specialization.b)} : ${r.cost} troupes.`);return;}}
+  if(specialization&&transformationOverflow(s,specialization.b,specialization.type)===0){const r=this.game.command({type:'transform',player:p,building:specialization.b.id,buildingType:specialization.type});if(r.ok){this.debug.strategy='Spécialisation';this.log(`${specialization.b.name} devient ${typeLabel(specialization.b)} : ${r.cost} troupes.`);return;}}
+  // Develop only surplus garrisons; upgrades use exactly the player's command and costs.
+  if(s.time>=30&&own.length>=2){
+   const candidate=own.filter(b=>upgradeCost(b)!==null&&!threats.some(t=>t.id===b.id)&&b.units>=upgradeCost(b)+(reserves.get(b.id)??0)+16)
+    .sort((a,b)=>levelOf(a)-levelOf(b)||b.units-a.units)[0];
+   if(candidate){const result=this.game.command({type:'upgrade',player:p,building:candidate.id});
+    if(result.ok){this.debug.strategy='Amélioration';this.log(`${typeLabel(candidate)} ${candidate.name} → niveau ${levelOf(candidate)} : ${result.cost} troupes.`);return;}
+   }
+  }
   const ranked=s.buildings.filter(b=>b.owner!==p).map(b=>targetScore(s,b,own,p)).filter(e=>e.friendly<e.defense+2).sort((a,b)=>b.score-a.score);
   this.debug.targets=ranked.slice(0,5);
   for(const evaluation of ranked){

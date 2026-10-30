@@ -9,5 +9,5 @@ const layouts={
 };
 export const MAP_NAMES={archipel:'Archipel',croisee:'Croisée',couronne:'Couronne'};
 export function makeMap(name='archipel'){
- return (layouts[name]??layouts.archipel).map(([x,y,owner,units],i)=>({id:`b${i}`,name:String(i+1).padStart(2,'0'),x:x*MAP_SPACING,y:y*MAP_SPACING,owner,units,type:'house',nextShotTick:0,range:0,shotDamage:0,shotInterval:1,production:0,...DEFAULT_BUILDING_STATS,defenseDamage:0,radius:37.2}));
+ return (layouts[name]??layouts.archipel).map(([x,y,owner,units],i)=>({id:`b${i}`,name:String(i+1).padStart(2,'0'),x:x*MAP_SPACING,y:y*MAP_SPACING,owner,units,type:'house',level:1,typeLocked:false,nextShotTick:0,range:0,shotDamage:0,shotInterval:1,production:0,...DEFAULT_BUILDING_STATS,defenseDamage:0,radius:37.2}));
 }

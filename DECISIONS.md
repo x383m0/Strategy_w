@@ -97,3 +97,13 @@ Correction du survol : fiche mise à jour directement sur les mouvements de poin
 Instruction actuelle : abandonner le double-clic. Maj + glisser envoie 100 %, glisser normal 50 %, Maj + clic reste la sélection multiple. Caserne : production 1,5/s, capacité 80. Les anciennes décisions de double-clic et de caserne à 2/s sont remplacées.
 
 Fort : cadence portée à 2 tirs/s ; dégâts par tir (1) et portée (240) conservés.
+
+## Quatre niveaux et type définitif — v0.3.0
+
+Confirmé par l’utilisateur : style contemporain de la seconde maquette ; quatre niveaux pour maison/caserne/fort ; impossibilité de changer de type après amélioration ou construction d’un autre type. Interprétation appliquée : seule la maison N1 non améliorée peut choisir sa spécialisation. Capture conserve type, niveau et verrouillage.
+
+Provisoire : coûts 10/20/30 pour les niveaux 2/3/4 et progression des statistiques détaillée dans README. Les statistiques N1, vitesse 45 et fort 2 tirs/s sont conservées.
+
+## Casernes — v0.3.1
+
+Capacités confirmées après correction : 20/30/40/50 pour N1/N2/N3/N4. Production retenue : 0,5/1/1,5/2 par seconde, suivant le maximum de 2/s et +0,5 par niveau demandés ; l’exemple initial « N2 2/s » est interprété comme une faute de frappe. La conversion vers une capacité inférieure est refusée si garnison après coût ou réservations ne tiennent pas, sans perte de troupes.

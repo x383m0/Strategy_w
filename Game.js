@@ -1,6 +1,6 @@
-import {BUILDING_TYPES,TRANSFORM_COST,typeOf} from './BuildingTypes.js';
+import {BUILDING_TYPES,TRANSFORM_COST,typeOf,levelOf,canTransform,upgradeCost,statsFor} from './BuildingTypes.js';
 import {fireForts} from './FortCombat.js';
-import {freeSpace,speedOf} from './BuildingStats.js';
+import {freeSpace,speedOf,transformationOverflow} from './BuildingStats.js';
 import {STEP,armyPosition} from './GameState.js';
 import {resolveForces,resolveBuildingCombat,collisionTime} from './Combat.js';
 export class Game{
@@ -11,6 +11,7 @@ export class Game{
   if(s.status!=='running')return {ok:false,reason:'Partie inactive'};
   if(!command||![1,2].includes(command.player))return {ok:false,reason:'Commande invalide'};
   if(command.type==='transform')return this.transform(command);
+  if(command.type==='upgrade')return this.upgrade(command);
   if(command.type!=='send')return {ok:false,reason:'Commande invalide'};
   if(!Array.isArray(command.sources)||command.sources.length<1||command.sources.length>s.buildings.length||new Set(command.sources).size!==command.sources.length)return {ok:false,reason:'Sources invalides'};
   if(typeof command.fraction!=='number'||!Number.isFinite(command.fraction)||command.fraction<=0||command.fraction>1)return {ok:false,reason:'Proportion invalide'};
@@ -38,14 +39,29 @@ export class Game{
  transform(command){
   const s=this.state,b=s.buildings.find(b=>b.id===command.building);
   if(!b||b.owner!==command.player)return {ok:false,reason:'Sélectionnez une maison de votre camp.'};
-  if(typeOf(b)!=='house'||!['barracks','fort'].includes(command.buildingType))return {ok:false,reason:'Transformation indisponible.'};
+  if(!canTransform(b)||!['barracks','fort'].includes(command.buildingType))return {ok:false,reason:'Transformation indisponible.'};
   if(b.units<TRANSFORM_COST)return {ok:false,reason:`Il faut ${TRANSFORM_COST} troupes dans cette maison.`};
-  b.units-=TRANSFORM_COST;Object.assign(b,BUILDING_TYPES[command.buildingType]);b.type=command.buildingType;
+  if(transformationOverflow(s,b,command.buildingType)>0)return {ok:false,reason:`Capacité ${BUILDING_TYPES[command.buildingType].capacity} : envoyez des troupes ou attendez les groupes en route avant de transformer.`};
+  b.units-=TRANSFORM_COST;Object.assign(b,BUILDING_TYPES[command.buildingType]);b.type=command.buildingType;b.level=1;b.typeLocked=true;
   b.production=0;b.nextShotTick=s.tick;b.defenseDamage=0;
   s.stats[command.player].spent=(s.stats[command.player].spent??0)+TRANSFORM_COST;
   s.commandLog.push({type:'transform',player:command.player,building:b.id,buildingType:b.type,tick:s.tick});
   s.events.push({type:'transform',x:b.x,y:b.y,owner:b.owner,time:s.time});
   return {ok:true,cost:TRANSFORM_COST};
+ }
+ upgrade(command){
+  const s=this.state,b=s.buildings.find(b=>b.id===command.building);
+  if(!b||b.owner!==command.player)return {ok:false,reason:'Choisissez un bâtiment de votre camp.'};
+  const cost=upgradeCost(b),level=levelOf(b)+1,stats=statsFor(typeOf(b),level);
+  if(cost===null||!stats)return {ok:false,reason:'Niveau maximum atteint.'};
+  if(b.units<cost)return {ok:false,reason:`Il faut ${cost} troupes pour améliorer ce bâtiment.`};
+  b.units-=cost;Object.assign(b,stats);b.level=level;b.typeLocked=true;
+  if(b.units===0)b.defenseDamage=0;
+  // Preserve production progress, damage and firing cooldown: upgrading cannot heal or fire early.
+  s.stats[command.player].spent=(s.stats[command.player].spent??0)+cost;
+  s.commandLog.push({type:'upgrade',player:command.player,building:b.id,tick:s.tick});
+  s.events.push({type:'upgrade',x:b.x,y:b.y,owner:b.owner,time:s.time});
+  return {ok:true,cost,level};
  }
  step(){
   const s=this.state;if(s.status!=='running')return;

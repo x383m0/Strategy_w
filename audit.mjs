@@ -18,7 +18,8 @@ for(const map of ['archipel','croisee','couronne']){
     const own=game.state.buildings.filter(b=>b.owner===player);
     if(own.length){
      const source=pick(own),target=pick(game.state.buildings);
-     const command=random()<.1
+     const action=random();
+     const command=action<.1 ? {type:'upgrade',player,building:source.id} : action<.2
       ? {type:'transform',player,building:source.id,buildingType:random()<.5?'barracks':'fort'}
       : {type:'send',player,sources:[source.id],target:target.id,fraction:random()<.5?1:.5};
      const before=snapshot(game.state);

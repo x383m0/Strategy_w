@@ -1,4 +1,4 @@
-import {typeLabel} from './game/BuildingTypes.js';
+import {typeLabel,levelOf} from './game/BuildingTypes.js';
 import {BuildingPopover} from './ui/BuildingPopover.js';
 import {Game} from './game/Game.js';
 import {createState,totals,STEP} from './game/GameState.js';
@@ -12,8 +12,9 @@ const renderer=new Renderer($('board'));
 function toast(message){$('toast').textContent=message;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2200);}
 const input=new InputController($('board'),renderer,()=>game,()=>.5,toast);
 const buildingPopover=new BuildingPopover($('building-stats'),$('board'),input,renderer,()=>game,()=>!$('overlay').hidden,(building,buildingType)=>{
- const r=game.command({type:'transform',player:1,building:building.id,buildingType});
- toast(r.ok?`Transformation en ${typeLabel(building)} · ${r.cost} troupes utilisées`:r.reason);hud();
+ const upgrade=buildingType==='upgrade';
+ const r=game.command(upgrade?{type:'upgrade',player:1,building:building.id}:{type:'transform',player:1,building:building.id,buildingType});
+ toast(r.ok?`${typeLabel(building)} · niveau ${levelOf(building)} · ${r.cost} troupes utilisées`:r.reason);hud();
 });
 function reset(){game=new Game(createState($('map-select').value));ai=new AIController(game,2,$('difficulty').value);input.reset();renderer.effects=[];accumulator=0;$('overlay').hidden=false;$('setup').hidden=false;$('overlay-title').textContent='Chaque mouvement compte.';$('overlay-description').innerHTML='Une carte. Deux camps. Aucune unité gratuite.<br>Le meilleur stratège l’emporte.';$('start').innerHTML='Lancer la conquête <span>↗</span>';$('overlay-footnote').textContent='Capturez les bâtiments et éliminez les dernières troupes.';hud();}
 function start(){if(game.state.status==='finished')reset();game.state.status='running';$('overlay').hidden=true;accumulator=0;last=performance.now();hud();}
