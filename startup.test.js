@@ -42,3 +42,12 @@ test('standalone release starts, advances production, pauses and restarts withou
  e.get('new-game').onclick();assert.equal(e.get('overlay').hidden,false);assert.equal(e.get('timer').textContent,'00:00');
  e.get('start').onclick();assert.equal(e.get('status').textContent,'CONQUÊTE EN COURS');
 });
+
+test('la difficulté choisie avant lancement applique aussi son premier délai',async()=>{
+ for(const [difficulty,seconds,expected] of [['easy',6,0],['hard',2,1]]){
+  const {elements:e,tick}=await boot();e.get('difficulty').value=difficulty;e.get('difficulty').onchange();
+  e.get('debug-toggle').onchange({target:{checked:true}});e.get('start').onclick();tick(seconds);
+  const decisions=Number.parseInt(e.get('ai-performance').textContent,10);
+  if(expected===0)assert.equal(decisions,0);else assert.ok(decisions>=expected);
+ }
+});

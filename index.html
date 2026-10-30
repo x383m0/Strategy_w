@@ -7,23 +7,33 @@
 
 .start-card>.menu-version{font-size:11px;font-weight:600;letter-spacing:.5px;color:#65758d;margin-top:14px}.start-card>#overlay-footnote{margin-top:8px}
 
-.building-stats{position:absolute;z-index:1;pointer-events:none;width:224px;padding:12px 14px;background:#fffffff7;border:1px solid #dce3ee;border-radius:10px;box-shadow:0 5px 22px #24365420;color:#394b63;font-size:12px}.building-stats>strong{display:block;font-size:12px;margin-bottom:9px}.building-stats dl{display:grid;grid-template-columns:1fr auto;gap:6px 12px;margin:0}.building-stats dt{color:#728198}.building-stats dd{margin:0;font-weight:650;text-align:right}.building-stats small{display:block;font-size:10px;color:#728198;border-top:1px solid #e8edf4;margin-top:9px;padding-top:8px;line-height:1.4}
 
-.specialization>strong{font-size:13px}.specialization p{font-size:11px;color:#78879b;line-height:1.65;margin:9px 0 14px}.transform-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.transform-actions button{padding:11px 6px;border:1px solid #dce6f7;border-radius:7px;background:#f4f7ff;color:#4268a7;font-size:12px;font-weight:650}.transform-actions button span{display:block;font-size:9px;font-weight:400;margin-top:5px}.specialization>small{display:block;margin-top:12px;font-size:10px;color:#8391a4;line-height:1.5}.building-stats #stats-fort{color:#476da8}
-
-.battlefield>.specialization{margin:0;border:0;border-top:1px solid var(--line);border-radius:0;padding:18px 24px;display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:0 24px}.battlefield>.specialization .panel-heading{grid-column:1/-1;margin-bottom:11px}.battlefield>.specialization>strong{grid-column:1;grid-row:2}.battlefield>.specialization>p{grid-column:1;grid-row:3;margin:6px 0 0}.battlefield>.specialization .transform-actions{grid-column:2;grid-row:2/4;align-self:start}.battlefield>.specialization>small{grid-column:1/-1;margin-top:10px}@media(max-width:760px){.battlefield>.specialization{display:block;padding:16px}.battlefield>.specialization .transform-actions{margin-top:12px}}
-
-.building-stats{z-index:3;pointer-events:auto;width:250px;padding:14px 16px;background:#fff;border:1px solid #cdd8e8;box-shadow:0 8px 28px #253d6126;font-size:13px}.building-stats>strong{font-size:13px;margin-bottom:11px}.building-stats dl{gap:7px 12px}.building-stats dt{color:#62738c}.building-stats small{font-size:11px;color:#6b7d94}.hover-upgrades{border-top:1px solid #e3eaf4;margin-top:10px;padding-top:9px}.hover-upgrades>small{border:0;padding:0;margin:0 0 9px;font-size:10px}.hover-actions{display:flex;gap:9px}.hover-actions button{position:relative;width:66px;height:64px;padding:7px 4px;border:1px solid #d8e4fa;background:#f2f6ff;color:#426fac;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px}.hover-actions button:hover:enabled{background:#e3edff;border-color:#7da4ed}.hover-actions svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.hover-actions span{font-size:10px;font-weight:600}.hover-actions b{position:absolute;top:-6px;right:-5px;font-size:9px;border-radius:9px;background:#427df0;color:white;padding:3px 5px;border:2px solid #fff}.sidebar .intelligence{grid-column:auto}
+/* Separate floating controls above the building and compact statistics below. */
+.building-stats{position:absolute;z-index:3;width:0;height:0;pointer-events:none;color:#394b63}
+.stats-card{position:absolute;pointer-events:auto;width:184px;padding:8px 10px;background:#fffffff5;border:1px solid #d4deec;border-radius:9px;box-shadow:0 4px 14px #253d611a;font-size:10px}
+.stats-card>strong{display:block;font-size:10px;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stats-card dl{display:grid;grid-template-columns:1fr auto 1fr auto;gap:4px 7px;margin:0;align-items:center}
+.stats-card dt{color:#718198;font-size:9px}.stats-card dd{margin:0;font-weight:700;text-align:right;white-space:nowrap;font-size:10px}
+.stats-card small{display:block;font-size:9px;color:#718198;line-height:1.35;margin-top:6px}.stats-card #stats-fort{color:#476da8}
+.hover-upgrades{position:absolute;width:108px;height:52px;pointer-events:none}
+.hover-upgrades>small{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.hover-actions{display:flex;gap:12px;padding:3px 0 0}
+.hover-actions button{pointer-events:auto;position:relative;width:48px;height:48px;flex-shrink:0;padding:0;border:2px solid #fff;background:#eef4ff;color:#426fac;border-radius:50%;box-shadow:0 3px 12px #253d6129;display:grid;place-items:center}
+.hover-actions button:hover:enabled{background:#dce9ff;border-color:#8eb1f5}.hover-actions button:focus-visible{outline:3px solid #8fb5ff;outline-offset:3px}
+.hover-actions svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hover-actions span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.hover-actions b{position:absolute;bottom:-3px;right:-3px;font-size:9px;border-radius:10px;background:#427df0;color:white;padding:2px 4px;border:2px solid white;line-height:1}
+.hover-actions button:disabled{opacity:.65}.sidebar .intelligence{grid-column:auto}
 </style></head>
 <body>
-<header class="topbar"><a class="brand" href="./" aria-label="Jelly Wars accueil"><span class="brand-icon"><i></i><i></i><i></i></span><span>jelly<span class="brand-light">wars</span><small>STRATÉGIE EN TEMPS RÉEL</small></span></a><nav><span class="nav-active"><span class="live-dot"></span> SOLO CONTRE L’IA</span><button id="help" class="plain" aria-label="Afficher les contrôles">Comment jouer <span class="key">?</span></button></nav><div class="version">PROTOTYPE <span>v0.2.3</span></div></header>
+<header class="topbar"><a class="brand" href="./" aria-label="Jelly Wars accueil"><span class="brand-icon"><i></i><i></i><i></i></span><span>jelly<span class="brand-light">wars</span><small>STRATÉGIE EN TEMPS RÉEL</small></span></a><nav><span class="nav-active"><span class="live-dot"></span> SOLO CONTRE L’IA</span><button id="help" class="plain" aria-label="Afficher les contrôles">Comment jouer <span class="key">?</span></button></nav><div class="version">PROTOTYPE <span>v0.2.6</span></div></header>
 <main>
 <section class="page-heading"><div><div class="eyebrow">LE TERRITOIRE SE MÉRITE.</div><h1>Prenez le contrôle<span>.</span></h1><p>Déployez vos troupes. Lisez le jeu. Gardez une longueur d’avance.</p></div><button id="new-game" class="outline"><span>↻</span> Nouvelle partie</button></section>
 <div class="workspace">
 <section class="battlefield" aria-label="Champ de bataille">
 <div class="battle-toolbar"><div class="map-label"><span class="map-icon">◈</span><div><strong id="map-title">Archipel</strong><small>CONQUÊTE TOTALE</small></div></div><div class="battle-status"><span id="running-dot" class="live-dot"></span><span id="status">PRÊT À JOUER</span><span class="toolbar-divider"></span><time id="timer">00:00</time><button id="pause" class="icon-btn" aria-label="Mettre en pause" title="Pause (Espace)">Ⅱ</button></div></div>
-<div class="canvas-wrap"><canvas id="board" tabindex="0" aria-label="Carte interactive. Glissez d’un bâtiment bleu vers une cible pour envoyer des troupes."></canvas><div class="map-corner top-left">SECTEUR <b id="sector">01</b></div><div class="map-corner bottom-right">JELLY WARS / TERRAIN TACTIQUE</div><div id="building-stats" class="building-stats" role="group" aria-label="Statistiques et transformations du bâtiment" hidden><strong id="stats-title"></strong><dl><dt>Défense</dt><dd id="stats-defense"></dd><dt>Génération</dt><dd id="stats-rate"></dd><dt>Vitesse</dt><dd id="stats-speed"></dd><dt>Capacité</dt><dd id="stats-capacity"></dd></dl><small id="stats-status"></small><small id="stats-fort" hidden></small><div id="hover-upgrades" class="hover-upgrades" hidden><small id="transform-hint">Transformer · 10 troupes</small><div class="hover-actions"><button id="transform-barracks" type="button" aria-label="Transformer en caserne pour 10 troupes" title="Caserne : production 2/s · coût 10 troupes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V6h16v15M8 6V3h8v3M3 21h18M9 21v-5h6v5M8 10h2m4 0h2M8 13h2m4 0h2"/></svg><span>Caserne</span><b>10</b></button><button id="transform-fort" type="button" aria-label="Transformer en fort pour 10 troupes" title="Fort : défense 2 et tir automatique · coût 10 troupes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V4h4v4h3V4h3v4h3V4h3v17M3 21h18M9 21v-6h6v6"/></svg><span>Fort</span><b>10</b></button></div></div></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
-<div id="overlay" class="overlay"><div class="start-card"><span class="card-badge">VOTRE PROCHAINE CONQUÊTE</span><div class="start-symbol"><i></i><span>↗</span><i></i></div><h2 id="overlay-title">Chaque mouvement compte.</h2><p id="overlay-description">Une carte. Deux camps. Aucune unité gratuite.<br>Le meilleur stratège l’emporte.</p><div id="setup"><label for="map-select">TERRAIN<select id="map-select"><option value="archipel">01 — Archipel</option><option value="croisee">02 — Croisée</option><option value="couronne">03 — Couronne</option></select></label><label for="difficulty">ADVERSAIRE<select id="difficulty"><option value="easy">IA · Facile</option><option value="normal" selected>IA · Normal</option><option value="hard">IA · Difficile</option></select></label></div><button id="start" class="primary">Lancer la conquête <span>↗</span></button><small class="menu-version">Jelly Wars · Version 0.2.3</small><small id="overlay-footnote">Capturez les bâtiments et éliminez les dernières troupes.</small></div></div>
+<div class="canvas-wrap"><canvas id="board" tabindex="0" aria-label="Carte interactive. Glissez d’un bâtiment bleu vers une cible pour envoyer des troupes."></canvas><div class="map-corner top-left">SECTEUR <b id="sector">01</b></div><div class="map-corner bottom-right">JELLY WARS / TERRAIN TACTIQUE</div><div id="building-stats" class="building-stats" role="group" aria-label="Statistiques et transformations du bâtiment" hidden><div id="stats-card" class="stats-card"><strong id="stats-title"></strong><dl><dt>Défense</dt><dd id="stats-defense"></dd><dt>Génération</dt><dd id="stats-rate"></dd><dt>Vitesse</dt><dd id="stats-speed"></dd><dt>Capacité</dt><dd id="stats-capacity"></dd></dl><small id="stats-status"></small><small id="stats-fort" hidden></small></div><div id="hover-upgrades" class="hover-upgrades" hidden><small id="transform-hint">Transformer · 10 troupes</small><div class="hover-actions"><button id="transform-barracks" aria-describedby="transform-hint" type="button" aria-label="Transformer en caserne pour 10 troupes" title="Caserne : production 1,5/s · capacité 80 · coût 10 troupes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V6h16v15M8 6V3h8v3M3 21h18M9 21v-5h6v5M8 10h2m4 0h2M8 13h2m4 0h2"/></svg><span>Caserne</span><b>10</b></button><button id="transform-fort" aria-describedby="transform-hint" type="button" aria-label="Transformer en fort pour 10 troupes" title="Fort : défense 2 · 2 tirs/s · coût 10 troupes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V4h4v4h3V4h3v4h3V4h3v17M3 21h18M9 21v-6h6v6"/></svg><span>Fort</span><b>10</b></button></div></div></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="overlay" class="overlay"><div class="start-card"><span class="card-badge">VOTRE PROCHAINE CONQUÊTE</span><div class="start-symbol"><i></i><span>↗</span><i></i></div><h2 id="overlay-title">Chaque mouvement compte.</h2><p id="overlay-description">Une carte. Deux camps. Aucune unité gratuite.<br>Le meilleur stratège l’emporte.</p><div id="setup"><label for="map-select">TERRAIN<select id="map-select"><option value="archipel">01 — Archipel</option><option value="croisee">02 — Croisée</option><option value="couronne">03 — Couronne</option></select></label><label for="difficulty">ADVERSAIRE<select id="difficulty"><option value="easy">IA · Facile</option><option value="normal" selected>IA · Normal</option><option value="hard">IA · Difficile</option></select></label></div><button id="start" class="primary">Lancer la conquête <span>↗</span></button><small class="menu-version">Jelly Wars · Version 0.2.6</small><small id="overlay-footnote">Capturez les bâtiments et éliminez les dernières troupes.</small></div></div>
 </div>
 <div class="battle-footer"><span><i class="legend-dot blue"></i>VOUS</span><span><i class="legend-dot coral"></i>IA</span><span><i class="legend-dot gray"></i>NEUTRE</span><span class="footer-note">Les troupes se combattent aussi en chemin.</span></div>
 </section>
@@ -32,18 +42,18 @@
 
 <section class="panel intelligence"><div class="panel-heading"><h2><span class="ai-icon">✳</span> Dans la tête de l’IA</h2><label class="switch" title="Afficher les calculs réels de l’IA"><input id="debug-toggle" type="checkbox" aria-label="Activer le mode développeur"><span></span></label></div><p id="ai-hint">Activez le mode développeur pour voir ses cibles et comprendre ses décisions.</p><div id="debug" hidden><div class="strategy-line"><span>STRATÉGIE</span><strong id="ai-strategy">Observation</strong></div><div id="ai-targets"></div><div class="debug-log" id="ai-log"></div><small id="ai-performance"></small></div><div class="fair-play"><span>◇</span> Mêmes règles. Même production.</div></section>
 </aside></div>
-<section class="controls-strip" aria-label="Commandes"><div class="control-intro"><span>↗</span><strong>Votre prochain mouvement</strong></div><div><span class="control-num">01</span><p><b>Glissez vers une cible</b><small>Glisser : 50 % · double-clic : tout.</small></p></div><div><span class="control-num">02</span><p><b>Coordonnez vos forces</b><small>Maj + clic ou rectangle de sélection.</small></p></div><div><span class="key">ESPACE</span><p><b>Prenez le temps</b><small>Mettez la partie en pause.</small></p></div></section>
-<footer class="page-footer"><span>JELLY WARS <b>/</b> UN JEU DE DÉCISIONS.</span><span>Solo v0.2.3 <i>·</i> Multijoueur prévu à la dernière étape</span></footer>
+<section class="controls-strip" aria-label="Commandes"><div class="control-intro"><span>↗</span><strong>Votre prochain mouvement</strong></div><div><span class="control-num">01</span><p><b>Glissez vers une cible</b><small>Glisser : 50 % · Maj + glisser : tout.</small></p></div><div><span class="control-num">02</span><p><b>Coordonnez vos forces</b><small>Maj + clic ou rectangle de sélection.</small></p></div><div><span class="key">ESPACE</span><p><b>Prenez le temps</b><small>Mettez la partie en pause.</small></p></div></section>
+<footer class="page-footer"><span>JELLY WARS <b>/</b> UN JEU DE DÉCISIONS.</span><span>Solo v0.2.6 <i>·</i> Multijoueur prévu à la dernière étape</span></footer>
 </main>
-<dialog id="help-dialog"><button id="close-help" class="icon-btn close-dialog" aria-label="Fermer">×</button><div class="eyebrow">GUIDE TACTIQUE</div><h2>Le terrain est à vous.</h2><p>Les maisons produisent <strong>1 troupe/s</strong>, les casernes <strong>2/s</strong> et les forts ne produisent pas de troupes. Les neutres ne produisent pas avant leur capture.</p><ul><li><strong>Glissez</strong> d’un bâtiment bleu vers un autre pour envoyer 50 % des troupes.</li><li><strong>Double-cliquez sur la cible</strong> pour envoyer toutes les troupes disponibles des bâtiments sélectionnés. Après un glisser-déposer, cela envoie les troupes restantes.</li><li><strong>Maj + clic</strong> ajoute un bâtiment à votre sélection. Vous pouvez aussi tracer un rectangle sur le fond.</li><li>Glissez depuis un bâtiment sélectionné pour donner le même ordre à tout le groupe.</li> <li>En chemin, une unité élimine une unité adverse. Au bâtiment, les attaquants sont divisés par sa défense : défense 1 sans réduction, défense 2 dégâts divisés par deux. Les survivants continuent leur route.</li><li>Survolez un bâtiment pour consulter ses statistiques. Les maisons sont rondes, les casernes carrées et les forts hexagonaux.</li><li>Survolez une maison de votre camp et cliquez sur une petite icône pour la transformer : 10 troupes pour une caserne (2/s) ou un fort (défense 2, production 0/s). Transformation immédiate et définitive.</li><li>Un fort avec au moins 1 troupe tire automatiquement : 1 dégât/s, portée de 240 unités de carte. Sa garnison ne consomme pas de munition. Le type est conservé après capture.</li><li>Chaque bâtiment accueille au maximum 50 troupes. Les troupes en route réservent leur place : un envoi trop grand est refusé, et la production suspendue si nécessaire. Un bâtiment est capturé lorsqu’il reste au moins un attaquant.</li><li>La victoire exige l’élimination de tous les bâtiments et groupes ennemis.</li><li><strong>Espace</strong> : pause. <strong>Échap</strong> : désélectionner. Sur écran tactile, glissez pour attaquer.</li></ul><button id="help-ok" class="primary">À moi de jouer <span>↗</span></button></dialog>
+<dialog id="help-dialog"><button id="close-help" class="icon-btn close-dialog" aria-label="Fermer">×</button><div class="eyebrow">GUIDE TACTIQUE</div><h2>Le terrain est à vous.</h2><p>Les maisons produisent <strong>1 troupe/s</strong>, les casernes <strong>1,5 troupe/s</strong> et les forts ne produisent pas de troupes. Les neutres ne produisent pas avant leur capture.</p><ul><li><strong>Glissez</strong> d’un bâtiment bleu vers un autre pour envoyer 50 % des troupes.</li><li><strong>Maj + glissez vers une cible</strong> pour envoyer toutes les troupes disponibles des bâtiments sélectionnés. Fonctionne vers les bâtiments alliés, neutres et ennemis.</li><li><strong>Maj + clic</strong> ajoute un bâtiment à votre sélection. Vous pouvez aussi tracer un rectangle sur le fond.</li><li>Glissez depuis un bâtiment sélectionné pour donner le même ordre à tout le groupe.</li> <li>En chemin, une unité élimine une unité adverse. Au bâtiment, les attaquants sont divisés par sa défense : défense 1 sans réduction, défense 2 dégâts divisés par deux. Les survivants continuent leur route.</li><li>Survolez un bâtiment pour consulter ses statistiques. Les maisons sont rondes, les casernes carrées et les forts hexagonaux.</li><li>Survolez une maison de votre camp et cliquez sur une petite icône pour la transformer : 10 troupes pour une caserne (1,5 troupe/s, capacité 80) ou un fort (défense 2, production 0/s). Transformation immédiate et définitive.</li><li>Un fort avec au moins 1 troupe tire automatiquement : 1 dégât par tir, 2 tirs/s, portée de 240 unités de carte. Survolez le fort ou le bouton Fort avant construction pour prévisualiser sa portée. Sa garnison ne consomme pas de munition. Le type est conservé après capture.</li><li>Les maisons et les forts accueillent au maximum 50 troupes ; les casernes, 80. Les troupes en route réservent leur place : un envoi trop grand est refusé, et la production suspendue si nécessaire. Un bâtiment est capturé lorsqu’il reste au moins un attaquant.</li><li>La victoire exige l’élimination de tous les bâtiments et groupes ennemis.</li><li><strong>Espace</strong> : pause. <strong>Échap</strong> : désélectionner. Sur écran tactile, glissez pour attaquer.</li></ul><button id="help-ok" class="primary">À moi de jouer <span>↗</span></button></dialog>
 <script>(()=>{
 'use strict';
 const modules={"src/game/BuildingTypes.js":(exports,__require)=>{
 const TRANSFORM_COST=10;
 const BUILDING_TYPES=Object.freeze({
  house:Object.freeze({label:'Maison',defense:1,rate:1,troopSpeed:45,capacity:50,range:0,shotDamage:0,shotInterval:1}),
- barracks:Object.freeze({label:'Caserne',defense:1,rate:2,troopSpeed:45,capacity:50,range:0,shotDamage:0,shotInterval:1}),
- fort:Object.freeze({label:'Fort',defense:2,rate:0,troopSpeed:45,capacity:50,range:240,shotDamage:1,shotInterval:1})
+ barracks:Object.freeze({label:'Caserne',defense:1,rate:1.5,troopSpeed:45,capacity:80,range:0,shotDamage:0,shotInterval:1}),
+ fort:Object.freeze({label:'Fort',defense:2,rate:0,troopSpeed:45,capacity:50,range:240,shotDamage:1,shotInterval:.5})
 });
 const typeOf=b=>b.type??'house';
 const typeLabel=b=>BUILDING_TYPES[typeOf(b)]?.label??'Maison';
@@ -62,14 +72,14 @@ function predictedGarrison(state,b,seconds){return Math.min(capacityOf(b),b.unit
 Object.assign(exports,{DEFAULT_BUILDING_STATS,capacityOf,defenseOf,speedOf,reservedFor,freeSpace,predictedGarrison});
 },
 "src/ui/BuildingPopover.js":(exports,__require)=>{
-const {TRANSFORM_COST,typeOf,typeLabel}=__require("src/game/BuildingTypes.js");
+const {BUILDING_TYPES,TRANSFORM_COST,typeOf,typeLabel}=__require("src/game/BuildingTypes.js");
 
 const {capacityOf,defenseOf,speedOf,reservedFor,freeSpace}=__require("src/game/BuildingStats.js");
 
 class BuildingPopover{
  constructor(element,canvas,input,renderer,getGame,isMenuVisible,onTransform){
   Object.assign(this,{element,canvas,input,renderer,getGame,isMenuVisible,onTransform});
-  this.buildingId=null;this.pointerInside=false;this.focusInside=false;this.keepUntil=0;
+  this.buildingId=null;this.pointerInside=false;this.focusInside=false;this.keepUntil=0;this.previewFort=false;
   this.find=id=>element.querySelector('#'+id);
   element.addEventListener('pointerenter',()=>{this.pointerInside=true;});
   element.addEventListener('pointermove',()=>{this.pointerInside=true;});
@@ -78,6 +88,9 @@ class BuildingPopover{
   element.addEventListener('focusout',e=>{this.focusInside=element.contains(e.relatedTarget);this.keepUntil=performance.now()+280;});
   for(const event of ['pointermove','pointerup'])canvas.addEventListener(event,()=>this.update());
   canvas.addEventListener('pointerleave',()=>{this.keepUntil=performance.now()+280;this.update();});
+  const fortButton=this.find('transform-fort');
+  for(const event of ['pointerenter','focus'])fortButton.addEventListener(event,()=>{this.previewFort=true;this.update();});
+  for(const event of ['pointerleave','blur'])fortButton.addEventListener(event,()=>{this.previewFort=false;this.update();});
   for(const type of ['barracks','fort'])this.find('transform-'+type).addEventListener('click',()=>{
    const b=this.getGame().state.buildings.find(b=>b.id===this.buildingId);if(!b)return;
    this.onTransform(b,type);this.update();
@@ -87,35 +100,46 @@ class BuildingPopover{
   if(this.element.hidden||!this.buildingId)return false;
   const b=this.getGame().state.buildings.find(b=>b.id===this.buildingId);if(!b)return false;
   const v=this.renderer.view,p=this.input.pointer,x=v.x+p.x*v.scale,y=v.y+p.y*v.scale,bx=v.x+b.x*v.scale,by=v.y+b.y*v.scale,r=(b.radius+9)*v.scale;
-  const left=parseFloat(this.element.style.left)||0,top=parseFloat(this.element.style.top)||0;
-  return x>=Math.min(left,bx-r)&&x<=Math.max(left+this.element.offsetWidth,bx+r)&&y>=Math.min(top,by-r)&&y<=Math.max(top+this.element.offsetHeight,by+r);
+  const anchorX=parseFloat(this.element.style.left)||0,anchorY=parseFloat(this.element.style.top)||0;
+  return ['stats-card','hover-upgrades'].some(id=>{
+   const el=this.find(id);if(el.hidden)return false;
+   const left=anchorX+parseFloat(el.style.left),top=anchorY+parseFloat(el.style.top);
+   return x>=Math.min(left,bx-r)&&x<=Math.max(left+el.offsetWidth,bx+r)&&y>=Math.min(top,by-r)&&y<=Math.max(top+el.offsetHeight,by+r);
+  });
  }
- hide(){this.element.hidden=true;this.canvas.removeAttribute('aria-describedby');this.buildingId=null;this.pointerInside=false;this.focusInside=false;this.keepUntil=0;}
+ hide(){this.renderer.rangePreview=null;this.previewFort=false;this.element.hidden=true;this.canvas.removeAttribute('aria-describedby');this.buildingId=null;this.pointerInside=false;this.focusInside=false;this.keepUntil=0;}
  update(now=performance.now()){
   if(this.isMenuVisible()||this.input.drag){this.hide();return;}
   const game=this.getGame(),hit=this.input.hit(this.input.pointer);
-  if(hit){this.buildingId=hit.id;this.keepUntil=now+280;}
+  if(hit){if(hit.id!==this.buildingId)this.previewFort=false;this.buildingId=hit.id;this.keepUntil=now+280;}
   else if(!this.pointerInside&&!this.focusInside&&!this.inCorridor()&&now>=this.keepUntil){this.hide();return;}
   const b=game.state.buildings.find(b=>b.id===this.buildingId);if(!b){this.hide();return;}
   const box=this.element;box.hidden=false;this.canvas.setAttribute('aria-describedby',box.id);
   this.find('stats-title').textContent=`${typeLabel(b)} ${b.name} · ${['Neutre','Votre camp','IA'][b.owner]}`;
   this.find('stats-defense').textContent=defenseOf(b);
-  this.find('stats-rate').textContent=`${b.rate} troupe${b.rate>1?'s':''}/s`;
-  this.find('stats-speed').textContent=`${speedOf(b)} unités/s`;
+  this.find('stats-rate').textContent=`${b.rate}/s`;
+  this.find('stats-speed').textContent=speedOf(b);
   this.find('stats-capacity').textContent=`${b.units} / ${capacityOf(b)}`;
   const fort=typeOf(b)==='fort',fortInfo=this.find('stats-fort');fortInfo.hidden=!fort;
-  if(fort)fortInfo.textContent=`Portée ${b.range} · ${b.shotDamage} dégât/s · ${b.units?'Garnison présente':'Garnison requise'}`;
+  if(fort)fortInfo.textContent=`Portée ${b.range} · ${b.shotDamage/b.shotInterval} dégâts/s · ${b.units?'Garnison présente':'Garnison requise'}`;
   const reserved=b.owner?reservedFor(game.state,b):0;
   this.find('stats-status').textContent=b.owner===0?'Production inactive · bâtiment neutre':freeSpace(game.state,b)===0?`Production arrêtée${reserved?' · '+reserved+' place(s) réservée(s)':''}`:reserved?`${reserved} place(s) réservée(s) aux renforts`:b.rate===0?'Aucune production · fort défensif':'Production active';
-  const canTransform=b.owner===1&&typeOf(b)==='house';this.find('hover-upgrades').hidden=!canTransform;
+  const canTransform=b.owner===1&&typeOf(b)==='house';
+  this.renderer.rangePreview=fort||canTransform&&this.previewFort?{building:b.id,range:fort?b.range:BUILDING_TYPES.fort.range}:null;this.find('hover-upgrades').hidden=!canTransform;
   if(canTransform){const enabled=game.state.status==='running'&&b.units>=TRANSFORM_COST;
    this.find('transform-barracks').disabled=this.find('transform-fort').disabled=!enabled;
    this.find('transform-hint').textContent=game.state.status==='paused'?'Reprenez la partie pour transformer.':b.units<TRANSFORM_COST?`Il manque ${TRANSFORM_COST-b.units} troupe(s).`:'Transformer · 10 troupes par spécialisation';
   }
   const v=this.renderer.view,x=v.x+b.x*v.scale,y=v.y+b.y*v.scale;
-  box.style.left=`${Math.max(6,Math.min(this.renderer.width-box.offsetWidth-6,x-box.offsetWidth/2))}px`;
-  const below=y+b.radius*v.scale+8;
-  box.style.top=`${below+box.offsetHeight<=this.renderer.height-6?below:Math.max(6,y-b.radius*v.scale-box.offsetHeight-8)}px`;
+  // A transparent anchor keeps the building itself available for dragging.
+  box.style.left=`${x}px`;box.style.top=`${y}px`;
+  const radius=b.radius*v.scale,card=this.find('stats-card'),upgrades=this.find('hover-upgrades');
+  const place=(el,top)=>{
+   el.style.left=`${Math.max(6,Math.min(this.renderer.width-el.offsetWidth-6,x-el.offsetWidth/2))-x}px`;
+   el.style.top=`${Math.max(6,Math.min(this.renderer.height-el.offsetHeight-6,top))-y}px`;
+  };
+  place(card,y+radius+10);
+  place(upgrades,y-radius-upgrades.offsetHeight-12);
  }
 }
 
@@ -247,13 +271,14 @@ class Game{
   for(const b of sources){
    const units=Math.floor(b.units*command.fraction);if(units<1)continue;
    const dx=target.x-b.x,dy=target.y-b.y,d=Math.hypot(dx,dy),nx=dx/d,ny=dy/d;
-   const duration=Math.max(1/30,(d-b.radius-target.radius)/speedOf(b));
+   const duration=Math.max(STEP,(d-b.radius-target.radius)/speedOf(b));
    b.units-=units;if(b.units===0)b.defenseDamage=0;sent+=units;
    s.armies.push({id:`a${s.nextArmyId++}`,owner:command.player,source:b.id,target:target.id,units,sx:b.x+nx*b.radius,sy:b.y+ny*b.radius,tx:target.x-nx*target.radius,ty:target.y-ny*target.radius,departure:s.time,speed:speedOf(b),duration});
   }
   if(!sent)return {ok:false,reason:'Pas assez de troupes'};
   s.stats[command.player].sent+=sent;
-  s.commandLog.push({tick:s.tick,...structuredClone(command)});
+  // Record only canonical fields; caller metadata cannot override simulation time.
+  s.commandLog.push({type:'send',player:command.player,sources:sources.map(b=>b.id),target:target.id,fraction:command.fraction,tick:s.tick});
   s.events.push({type:'send',owner:command.player,units:sent,time:s.time});
   return {ok:true,sent};
  }
@@ -472,7 +497,8 @@ class Renderer{
   }
   if(input.drag?.kind==='send'){for(const b of state.buildings.filter(b=>input.selected.has(b.id)&&b.owner===1)){this.line(b,input.pointer,'#427df0a0',true);}const target=input.hit(input.pointer);if(target){c.beginPath();c.arc(target.x,target.y,44,0,Math.PI*2);c.strokeStyle='#427df090';c.lineWidth=2;c.stroke();}}
   for(const b of state.buildings){const selected=input.selected.has(b.id)&&b.owner===1,hover=input.hit(input.pointer)?.id===b.id,col=colors[b.owner];
-   if(typeOf(b)==='fort'&&(selected||hover)){c.beginPath();c.arc(b.x,b.y,b.range,0,Math.PI*2);c.fillStyle=col+'08';c.fill();c.setLineDash([7,8]);c.strokeStyle=col+'60';c.lineWidth=1.5;c.stroke();c.setLineDash([]);}
+   const preview=this.rangePreview?.building===b.id;
+   if(preview||typeOf(b)==='fort'&&(selected||hover)){const range=preview?this.rangePreview.range:b.range;c.beginPath();c.arc(b.x,b.y,range,0,Math.PI*2);c.fillStyle=col+'0b';c.fill();c.setLineDash([7,8]);c.strokeStyle=col+'90';c.lineWidth=2;c.stroke();c.setLineDash([]);c.fillStyle=col;c.font='600 12px system-ui';c.textAlign='center';c.fillText(`PORTÉE ${range}`,b.x,b.y-range+18);}
    c.save();c.translate(b.x,b.y);c.scale(b.radius/31,b.radius/31);if(selected){c.beginPath();c.arc(0,0,43,0,Math.PI*2);c.strokeStyle=col;c.lineWidth=2;c.stroke();c.fillStyle='#427df00c';c.fill();}
    c.beginPath();c.arc(0,3,34,0,Math.PI*2);c.fillStyle='#273a5010';c.fill();c.beginPath();if(typeOf(b)==='barracks')c.roundRect(-28,-28,56,56,8);else if(typeOf(b)==='fort'){for(let i=0;i<6;i++){const a=i*Math.PI/3-Math.PI/2;const x=Math.cos(a)*32,y=Math.sin(a)*32;if(i===0)c.moveTo(x,y);else c.lineTo(x,y);}c.closePath();}else c.arc(0,0,31,0,Math.PI*2);c.fillStyle=b.owner?col:'#f0f3f7';c.fill();c.lineWidth=2;c.strokeStyle=b.owner?col:'#d3dbe7';c.stroke();
    if(hover){c.beginPath();c.arc(0,0,36,0,Math.PI*2);c.strokeStyle=col+'60';c.lineWidth=2;c.stroke();}
@@ -489,33 +515,116 @@ class Renderer{
 Object.assign(exports,{Renderer});
 },
 "src/input/InputController.js":(exports,__require)=>{
-class InputController{
- constructor(canvas,renderer,getGame,getFraction,toast){this.canvas=canvas;this.renderer=renderer;this.getGame=getGame;this.getFraction=getFraction;this.toast=toast;this.selected=new Set();this.pointer={x:-999,y:-999};this.drag=null;
- canvas.addEventListener('pointerdown',e=>this.down(e));canvas.addEventListener('pointermove',e=>this.move(e));canvas.addEventListener('pointerup',e=>this.up(e));canvas.addEventListener('pointercancel',()=>{this.drag=null;});canvas.addEventListener('dblclick',e=>this.sendAll(e));canvas.addEventListener('pointerleave',()=>{if(!this.drag)this.pointer={x:-999,y:-999};});
+const CLICK_TOLERANCE = 6;
+const OUTSIDE = {x: -999, y: -999};
+
+class InputController {
+ constructor(canvas, renderer, getGame, getFraction, toast) {
+  Object.assign(this, {canvas, renderer, getGame, getFraction, toast});
+  this.selected = new Set();
+  this.pointer = {...OUTSIDE};
+  this.drag = null;
+
+  canvas.addEventListener('pointerdown', event => this.down(event));
+  canvas.addEventListener('pointermove', event => this.move(event));
+  canvas.addEventListener('pointerup', event => this.up(event));
+  for (const event of ['pointercancel', 'lostpointercapture']) {
+   canvas.addEventListener(event, e => {
+    if (this.drag?.pointerId === e.pointerId) this.drag = null;
+   });
+  }
+  canvas.addEventListener('pointerleave', () => {
+   if (!this.drag) this.pointer = {...OUTSIDE};
+  });
  }
- hit(p){return this.getGame().state.buildings.find(b=>Math.hypot(b.x-p.x,b.y-p.y)<b.radius+9);}
- down(e){if(e.button!==0||this.getGame().state.status!=='running')return;this.canvas.focus();this.pointer=this.renderer.point(e.clientX,e.clientY);const b=this.hit(this.pointer);this.canvas.setPointerCapture(e.pointerId);
-  if(b?.owner===1){if(e.shiftKey){if(this.selected.has(b.id)){this.selected.delete(b.id);this.drag=null;return;}this.selected.add(b.id);}else if(!this.selected.has(b.id)){this.selected.clear();this.selected.add(b.id);}this.drag={kind:'send',start:{...this.pointer},source:b.id};}
-  else if(!b){if(!e.shiftKey)this.selected.clear();this.drag={kind:'box',start:{...this.pointer}};}
+
+ hit(point) {
+  return this.getGame().state.buildings.find(building =>
+   Math.hypot(building.x - point.x, building.y - point.y) < building.radius + 9);
  }
- move(e){this.pointer=this.renderer.point(e.clientX,e.clientY);}
- up(e){this.pointer=this.renderer.point(e.clientX,e.clientY);if(!this.drag)return;const drag=this.drag;this.drag=null;if(this.getGame().state.status!=='running')return;
-  if(drag.kind==='box'){for(const b of this.getGame().state.buildings)if(b.owner===1&&b.x>=Math.min(drag.start.x,this.pointer.x)&&b.x<=Math.max(drag.start.x,this.pointer.x)&&b.y>=Math.min(drag.start.y,this.pointer.y)&&b.y<=Math.max(drag.start.y,this.pointer.y))this.selected.add(b.id);return;}
-  const target=this.hit(this.pointer);if(!target||target.id===drag.source)return;
-  const sources=[...this.selected].filter(id=>id!==target.id&&this.getGame().state.buildings.some(b=>b.id===id&&b.owner===1));if(!sources.length)return;
-  const r=this.getGame().command({type:'send',player:1,sources,target:target.id,fraction:this.getFraction()});this.toast(r.ok?`${r.sent} unités → bâtiment ${target.name}`:r.reason);
+
+ down(event) {
+  if (event.button !== 0 || this.drag || this.getGame().state.status !== 'running') return;
+  this.canvas.focus();
+  this.pointer = this.renderer.point(event.clientX, event.clientY);
+  const building = this.hit(this.pointer);
+
+  if (building?.owner === 1) {
+   const wasSelected = this.selected.has(building.id);
+   if (!event.shiftKey && !wasSelected) this.selected.clear();
+   this.selected.add(building.id);
+   // Shift+click toggles only on release; Shift+drag must keep its sources.
+   this.drag = {
+    kind: 'send', pointerId: event.pointerId, start: {...this.pointer},
+    source: building.id, sendAll: !!event.shiftKey,
+    toggle: !!event.shiftKey && wasSelected,
+    clientX: event.clientX, clientY: event.clientY, moved: false
+   };
+  } else if (!building) {
+   if (!event.shiftKey) this.selected.clear();
+   this.drag = {kind: 'box', pointerId: event.pointerId, start: {...this.pointer}};
+  }
+  if (this.drag) this.canvas.setPointerCapture(event.pointerId);
  }
- sendAll(e){
-  e.preventDefault();const game=this.getGame();if(game.state.status!=='running'||e.button!==0)return;
-  this.pointer=this.renderer.point(e.clientX,e.clientY);const target=this.hit(this.pointer);if(!target)return;
-  this.drag=null;this.clean();
-  const sources=[...this.selected].filter(id=>id!==target.id&&game.state.buildings.some(b=>b.id===id&&b.owner===1));
-  if(!sources.length){this.toast('Sélectionnez d’abord un bâtiment bleu.');return;}
-  const r=game.command({type:'send',player:1,sources,target:target.id,fraction:1});
-  this.toast(r.ok?`${r.sent} unités → bâtiment ${target.name} · Tout envoyé`:r.reason);
+
+ movedFromPress(event, drag) {
+  return Math.hypot(event.clientX - drag.clientX, event.clientY - drag.clientY) > CLICK_TOLERANCE;
  }
- clean(){for(const id of this.selected)if(!this.getGame().state.buildings.some(b=>b.id===id&&b.owner===1))this.selected.delete(id);}
- reset(){this.selected.clear();this.drag=null;}
+
+ move(event) {
+  if (this.drag && this.drag.pointerId !== event.pointerId) return;
+  this.pointer = this.renderer.point(event.clientX, event.clientY);
+  if (this.drag?.kind === 'send' && this.movedFromPress(event, this.drag)) this.drag.moved = true;
+ }
+
+ up(event) {
+  if (this.drag && this.drag.pointerId !== event.pointerId) return;
+  this.pointer = this.renderer.point(event.clientX, event.clientY);
+  if (!this.drag) return;
+  const drag = this.drag;
+  this.drag = null;
+  if (this.getGame().state.status !== 'running') return;
+
+  if (drag.kind === 'box') {
+   this.selectRectangle(drag.start, this.pointer);
+   return;
+  }
+  const target = this.hit(this.pointer);
+  if (target?.id === drag.source) {
+   if (drag.toggle && !drag.moved && !this.movedFromPress(event, drag)) this.selected.delete(drag.source);
+   return;
+  }
+  if (!target) return;
+  this.clean();
+  const sources = [...this.selected].filter(id => id !== target.id);
+  if (!sources.length) return;
+  const fraction = drag.sendAll || event.shiftKey ? 1 : this.getFraction();
+  const result = this.getGame().command({type: 'send', player: 1, sources, target: target.id, fraction});
+  this.toast(result.ok
+   ? `${result.sent} unités → bâtiment ${target.name}${fraction === 1 ? ' · Tout envoyé' : ''}`
+   : result.reason);
+ }
+
+ selectRectangle(start, end) {
+  for (const building of this.getGame().state.buildings) {
+   if (building.owner === 1 &&
+       building.x >= Math.min(start.x, end.x) && building.x <= Math.max(start.x, end.x) &&
+       building.y >= Math.min(start.y, end.y) && building.y <= Math.max(start.y, end.y)) {
+    this.selected.add(building.id);
+   }
+  }
+ }
+
+ clean() {
+  const owned = new Set(this.getGame().state.buildings.filter(b => b.owner === 1).map(b => b.id));
+  for (const id of this.selected) if (!owned.has(id)) this.selected.delete(id);
+ }
+
+ reset() {
+  this.selected.clear();
+  this.drag = null;
+  this.pointer = {...OUTSIDE};
+ }
 }
 
 Object.assign(exports,{InputController});
@@ -549,7 +658,7 @@ const buildingPopover=new BuildingPopover($('building-stats'),$('board'),input,r
 function reset(){game=new Game(createState($('map-select').value));ai=new AIController(game,2,$('difficulty').value);input.reset();renderer.effects=[];accumulator=0;$('overlay').hidden=false;$('setup').hidden=false;$('overlay-title').textContent='Chaque mouvement compte.';$('overlay-description').innerHTML='Une carte. Deux camps. Aucune unité gratuite.<br>Le meilleur stratège l’emporte.';$('start').innerHTML='Lancer la conquête <span>↗</span>';$('overlay-footnote').textContent='Capturez les bâtiments et éliminez les dernières troupes.';hud();}
 function start(){if(game.state.status==='finished')reset();game.state.status='running';$('overlay').hidden=true;accumulator=0;last=performance.now();hud();}
 function pause(){if(game.state.status==='running'){game.state.status='paused';input.drag=null;}else if(game.state.status==='paused')game.state.status='running';else return;accumulator=0;last=performance.now();hud();}
-$('start').onclick=start;$('pause').onclick=pause;$('new-game').onclick=reset;$('map-select').onchange=reset;$('difficulty').onchange=()=>{ai.difficulty=$('difficulty').value;};
+$('start').onclick=start;$('pause').onclick=pause;$('new-game').onclick=reset;$('map-select').onchange=reset;$('difficulty').onchange=()=>{ai=new AIController(game,2,$('difficulty').value);hud();};
 $('debug-toggle').onchange=e=>{debug=e.target.checked;$('debug').hidden=!debug;$('ai-hint').hidden=debug;hud();};
 let helpPaused=false;function help(){helpPaused=game.state.status==='running';if(helpPaused)pause();$('help-dialog').showModal();}
 $('help').onclick=help;$('help-dialog').addEventListener('close',()=>{if(helpPaused&&game.state.status==='paused')pause();helpPaused=false;});$('close-help').onclick=$('help-ok').onclick=()=>$('help-dialog').close();

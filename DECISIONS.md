@@ -91,3 +91,9 @@ Rendre les statistiques au survol visibles, retirer le panneau Déploiement à d
 Remplacer les flèches et points des armées par un cercle contenant leur effectif, dimensionné selon le nombre de troupes. Conserver les formes des bâtiments (maison ronde, caserne carrée, fort hexagonal). Le rayon des bulles est purement visuel et ne modifie pas la zone de collision.
 
 Correction du survol : fiche mise à jour directement sur les mouvements de pointeur, délai de sortie renouvelé au moment de quitter le canvas, zone de passage entre bâtiment et fiche, maintien au pointeur ou au focus. Ces garanties permettent de cliquer les icônes après un long survol sans fermeture prématurée. Ajouter des paramètres de version aux ressources d’interface modifiées pour éviter un mélange de fichiers en cache sur GitHub Pages.
+
+## Commandes et caserne — v0.2.5
+
+Instruction actuelle : abandonner le double-clic. Maj + glisser envoie 100 %, glisser normal 50 %, Maj + clic reste la sélection multiple. Caserne : production 1,5/s, capacité 80. Les anciennes décisions de double-clic et de caserne à 2/s sont remplacées.
+
+Fort : cadence portée à 2 tirs/s ; dégâts par tir (1) et portée (240) conservés.

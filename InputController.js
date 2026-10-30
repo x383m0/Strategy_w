@@ -1,28 +1,111 @@
-export class InputController{
- constructor(canvas,renderer,getGame,getFraction,toast){this.canvas=canvas;this.renderer=renderer;this.getGame=getGame;this.getFraction=getFraction;this.toast=toast;this.selected=new Set();this.pointer={x:-999,y:-999};this.drag=null;
- canvas.addEventListener('pointerdown',e=>this.down(e));canvas.addEventListener('pointermove',e=>this.move(e));canvas.addEventListener('pointerup',e=>this.up(e));canvas.addEventListener('pointercancel',()=>{this.drag=null;});canvas.addEventListener('dblclick',e=>this.sendAll(e));canvas.addEventListener('pointerleave',()=>{if(!this.drag)this.pointer={x:-999,y:-999};});
+const CLICK_TOLERANCE = 6;
+const OUTSIDE = {x: -999, y: -999};
+
+export class InputController {
+ constructor(canvas, renderer, getGame, getFraction, toast) {
+  Object.assign(this, {canvas, renderer, getGame, getFraction, toast});
+  this.selected = new Set();
+  this.pointer = {...OUTSIDE};
+  this.drag = null;
+
+  canvas.addEventListener('pointerdown', event => this.down(event));
+  canvas.addEventListener('pointermove', event => this.move(event));
+  canvas.addEventListener('pointerup', event => this.up(event));
+  for (const event of ['pointercancel', 'lostpointercapture']) {
+   canvas.addEventListener(event, e => {
+    if (this.drag?.pointerId === e.pointerId) this.drag = null;
+   });
+  }
+  canvas.addEventListener('pointerleave', () => {
+   if (!this.drag) this.pointer = {...OUTSIDE};
+  });
  }
- hit(p){return this.getGame().state.buildings.find(b=>Math.hypot(b.x-p.x,b.y-p.y)<b.radius+9);}
- down(e){if(e.button!==0||this.getGame().state.status!=='running')return;this.canvas.focus();this.pointer=this.renderer.point(e.clientX,e.clientY);const b=this.hit(this.pointer);this.canvas.setPointerCapture(e.pointerId);
-  if(b?.owner===1){if(e.shiftKey){if(this.selected.has(b.id)){this.selected.delete(b.id);this.drag=null;return;}this.selected.add(b.id);}else if(!this.selected.has(b.id)){this.selected.clear();this.selected.add(b.id);}this.drag={kind:'send',start:{...this.pointer},source:b.id};}
-  else if(!b){if(!e.shiftKey)this.selected.clear();this.drag={kind:'box',start:{...this.pointer}};}
+
+ hit(point) {
+  return this.getGame().state.buildings.find(building =>
+   Math.hypot(building.x - point.x, building.y - point.y) < building.radius + 9);
  }
- move(e){this.pointer=this.renderer.point(e.clientX,e.clientY);}
- up(e){this.pointer=this.renderer.point(e.clientX,e.clientY);if(!this.drag)return;const drag=this.drag;this.drag=null;if(this.getGame().state.status!=='running')return;
-  if(drag.kind==='box'){for(const b of this.getGame().state.buildings)if(b.owner===1&&b.x>=Math.min(drag.start.x,this.pointer.x)&&b.x<=Math.max(drag.start.x,this.pointer.x)&&b.y>=Math.min(drag.start.y,this.pointer.y)&&b.y<=Math.max(drag.start.y,this.pointer.y))this.selected.add(b.id);return;}
-  const target=this.hit(this.pointer);if(!target||target.id===drag.source)return;
-  const sources=[...this.selected].filter(id=>id!==target.id&&this.getGame().state.buildings.some(b=>b.id===id&&b.owner===1));if(!sources.length)return;
-  const r=this.getGame().command({type:'send',player:1,sources,target:target.id,fraction:this.getFraction()});this.toast(r.ok?`${r.sent} unités → bâtiment ${target.name}`:r.reason);
+
+ down(event) {
+  if (event.button !== 0 || this.drag || this.getGame().state.status !== 'running') return;
+  this.canvas.focus();
+  this.pointer = this.renderer.point(event.clientX, event.clientY);
+  const building = this.hit(this.pointer);
+
+  if (building?.owner === 1) {
+   const wasSelected = this.selected.has(building.id);
+   if (!event.shiftKey && !wasSelected) this.selected.clear();
+   this.selected.add(building.id);
+   // Shift+click toggles only on release; Shift+drag must keep its sources.
+   this.drag = {
+    kind: 'send', pointerId: event.pointerId, start: {...this.pointer},
+    source: building.id, sendAll: !!event.shiftKey,
+    toggle: !!event.shiftKey && wasSelected,
+    clientX: event.clientX, clientY: event.clientY, moved: false
+   };
+  } else if (!building) {
+   if (!event.shiftKey) this.selected.clear();
+   this.drag = {kind: 'box', pointerId: event.pointerId, start: {...this.pointer}};
+  }
+  if (this.drag) this.canvas.setPointerCapture(event.pointerId);
  }
- sendAll(e){
-  e.preventDefault();const game=this.getGame();if(game.state.status!=='running'||e.button!==0)return;
-  this.pointer=this.renderer.point(e.clientX,e.clientY);const target=this.hit(this.pointer);if(!target)return;
-  this.drag=null;this.clean();
-  const sources=[...this.selected].filter(id=>id!==target.id&&game.state.buildings.some(b=>b.id===id&&b.owner===1));
-  if(!sources.length){this.toast('Sélectionnez d’abord un bâtiment bleu.');return;}
-  const r=game.command({type:'send',player:1,sources,target:target.id,fraction:1});
-  this.toast(r.ok?`${r.sent} unités → bâtiment ${target.name} · Tout envoyé`:r.reason);
+
+ movedFromPress(event, drag) {
+  return Math.hypot(event.clientX - drag.clientX, event.clientY - drag.clientY) > CLICK_TOLERANCE;
  }
- clean(){for(const id of this.selected)if(!this.getGame().state.buildings.some(b=>b.id===id&&b.owner===1))this.selected.delete(id);}
- reset(){this.selected.clear();this.drag=null;}
+
+ move(event) {
+  if (this.drag && this.drag.pointerId !== event.pointerId) return;
+  this.pointer = this.renderer.point(event.clientX, event.clientY);
+  if (this.drag?.kind === 'send' && this.movedFromPress(event, this.drag)) this.drag.moved = true;
+ }
+
+ up(event) {
+  if (this.drag && this.drag.pointerId !== event.pointerId) return;
+  this.pointer = this.renderer.point(event.clientX, event.clientY);
+  if (!this.drag) return;
+  const drag = this.drag;
+  this.drag = null;
+  if (this.getGame().state.status !== 'running') return;
+
+  if (drag.kind === 'box') {
+   this.selectRectangle(drag.start, this.pointer);
+   return;
+  }
+  const target = this.hit(this.pointer);
+  if (target?.id === drag.source) {
+   if (drag.toggle && !drag.moved && !this.movedFromPress(event, drag)) this.selected.delete(drag.source);
+   return;
+  }
+  if (!target) return;
+  this.clean();
+  const sources = [...this.selected].filter(id => id !== target.id);
+  if (!sources.length) return;
+  const fraction = drag.sendAll || event.shiftKey ? 1 : this.getFraction();
+  const result = this.getGame().command({type: 'send', player: 1, sources, target: target.id, fraction});
+  this.toast(result.ok
+   ? `${result.sent} unités → bâtiment ${target.name}${fraction === 1 ? ' · Tout envoyé' : ''}`
+   : result.reason);
+ }
+
+ selectRectangle(start, end) {
+  for (const building of this.getGame().state.buildings) {
+   if (building.owner === 1 &&
+       building.x >= Math.min(start.x, end.x) && building.x <= Math.max(start.x, end.x) &&
+       building.y >= Math.min(start.y, end.y) && building.y <= Math.max(start.y, end.y)) {
+    this.selected.add(building.id);
+   }
+  }
+ }
+
+ clean() {
+  const owned = new Set(this.getGame().state.buildings.filter(b => b.owner === 1).map(b => b.id));
+  for (const id of this.selected) if (!owned.has(id)) this.selected.delete(id);
+ }
+
+ reset() {
+  this.selected.clear();
+  this.drag = null;
+  this.pointer = {...OUTSIDE};
+ }
 }

@@ -24,13 +24,14 @@ export class Game{
   for(const b of sources){
    const units=Math.floor(b.units*command.fraction);if(units<1)continue;
    const dx=target.x-b.x,dy=target.y-b.y,d=Math.hypot(dx,dy),nx=dx/d,ny=dy/d;
-   const duration=Math.max(1/30,(d-b.radius-target.radius)/speedOf(b));
+   const duration=Math.max(STEP,(d-b.radius-target.radius)/speedOf(b));
    b.units-=units;if(b.units===0)b.defenseDamage=0;sent+=units;
    s.armies.push({id:`a${s.nextArmyId++}`,owner:command.player,source:b.id,target:target.id,units,sx:b.x+nx*b.radius,sy:b.y+ny*b.radius,tx:target.x-nx*target.radius,ty:target.y-ny*target.radius,departure:s.time,speed:speedOf(b),duration});
   }
   if(!sent)return {ok:false,reason:'Pas assez de troupes'};
   s.stats[command.player].sent+=sent;
-  s.commandLog.push({tick:s.tick,...structuredClone(command)});
+  // Record only canonical fields; caller metadata cannot override simulation time.
+  s.commandLog.push({type:'send',player:command.player,sources:sources.map(b=>b.id),target:target.id,fraction:command.fraction,tick:s.tick});
   s.events.push({type:'send',owner:command.player,units:sent,time:s.time});
   return {ok:true,sent};
  }
