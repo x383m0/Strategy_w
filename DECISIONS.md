@@ -107,3 +107,11 @@ Provisoire : coûts 10/20/30 pour les niveaux 2/3/4 et progression des statistiq
 ## Casernes — v0.3.1
 
 Capacités confirmées après correction : 20/30/40/50 pour N1/N2/N3/N4. Production retenue : 0,5/1/1,5/2 par seconde, suivant le maximum de 2/s et +0,5 par niveau demandés ; l’exemple initial « N2 2/s » est interprété comme une faute de frappe. La conversion vers une capacité inférieure est refusée si garnison après coût ou réservations ne tiennent pas, sans perte de troupes.
+
+## Suppression de la caserne et défense des forts — v0.3.2
+
+Demandé : supprimer la caserne et donner ses statistiques à la maison : production 0,5/1/1,5/2, capacité 20/30/40/50. Fort : défense de base 2, +0,5 par amélioration, soit 2/2,5/3/3,5. Les autres statistiques du fort sont conservées. Les garnisons initiales sont bornées à la capacité 20. Les survivants attaquants sont arrondis vers le bas pour conserver des troupes entières.
+
+## Envois libres et surcharge — v0.3.3
+
+Demandé : aucune limite de capacité sur les envois, même groupés et dirigés vers un ennemi. Dépassement autorisé sur les alliés avec pertes proportionnelles à l’excédent. Implémenté pour les deux camps et après capture : production arrêtée à capacité, attrition de l’excédent à 10 %/s (taux provisoire). Pas de pertes instantanées à l’arrivée, pas de réservations. Les troupes restent entières via un accumulateur à pas fixe. Les anciennes règles de refus pour capacité et de réservation sont remplacées.

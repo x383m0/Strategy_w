@@ -27,7 +27,11 @@ export function resolveBuildingCombat(building,forces){
  const guards=forces[owner]??0;
  if(attacker.units===0)return {owner,units:guards,damage:building.defenseDamage??0};
  const strength=guards*defense-(building.defenseDamage??0),remaining=strength-attacker.units;
- if(remaining<0)return {owner:attacker.owner,units:-remaining,damage:0};
+ if(remaining<0){
+  // A fractional defense may consume part of the final attacker. Only whole survivors capture.
+  const survivors=Math.floor(-remaining+1e-9);
+  return {owner:survivors>0?attacker.owner:null,units:survivors,damage:0};
+ }
  const units=Math.ceil(remaining/defense);
  return {owner:remaining===0?null:owner,units,damage:units*defense-remaining};
 }

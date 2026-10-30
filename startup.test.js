@@ -28,14 +28,14 @@ async function boot(){
  vm.runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
  return {elements,tick(seconds){for(let i=0;i<seconds*10;i++){now+=100;frame(now);}}};
 }
-test('standalone release starts, advances production, pauses and restarts without removed controls',async()=>{
+test('standalone release starts, advances time, respects the full garrison, pauses and restarts without removed controls',async()=>{
  const {elements:e,tick}=await boot();
  assert.equal(typeof e.get('start').onclick,'function');
  assert.equal(e.get('status').textContent,'PRÊT À JOUER');
  const initial=Number(e.get('p-units').textContent);
  e.get('start').onclick();assert.equal(e.get('overlay').hidden,true);
  tick(2);assert.equal(e.get('timer').textContent,'00:02');
- assert.ok(Number(e.get('p-units').textContent)>initial);
+ assert.equal(initial,20);assert.equal(Number(e.get('p-units').textContent),initial);
  e.get('pause').onclick();assert.equal(e.get('status').textContent,'EN PAUSE');
  const paused=e.get('timer').textContent;tick(2);assert.equal(e.get('timer').textContent,paused);
  e.get('pause').onclick();tick(1);assert.notEqual(e.get('timer').textContent,paused);

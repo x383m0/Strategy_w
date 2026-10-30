@@ -5,7 +5,7 @@ import {typeOf,levelOf} from '../game/BuildingTypes.js';
 export function buildingPath(ctx,type,radius){
  ctx.beginPath();
  if(type==='house')ctx.arc(0,0,radius,0,Math.PI*2);
- else if(type==='barracks')ctx.roundRect(-radius,-radius,2*radius,2*radius,5);
+
  else{
   for(let i=0;i<6;i++){
    const angle=i*Math.PI/3-Math.PI/2,x=Math.cos(angle)*radius,y=Math.sin(angle)*radius;
@@ -43,10 +43,6 @@ export function drawBuilding(ctx,building,color){
    ctx.beginPath();ctx.arc(x,17,level>=3?3:2.5,0,Math.PI*2);ctx.fillStyle='#718a6b';ctx.fill();
    if(level>=3){ctx.beginPath();ctx.arc(x*1.08,8,2.3,0,Math.PI*2);ctx.fill();}
   }
- }else if(type==='barracks'){
-  if(level>=2){roof(ctx,0,-29,34,8,0,color);roof(ctx,-29,0,35,8,Math.PI/2,color);roof(ctx,29,0,35,8,Math.PI/2,color);}
-  if(level>=3)for(const x of [-29,29])for(const y of [-29,29])guard(ctx,x,y,level===4?13:10,level===4);
-  if(level===4)roof(ctx,0,29,32,8,0,color);
  }else{
   if(level>=2){
    for(let i=0;i<6;i++){

@@ -10,9 +10,8 @@ const upgrade=(g,b,player=1)=>g.command({type:'upgrade',player,building:b.id});
 const specialize=(g,b,type)=>g.command({type:'transform',player:1,building:b.id,buildingType:type});
 
 test('quatre niveaux par type, coûts 10/20/30 et plafond strict au niveau 4',()=>{
- for(const type of ['house','barracks','fort']){
+ for(const type of ['house','fort']){
   const game=setup(),building=game.state.buildings[0];
-  if(type==='barracks')building.units=30;
   if(type!=='house')assert.equal(specialize(game,building,type).ok,true);
   assert.equal(levelOf(building),1);
   for(let level=2;level<=4;level++){
@@ -29,13 +28,13 @@ test('quatre niveaux par type, coûts 10/20/30 et plafond strict au niveau 4',()
 test('améliorer une maison verrouille son type sans permettre de conversion ultérieure',()=>{
  const game=setup(),b=game.state.buildings[0];assert.equal(canTransform(b),true);
  assert.equal(upgrade(game,b).ok,true);assert.equal(b.typeLocked,true);assert.equal(canTransform(b),false);
- for(const type of ['barracks','fort']){const before=snapshot(game.state);assert.equal(specialize(game,b,type).ok,false);assert.deepEqual(game.state,before);}
- assert.equal(upgrade(game,b).ok,true);assert.equal(b.type,'house');assert.equal(b.level,3);
+ for(const type of ['fort']){const before=snapshot(game.state);assert.equal(specialize(game,b,type).ok,false);assert.deepEqual(game.state,before);}
+ b.units=b.capacity;assert.equal(upgrade(game,b).ok,true);assert.equal(b.type,'house');assert.equal(b.level,3);
 });
-test('spécialisation niveau 1 définitive puis niveaux supérieurs dans le même type',()=>{
- const game=setup(),b=game.state.buildings[0];b.units=30;assert.equal(specialize(game,b,'barracks').ok,true);
- assert.equal(b.typeLocked,true);assert.equal(b.level,1);assert.equal(specialize(game,b,'fort').ok,false);
- assert.equal(upgrade(game,b).ok,true);assert.equal(b.type,'barracks');assert.equal(b.level,2);
+test('fort niveau 1 définitif puis niveaux supérieurs dans le même type',()=>{
+ const game=setup(),b=game.state.buildings[0];assert.equal(specialize(game,b,'fort').ok,true);
+ assert.equal(b.typeLocked,true);assert.equal(b.level,1);assert.equal(specialize(game,b,'house').ok,false);
+ assert.equal(upgrade(game,b).ok,true);assert.equal(b.type,'fort');assert.equal(b.level,2);
 });
 test('refus en pause, propriétaire incorrect, bâtiment absent ou troupes insuffisantes : aucune mutation',()=>{
  for(const scenario of ['paused','owner','missing','poor']){
@@ -47,7 +46,7 @@ test('refus en pause, propriétaire incorrect, bâtiment absent ou troupes insuf
  }
 });
 test('amélioration conserve progression, dégâts et cooldown, sans tir gratuit',()=>{
- const game=setup(),b=game.state.buildings[0];specialize(game,b,'fort');b.defenseDamage=1;b.nextShotTick=30;
+ const game=setup(),b=game.state.buildings[0];specialize(game,b,'fort');b.units=20;b.defenseDamage=1;b.nextShotTick=30;
  assert.equal(upgrade(game,b).ok,true);assert.equal(b.defenseDamage,1);assert.equal(b.nextShotTick,30);
  const other=game.state.buildings[2];other.owner=1;other.production=.7;other.units=10;
  assert.equal(upgrade(game,other).ok,true);assert.equal(other.production,.7);assert.equal(other.units,0);assert.equal(other.defenseDamage,0);
@@ -60,10 +59,10 @@ test('capture conserve type, niveau et verrouillage, y compris une maison améli
   assert.equal(game.command({type:'transform',player:2,building:b.id,buildingType:'barracks'}).ok,false);
  }
 });
-test('nouvelle capacité réservée après amélioration et production sans débordement',()=>{
- const game=setup(),[b,,source]=game.state.buildings;upgrade(game,b);b.units=55;source.owner=1;source.units=10;
+test('capacité de production après amélioration, avec renforts libres',()=>{
+ const game=setup(),[b,,source]=game.state.buildings;upgrade(game,b);b.units=20;source.owner=1;source.units=10;
  assert.equal(game.command({type:'send',player:1,sources:[source.id],target:b.id,fraction:1}).ok,true);
- assert.equal(freeSpace(game.state,b),0);for(let i=0;i<1800;i++)game.step();assert.equal(b.units,65);
+ assert.equal(freeSpace(game.state,b),10);for(let i=0;i<1800;i++)game.step();assert.equal(b.units,30);
 });
 test('replay exact des améliorations, spécialisations et combats',()=>{
  const game=setup(),initial=snapshot(game.state),b=game.state.buildings[0];
@@ -74,29 +73,31 @@ test('replay exact des améliorations, spécialisations et combats',()=>{
 });
 test('IA améliore au même coût et ne convertit pas une maison verrouillée',()=>{
  const game=setup(),b=game.state.buildings[1],ally=game.state.buildings[2];ally.owner=2;ally.units=0;
- assert.equal(upgrade(game,b,2).ok,true);b.units=60;game.state.time=40;
+ assert.equal(upgrade(game,b,2).ok,true);b.units=30;game.state.time=40;
  const ai=new AIController(game,2);ai.think({defend:true,coordination:3});
- assert.equal(b.type,'house');assert.equal(b.level,3);assert.equal(b.units,40);assert.equal(game.state.stats[2].spent,30);
+ assert.equal(b.type,'house');assert.equal(b.level,3);assert.equal(b.units,10);assert.equal(game.state.stats[2].spent,30);
 });
 
-test('caserne : progression exacte 0,5/1/1,5/2 par seconde et capacités 20/30/40/50',()=>{
+test('maison : progression exacte 0,5/1/1,5/2 par seconde et capacités 20/30/40/50',()=>{
  for(let level=1;level<=4;level++){
-  const game=setup(),b=game.state.buildings[0];b.units=30;specialize(game,b,'barracks');
+  const game=setup(),b=game.state.buildings[0];
   while(b.level<level){b.units=b.capacity;assert.equal(upgrade(game,b).ok,true);}
   assert.equal(b.rate,level*.5);assert.equal(b.capacity,10+level*10);
   b.units=0;b.production=0;for(let i=0;i<60;i++)game.step();assert.equal(b.units,level);
   for(let i=0;i<3600;i++)game.step();assert.equal(b.units,10+level*10);
  }
 });
-test('conversion vers une capacité plus petite : refus atomique, sans supprimer la garnison',()=>{
+test('la caserne supprimée est refusée sans mutation de l’état',()=>{
  const game=setup(),b=game.state.buildings[0],before=snapshot(game.state);
  assert.equal(specialize(game,b,'barracks').ok,false);assert.deepEqual(game.state,before);
- b.units=30;assert.equal(specialize(game,b,'barracks').ok,true);assert.equal(b.units,20);
 });
-test('conversion tient compte des groupes alliés et adverses déjà en route',()=>{
- for(const player of [1,2]){
-  const game=setup(),[b,,source]=game.state.buildings;b.units=10;source.owner=player;source.units=30;
-  assert.equal(game.command({type:'send',player,sources:[source.id],target:b.id,fraction:1}).ok,true);
-  const before=snapshot(game.state);assert.equal(specialize(game,b,'barracks').ok,false);assert.deepEqual(game.state,before);
- }
+test('fort : défense 2/2,5/3/3,5 sans changement de cadence',()=>{
+ assert.deepEqual(BUILDING_LEVELS.fort.map(b=>b.defense),[2,2.5,3,3.5]);
+ assert.ok(BUILDING_LEVELS.fort.every(b=>b.shotDamage===1&&b.shotInterval===.5));
+});
+
+test('l’IA peut améliorer une maison N1 avec la nouvelle garnison plafonnée à 20',()=>{
+ const game=setup(),b=game.state.buildings[1],ally=game.state.buildings[2];ally.owner=2;ally.units=0;game.state.time=30;
+ new AIController(game,2).think({defend:true,coordination:3});
+ assert.equal(b.type,'house');assert.equal(b.level,2);assert.equal(b.units,10);assert.equal(b.capacity,30);
 });

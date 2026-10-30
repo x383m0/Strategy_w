@@ -1,5 +1,5 @@
 import {BUILDING_TYPES,TRANSFORM_COST,typeOf,typeLabel,levelOf,canTransform,upgradeCost,statsFor} from '../game/BuildingTypes.js';
-import {capacityOf,defenseOf,speedOf,reservedFor,freeSpace,transformationOverflow} from '../game/BuildingStats.js';
+import {capacityOf,defenseOf,speedOf,reservedFor,freeSpace,OVERFLOW_DECAY_RATE} from '../game/BuildingStats.js';
 export class BuildingPopover{
  constructor(element,canvas,input,renderer,getGame,isMenuVisible,onTransform){
   Object.assign(this,{element,canvas,input,renderer,getGame,isMenuVisible,onTransform});
@@ -18,7 +18,7 @@ export class BuildingPopover{
   const upgradeButton=this.find('upgrade-building');
   for(const event of ['pointerenter','focus'])upgradeButton.addEventListener(event,()=>{this.previewUpgrade=true;this.update();});
   for(const event of ['pointerleave','blur'])upgradeButton.addEventListener(event,()=>{this.previewUpgrade=false;this.update();});
-  for(const type of ['barracks','fort','upgrade'])this.find(type==='upgrade'?'upgrade-building':'transform-'+type).addEventListener('click',()=>{
+  for(const type of ['fort','upgrade'])this.find(type==='upgrade'?'upgrade-building':'transform-'+type).addEventListener('click',()=>{
    const b=this.getGame().state.buildings.find(b=>b.id===this.buildingId);if(!b)return;
    this.onTransform(b,type);this.update();
   });
@@ -49,28 +49,28 @@ export class BuildingPopover{
   this.find('stats-capacity').textContent=`${b.units} / ${capacityOf(b)}`;
   const fort=typeOf(b)==='fort',fortInfo=this.find('stats-fort');fortInfo.hidden=!fort;
   if(fort)fortInfo.textContent=`Portée ${b.range} · ${b.shotDamage/b.shotInterval} dégâts/s · ${b.units?'Garnison présente':'Garnison requise'}`;
-  const reserved=b.owner?reservedFor(game.state,b):0;
-  this.find('stats-status').textContent=b.owner===0?'Production inactive · bâtiment neutre':freeSpace(game.state,b)===0?`Production arrêtée${reserved?' · '+reserved+' place(s) réservée(s)':''}`:reserved?`${reserved} place(s) réservée(s) aux renforts`:b.rate===0?'Aucune production · fort défensif':'Production active';
+  const incoming=b.owner?reservedFor(game.state,b):0,excess=Math.max(0,b.units-capacityOf(b));
+  this.find('stats-status').textContent=b.owner===0?'Production inactive · bâtiment neutre':excess>0?`SURCHARGE +${excess} · −${(excess*OVERFLOW_DECAY_RATE).toFixed(1)} troupe/s · production arrêtée`:freeSpace(game.state,b)===0?'Capacité atteinte · production arrêtée':b.rate===0?'Aucune production · fort défensif':incoming?`Production active · ${incoming} renfort(s) en route`:'Production active';
+  this.find('stats-capacity').style.color=excess>0?'#b75b28':'';
   const own=b.owner===1,specialize=canTransform(b),cost=upgradeCost(b);
   const next=statsFor(typeOf(b),levelOf(b)+1);
   const previewRange=fort&&this.previewUpgrade&&next?next.range:fort?b.range:BUILDING_TYPES.fort.range;
   this.renderer.rangePreview=fort||own&&specialize&&this.previewFort?{building:b.id,range:previewRange}:null;
   const upgrades=this.find('hover-upgrades');
   upgrades.hidden=!own||cost===null;
-  upgrades.style.width=specialize?'168px':'48px';
+  upgrades.style.width=specialize?'108px':'48px';
   const running=game.state.status==='running';
-  for(const type of ['barracks','fort']){
+  for(const type of ['fort']){
    const button=this.find('transform-'+type);button.hidden=!specialize;
-   const overflow=transformationOverflow(game.state,b,type);
-   button.disabled=!own||!specialize||!running||b.units<TRANSFORM_COST||overflow>0;
+   button.disabled=!own||!specialize||!running||b.units<TRANSFORM_COST;
    const stats=BUILDING_TYPES[type];
-   button.setAttribute('title',overflow>0?`Capacité ${stats.capacity} : ${overflow} troupe(s) de trop, garnison ou groupes en route. Envoyez des troupes ou attendez avant de transformer.`:`${stats.label} N1 · ${stats.rate}/s · capacité ${stats.capacity} · coût ${TRANSFORM_COST} troupes`);
+   button.setAttribute('title',`${stats.label} N1 · ${stats.rate}/s · capacité ${stats.capacity} · coût ${TRANSFORM_COST} troupes`);
   }
   const upgrade=this.find('upgrade-building');upgrade.disabled=!own||!running||cost===null||b.units<cost;
   this.find('upgrade-cost').textContent=cost??'MAX';
   upgrade.setAttribute('aria-label',cost===null?'Niveau maximum':`Améliorer ${typeLabel(b)} au niveau ${levelOf(b)+1} pour ${cost} troupes`);
   upgrade.setAttribute('title',next?`Niveau ${levelOf(b)+1} · ${cost} troupes · défense ${next.defense} · ${next.rate}/s · capacité ${next.capacity}${next.range?' · portée '+next.range:''}${specialize?' · verrouille le type Maison':''}`:'Niveau maximum atteint');
-  this.find('transform-hint').textContent=!running?'Reprenez la partie pour améliorer.':cost===null?'Niveau maximum atteint.':specialize?'Choisir Caserne/Fort ou améliorer la Maison : le type sera définitif.':`${typeLabel(b)} verrouillé · niveau suivant : ${cost} troupes.`;
+  this.find('transform-hint').textContent=!running?'Reprenez la partie pour améliorer.':cost===null?'Niveau maximum atteint.':specialize?'Choisir Fort ou améliorer la Maison : le type sera définitif.':`${typeLabel(b)} verrouillé · niveau suivant : ${cost} troupes.`;
   const v=this.renderer.view,x=v.x+b.x*v.scale,y=v.y+b.y*v.scale;
   // A transparent anchor keeps the building itself available for dragging.
   box.style.left=`${x}px`;box.style.top=`${y}px`;

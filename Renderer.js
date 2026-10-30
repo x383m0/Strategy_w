@@ -1,6 +1,6 @@
 import {drawBuilding} from './BuildingArt.js';
 import {typeOf,typeLabel,levelOf} from '../game/BuildingTypes.js';
-import {freeSpace} from '../game/BuildingStats.js';
+import {freeSpace,capacityOf} from '../game/BuildingStats.js';
 import {WORLD,MAP_SPACING} from '../game/Map.js';
 import {armyPosition} from '../game/GameState.js';
 const colors=['#a6afbd','#427df0','#ef786b'];
@@ -32,8 +32,9 @@ export class Renderer{
    if(hover){c.beginPath();c.arc(0,0,39,0,Math.PI*2);c.strokeStyle=col+'75';c.lineWidth=1.5;c.stroke();}
    c.fillStyle='#78899a';c.font='600 8px system-ui';c.textAlign='center';c.fillText(`${typeLabel(b).toUpperCase()} ${b.name} · N${levelOf(b)}`,0,-47);
    if(b.owner){
+    const excess=Math.max(0,b.units-capacityOf(b));
     if(b.rate>0){c.beginPath();c.arc(0,0,37,-Math.PI/2,-Math.PI/2+Math.max(0,b.production)*2*Math.PI);c.strokeStyle=col+'75';c.lineWidth=1.5;c.stroke();}
-    c.font='9px system-ui';c.fillStyle=col+'bb';c.fillText(typeOf(b)==='fort'?'TIR AUTO':freeSpace(state,b)===0?'PLEIN':`+${b.rate}/s`,0,56);
+    c.font='9px system-ui';c.fillStyle=col+'bb';if(excess>0)c.fillStyle='#b75b28';c.fillText(excess>0?`SURCHARGE +${excess}`:typeOf(b)==='fort'?'TIR AUTO':freeSpace(state,b)===0?'PLEIN':`+${b.rate}/s`,0,56);
    }
    if(showDebug&&debug.targets.some(e=>e.target===b.id)){c.fillStyle='#ef786b';c.font='600 10px system-ui';c.fillText('CIBLE '+(debug.targets.findIndex(e=>e.target===b.id)+1),0,70);}
    c.restore();

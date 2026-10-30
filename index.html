@@ -26,55 +26,48 @@
 .hover-actions button:disabled{opacity:.65}.sidebar .intelligence{grid-column:auto}
 </style></head>
 <body>
-<header class="topbar"><a class="brand" href="./" aria-label="Jelly Wars accueil"><span class="brand-icon"><i></i><i></i><i></i></span><span>jelly<span class="brand-light">wars</span><small>STRATÉGIE EN TEMPS RÉEL</small></span></a><nav><span class="nav-active"><span class="live-dot"></span> SOLO CONTRE L’IA</span><button id="help" class="plain" aria-label="Afficher les contrôles">Comment jouer <span class="key">?</span></button></nav><div class="version">PROTOTYPE <span>v0.3.1</span></div></header>
+<header class="topbar"><a class="brand" href="./" aria-label="Jelly Wars accueil"><span class="brand-icon"><i></i><i></i><i></i></span><span>jelly<span class="brand-light">wars</span><small>STRATÉGIE EN TEMPS RÉEL</small></span></a><nav><span class="nav-active"><span class="live-dot"></span> SOLO CONTRE L’IA</span><button id="help" class="plain" aria-label="Afficher les contrôles">Comment jouer <span class="key">?</span></button></nav><div class="version">PROTOTYPE <span>v0.3.3</span></div></header>
 <main>
 <section class="page-heading"><div><div class="eyebrow">LE TERRITOIRE SE MÉRITE.</div><h1>Prenez le contrôle<span>.</span></h1><p>Déployez vos troupes. Lisez le jeu. Gardez une longueur d’avance.</p></div><button id="new-game" class="outline"><span>↻</span> Nouvelle partie</button></section>
 <div class="workspace">
 <section class="battlefield" aria-label="Champ de bataille">
 <div class="battle-toolbar"><div class="map-label"><span class="map-icon">◈</span><div><strong id="map-title">Archipel</strong><small>CONQUÊTE TOTALE</small></div></div><div class="battle-status"><span id="running-dot" class="live-dot"></span><span id="status">PRÊT À JOUER</span><span class="toolbar-divider"></span><time id="timer">00:00</time><button id="pause" class="icon-btn" aria-label="Mettre en pause" title="Pause (Espace)">Ⅱ</button></div></div>
-<div class="canvas-wrap"><canvas id="board" tabindex="0" aria-label="Carte interactive. Glissez d’un bâtiment bleu vers une cible pour envoyer des troupes."></canvas><div class="map-corner top-left">SECTEUR <b id="sector">01</b></div><div class="map-corner bottom-right">JELLY WARS / TERRAIN TACTIQUE</div><div id="building-stats" class="building-stats" role="group" aria-label="Statistiques et transformations du bâtiment" hidden><div id="stats-card" class="stats-card"><strong id="stats-title"></strong><dl><dt>Défense</dt><dd id="stats-defense"></dd><dt>Génération</dt><dd id="stats-rate"></dd><dt>Vitesse</dt><dd id="stats-speed"></dd><dt>Capacité</dt><dd id="stats-capacity"></dd></dl><small id="stats-status"></small><small id="stats-fort" hidden></small></div><div id="hover-upgrades" class="hover-upgrades" hidden><small id="transform-hint">Transformer · 10 troupes</small><div class="hover-actions"><button id="upgrade-building" aria-describedby="transform-hint" type="button" aria-label="Améliorer le bâtiment"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6M5 20h14"/></svg><span>Améliorer</span><b id="upgrade-cost">10</b></button><button id="transform-barracks" aria-describedby="transform-hint" type="button" aria-label="Transformer en caserne pour 10 troupes" title="Caserne : production 0,5/s · capacité 20 · coût 10 troupes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V6h16v15M8 6V3h8v3M3 21h18M9 21v-5h6v5M8 10h2m4 0h2M8 13h2m4 0h2"/></svg><span>Caserne</span><b>10</b></button><button id="transform-fort" aria-describedby="transform-hint" type="button" aria-label="Transformer en fort pour 10 troupes" title="Fort : défense 2 · 2 tirs/s · coût 10 troupes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V4h4v4h3V4h3v4h3V4h3v17M3 21h18M9 21v-6h6v6"/></svg><span>Fort</span><b>10</b></button></div></div></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
-<div id="overlay" class="overlay"><div class="start-card"><span class="card-badge">VOTRE PROCHAINE CONQUÊTE</span><div class="start-symbol"><i></i><span>↗</span><i></i></div><h2 id="overlay-title">Chaque mouvement compte.</h2><p id="overlay-description">Une carte. Deux camps. Aucune unité gratuite.<br>Le meilleur stratège l’emporte.</p><div id="setup"><label for="map-select">TERRAIN<select id="map-select"><option value="archipel">01 — Archipel</option><option value="croisee">02 — Croisée</option><option value="couronne">03 — Couronne</option></select></label><label for="difficulty">ADVERSAIRE<select id="difficulty"><option value="easy">IA · Facile</option><option value="normal" selected>IA · Normal</option><option value="hard">IA · Difficile</option></select></label></div><button id="start" class="primary">Lancer la conquête <span>↗</span></button><small class="menu-version">Jelly Wars · Version 0.3.1</small><small id="overlay-footnote">Capturez les bâtiments et éliminez les dernières troupes.</small></div></div>
+<div class="canvas-wrap"><canvas id="board" tabindex="0" aria-label="Carte interactive. Glissez d’un bâtiment bleu vers une cible pour envoyer des troupes."></canvas><div class="map-corner top-left">SECTEUR <b id="sector">01</b></div><div class="map-corner bottom-right">JELLY WARS / TERRAIN TACTIQUE</div><div id="building-stats" class="building-stats" role="group" aria-label="Statistiques et transformations du bâtiment" hidden><div id="stats-card" class="stats-card"><strong id="stats-title"></strong><dl><dt>Défense</dt><dd id="stats-defense"></dd><dt>Génération</dt><dd id="stats-rate"></dd><dt>Vitesse</dt><dd id="stats-speed"></dd><dt>Capacité</dt><dd id="stats-capacity"></dd></dl><small id="stats-status"></small><small id="stats-fort" hidden></small></div><div id="hover-upgrades" class="hover-upgrades" hidden><small id="transform-hint">Transformer · 10 troupes</small><div class="hover-actions"><button id="upgrade-building" aria-describedby="transform-hint" type="button" aria-label="Améliorer le bâtiment"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6M5 20h14"/></svg><span>Améliorer</span><b id="upgrade-cost">10</b></button><button id="transform-fort" aria-describedby="transform-hint" type="button" aria-label="Transformer en fort pour 10 troupes" title="Fort : défense 2 · 2 tirs/s · coût 10 troupes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V4h4v4h3V4h3v4h3V4h3v17M3 21h18M9 21v-6h6v6"/></svg><span>Fort</span><b>10</b></button></div></div></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="overlay" class="overlay"><div class="start-card"><span class="card-badge">VOTRE PROCHAINE CONQUÊTE</span><div class="start-symbol"><i></i><span>↗</span><i></i></div><h2 id="overlay-title">Chaque mouvement compte.</h2><p id="overlay-description">Une carte. Deux camps. Aucune unité gratuite.<br>Le meilleur stratège l’emporte.</p><div id="setup"><label for="map-select">TERRAIN<select id="map-select"><option value="archipel">01 — Archipel</option><option value="croisee">02 — Croisée</option><option value="couronne">03 — Couronne</option></select></label><label for="difficulty">ADVERSAIRE<select id="difficulty"><option value="easy">IA · Facile</option><option value="normal" selected>IA · Normal</option><option value="hard">IA · Difficile</option></select></label></div><button id="start" class="primary">Lancer la conquête <span>↗</span></button><small class="menu-version">Jelly Wars · Version 0.3.3</small><small id="overlay-footnote">Capturez les bâtiments et éliminez les dernières troupes.</small></div></div>
 </div>
 <div class="battle-footer"><span><i class="legend-dot blue"></i>VOUS</span><span><i class="legend-dot coral"></i>IA</span><span><i class="legend-dot gray"></i>NEUTRE</span><span class="footer-note">Les troupes se combattent aussi en chemin.</span></div>
 </section>
 <aside class="sidebar">
-<section class="panel overview"><div class="panel-heading"><h2>Rapport de force</h2><span class="tiny-label">EN DIRECT</span></div><div class="faction player"><div class="faction-title"><span class="faction-icon">◧</span><strong>Votre camp</strong><span class="faction-tag">VOUS</span></div><div class="metrics"><div><strong id="p-units">44</strong><span>UNITÉS</span></div><div><strong id="p-bases">1</strong><span>BÂTIMENTS</span></div><div><strong id="p-rate">+1</strong><span>PAR SEC.</span></div></div></div><div class="faction enemy"><div class="faction-title"><span class="faction-icon">◨</span><strong>Intelligence artificielle</strong></div><div class="metrics"><div><strong id="e-units">44</strong><span>UNITÉS</span></div><div><strong id="e-bases">1</strong><span>BÂTIMENTS</span></div><div><strong id="e-rate">+1</strong><span>PAR SEC.</span></div></div></div><div class="territory"><div><span>Contrôle du terrain</span><strong id="territory-count">2 / 9</strong></div><div id="territory-bar" class="territory-bar"><i></i><i></i><i></i></div></div></section>
+<section class="panel overview"><div class="panel-heading"><h2>Rapport de force</h2><span class="tiny-label">EN DIRECT</span></div><div class="faction player"><div class="faction-title"><span class="faction-icon">◧</span><strong>Votre camp</strong><span class="faction-tag">VOUS</span></div><div class="metrics"><div><strong id="p-units">20</strong><span>UNITÉS</span></div><div><strong id="p-bases">1</strong><span>BÂTIMENTS</span></div><div><strong id="p-rate">+0.5</strong><span>PAR SEC.</span></div></div></div><div class="faction enemy"><div class="faction-title"><span class="faction-icon">◨</span><strong>Intelligence artificielle</strong></div><div class="metrics"><div><strong id="e-units">20</strong><span>UNITÉS</span></div><div><strong id="e-bases">1</strong><span>BÂTIMENTS</span></div><div><strong id="e-rate">+0.5</strong><span>PAR SEC.</span></div></div></div><div class="territory"><div><span>Contrôle du terrain</span><strong id="territory-count">2 / 9</strong></div><div id="territory-bar" class="territory-bar"><i></i><i></i><i></i></div></div></section>
 
 <section class="panel intelligence"><div class="panel-heading"><h2><span class="ai-icon">✳</span> Dans la tête de l’IA</h2><label class="switch" title="Afficher les calculs réels de l’IA"><input id="debug-toggle" type="checkbox" aria-label="Activer le mode développeur"><span></span></label></div><p id="ai-hint">Activez le mode développeur pour voir ses cibles et comprendre ses décisions.</p><div id="debug" hidden><div class="strategy-line"><span>STRATÉGIE</span><strong id="ai-strategy">Observation</strong></div><div id="ai-targets"></div><div class="debug-log" id="ai-log"></div><small id="ai-performance"></small></div><div class="fair-play"><span>◇</span> Mêmes règles. Même production.</div></section>
 </aside></div>
 <section class="controls-strip" aria-label="Commandes"><div class="control-intro"><span>↗</span><strong>Votre prochain mouvement</strong></div><div><span class="control-num">01</span><p><b>Glissez vers une cible</b><small>Glisser : 50 % · Maj + glisser : tout.</small></p></div><div><span class="control-num">02</span><p><b>Coordonnez vos forces</b><small>Maj + clic ou rectangle de sélection.</small></p></div><div><span class="key">ESPACE</span><p><b>Prenez le temps</b><small>Mettez la partie en pause.</small></p></div></section>
-<footer class="page-footer"><span>JELLY WARS <b>/</b> UN JEU DE DÉCISIONS.</span><span>Solo v0.3.1 <i>·</i> Multijoueur prévu à la dernière étape</span></footer>
+<footer class="page-footer"><span>JELLY WARS <b>/</b> UN JEU DE DÉCISIONS.</span><span>Solo v0.3.3 <i>·</i> Multijoueur prévu à la dernière étape</span></footer>
 </main>
-<dialog id="help-dialog"><button id="close-help" class="icon-btn close-dialog" aria-label="Fermer">×</button><div class="eyebrow">GUIDE TACTIQUE</div><h2>Le terrain est à vous.</h2><p>Au niveau 1, les maisons produisent <strong>1 troupe/s</strong>, les casernes <strong>0,5 troupe/s</strong> et les forts ne produisent pas de troupes. Les neutres ne produisent pas avant leur capture.</p><ul><li><strong>Glissez</strong> d’un bâtiment bleu vers un autre pour envoyer 50 % des troupes.</li><li><strong>Maj + glissez vers une cible</strong> pour envoyer toutes les troupes disponibles des bâtiments sélectionnés. Fonctionne vers les bâtiments alliés, neutres et ennemis.</li><li><strong>Maj + clic</strong> ajoute un bâtiment à votre sélection. Vous pouvez aussi tracer un rectangle sur le fond.</li><li>Glissez depuis un bâtiment sélectionné pour donner le même ordre à tout le groupe.</li> <li>En chemin, une unité élimine une unité adverse. Au bâtiment, les attaquants sont divisés par sa défense : défense 1 sans réduction, défense 2 dégâts divisés par deux. Les survivants continuent leur route.</li><li>Survolez un bâtiment pour consulter ses statistiques. Les maisons sont rondes, les casernes carrées et les forts hexagonaux.</li><li>Survolez une maison de votre camp et cliquez sur une petite icône pour la transformer : 10 troupes pour une caserne (0,5 troupe/s, capacité 20) ou un fort (défense 2, production 0/s). Transformation immédiate et définitive. La garnison restante après paiement et les réservations en route doivent tenir dans la nouvelle capacité.</li><li>Un fort avec au moins 1 troupe tire automatiquement : 1 dégât par tir, 2 tirs/s, portée de 240 unités de carte. Survolez le fort ou le bouton Fort avant construction pour prévisualiser sa portée. Sa garnison ne consomme pas de munition. Le type est conservé après capture.</li><li>La capacité dépend du type et du niveau : consultez la fiche au survol. Au niveau 1 : 50 pour les maisons/forts, 20 pour les casernes. Les troupes en route réservent leur place : un envoi trop grand est refusé, et la production suspendue si nécessaire. Un bâtiment est capturé lorsqu’il reste au moins un attaquant.</li><li><strong>Quatre niveaux par type.</strong> La flèche au survol améliore le bâtiment : 10, puis 20, puis 30 troupes pour les niveaux 2, 3 et 4. Améliorer une maison verrouille son type : elle ne peut plus devenir caserne ou fort. La spécialisation en caserne ou fort est aussi définitive. Type et niveau sont conservés après capture. Le coût et les prochaines statistiques sont visibles sur le bouton.</li><li>La victoire exige l’élimination de tous les bâtiments et groupes ennemis.</li><li><strong>Espace</strong> : pause. <strong>Échap</strong> : désélectionner. Sur écran tactile, glissez pour attaquer.</li></ul><button id="help-ok" class="primary">À moi de jouer <span>↗</span></button></dialog>
+<dialog id="help-dialog"><button id="close-help" class="icon-btn close-dialog" aria-label="Fermer">×</button><div class="eyebrow">GUIDE TACTIQUE</div><h2>Le terrain est à vous.</h2><p>Au niveau 1, les maisons produisent <strong>0,5 troupe/s</strong> et les forts ne produisent pas de troupes. Les neutres ne produisent pas avant leur capture.</p><ul><li><strong>Glissez</strong> d’un bâtiment bleu vers un autre pour envoyer 50 % des troupes.</li><li><strong>Maj + glissez vers une cible</strong> pour envoyer toutes les troupes disponibles des bâtiments sélectionnés. Fonctionne vers les bâtiments alliés, neutres et ennemis.</li><li><strong>Maj + clic</strong> ajoute un bâtiment à votre sélection. Vous pouvez aussi tracer un rectangle sur le fond.</li><li>Glissez depuis un bâtiment sélectionné pour donner le même ordre à tout le groupe.</li> <li>En chemin, une unité élimine une unité adverse. Au bâtiment, les attaquants sont divisés par sa défense : défense 1 sans réduction, défense 2 dégâts divisés par deux. Les survivants continuent leur route.</li><li>Survolez un bâtiment pour consulter ses statistiques. Les maisons sont rondes et les forts hexagonaux.</li><li>Survolez une maison de votre camp et cliquez sur une petite icône pour la transformer : 10 troupes pour un fort (défense 2, production 0/s). Transformation immédiate et définitive. Une garnison au-dessus de sa capacité subit une attrition progressive.</li><li>Un fort avec au moins 1 troupe tire automatiquement : 1 dégât par tir, 2 tirs/s, portée de 240 unités de carte. Survolez le fort ou le bouton Fort avant construction pour prévisualiser sa portée. Sa garnison ne consomme pas de munition. Le type est conservé après capture.</li><li>La capacité dépend du type et du niveau : consultez la fiche au survol. Au niveau 1 : 20 pour les maisons, 50 pour les forts. Les envois ne sont pas limités par la capacité de la cible, alliée ou ennemie. Au-delà de sa capacité, un bâtiment arrête sa production et perd progressivement 10 % de ses troupes excédentaires par seconde. Les pertes cessent à la limite ou après avoir libéré assez de place. Un bâtiment est capturé lorsqu’il reste au moins un attaquant.</li><li><strong>Quatre niveaux par type.</strong> La flèche au survol améliore le bâtiment : 10, puis 20, puis 30 troupes pour les niveaux 2, 3 et 4. Améliorer une maison verrouille son type : elle ne peut plus devenir un fort. La spécialisation en fort est aussi définitive. Type et niveau sont conservés après capture. Le coût et les prochaines statistiques sont visibles sur le bouton.</li><li>La victoire exige l’élimination de tous les bâtiments et groupes ennemis.</li><li><strong>Espace</strong> : pause. <strong>Échap</strong> : désélectionner. Sur écran tactile, glissez pour attaquer.</li></ul><button id="help-ok" class="primary">À moi de jouer <span>↗</span></button></dialog>
 <script>(()=>{
 'use strict';
 const modules={"src/game/BuildingTypes.js":(exports,__require)=>{
 const TRANSFORM_COST = 10;
 const MAX_LEVEL = 4;
 const BUILDING_TYPES = Object.freeze({
- house: Object.freeze({label:'Maison',defense:1,rate:1,troopSpeed:45,capacity:50,range:0,shotDamage:0,shotInterval:1}),
- barracks: Object.freeze({label:'Caserne',defense:1,rate:.5,troopSpeed:45,capacity:20,range:0,shotDamage:0,shotInterval:1}),
+ house: Object.freeze({label:'Maison',defense:1,rate:.5,troopSpeed:45,capacity:20,range:0,shotDamage:0,shotInterval:1}),
  fort: Object.freeze({label:'Fort',defense:2,rate:0,troopSpeed:45,capacity:50,range:240,shotDamage:1,shotInterval:.5})
 });
-// Level progression; barracks production and capacity follow the current balance.
+// Two building types, each with four levels.
 const BUILDING_LEVELS = Object.freeze({
  house: Object.freeze([
   BUILDING_TYPES.house,
-  Object.freeze({...BUILDING_TYPES.house,rate:1.25,capacity:65}),
-  Object.freeze({...BUILDING_TYPES.house,rate:1.5,capacity:80}),
-  Object.freeze({...BUILDING_TYPES.house,rate:2,capacity:100})
- ]),
- barracks: Object.freeze([
-  BUILDING_TYPES.barracks,
-  Object.freeze({...BUILDING_TYPES.barracks,rate:1,capacity:30}),
-  Object.freeze({...BUILDING_TYPES.barracks,rate:1.5,capacity:40}),
-  Object.freeze({...BUILDING_TYPES.barracks,rate:2,capacity:50})
+  Object.freeze({...BUILDING_TYPES.house,rate:1,capacity:30}),
+  Object.freeze({...BUILDING_TYPES.house,rate:1.5,capacity:40}),
+  Object.freeze({...BUILDING_TYPES.house,rate:2,capacity:50})
  ]),
  fort: Object.freeze([
   BUILDING_TYPES.fort,
-  Object.freeze({...BUILDING_TYPES.fort,defense:3,capacity:65,range:260}),
-  Object.freeze({...BUILDING_TYPES.fort,defense:4,capacity:80,range:280}),
-  Object.freeze({...BUILDING_TYPES.fort,defense:5,capacity:100,range:300})
+  Object.freeze({...BUILDING_TYPES.fort,defense:2.5,capacity:65,range:260}),
+  Object.freeze({...BUILDING_TYPES.fort,defense:3,capacity:80,range:280}),
+  Object.freeze({...BUILDING_TYPES.fort,defense:3.5,capacity:100,range:300})
  ])
 });
 const typeOf = b => b.type ?? 'house';
@@ -87,28 +80,29 @@ const statsFor = (type, level) => BUILDING_LEVELS[type]?.[level - 1];
 Object.assign(exports,{TRANSFORM_COST,MAX_LEVEL,BUILDING_TYPES,BUILDING_LEVELS,typeOf,levelOf,typeLabel,canTransform,upgradeCost,statsFor});
 },
 "src/game/BuildingStats.js":(exports,__require)=>{
-const {BUILDING_TYPES,TRANSFORM_COST}=__require("src/game/BuildingTypes.js");
+const {BUILDING_TYPES}=__require("src/game/BuildingTypes.js");
 
-const DEFAULT_BUILDING_STATS=Object.freeze({defense:1,rate:1,troopSpeed:45,capacity:50});
+const DEFAULT_BUILDING_STATS=Object.freeze({defense:BUILDING_TYPES.house.defense,rate:BUILDING_TYPES.house.rate,troopSpeed:BUILDING_TYPES.house.troopSpeed,capacity:BUILDING_TYPES.house.capacity});
 const capacityOf=b=>b.capacity??DEFAULT_BUILDING_STATS.capacity;
 const defenseOf=b=>Math.max(1,b.defense??DEFAULT_BUILDING_STATS.defense);
 const speedOf=b=>b.troopSpeed??DEFAULT_BUILDING_STATS.troopSpeed;
 function reservedFor(state,b,owner=b.owner){return state.armies.filter(a=>a.target===b.id&&a.owner===owner&&a.units>0).reduce((n,a)=>n+a.units,0);}
-function freeSpace(state,b,owner=b.owner){return Math.max(0,capacityOf(b)-(b.owner===owner?b.units:0)-reservedFor(state,b,owner));}
-function predictedGarrison(state,b,seconds){return Math.min(capacityOf(b),b.units+reservedFor(state,b)+Math.floor(Math.max(0,seconds)*b.rate));}
-
-// A smaller type must fit both the remaining garrison and existing reservations.
-function transformationOverflow(state,b,type){
- const capacity=BUILDING_TYPES[type].capacity;
- return Math.max(0,...[1,2].map(owner=>reservedFor(state,b,owner)+(b.owner===owner?Math.max(0,b.units-TRANSFORM_COST):0)-capacity));
+function freeSpace(state,b,owner=b.owner){return Math.max(0,capacityOf(b)-(b.owner===owner?b.units:0));}
+const OVERFLOW_DECAY_RATE=.1;
+function predictedGarrison(state,b,seconds){
+ const time=Math.max(0,seconds),capacity=capacityOf(b);
+ const garrison=b.units>capacity?capacity+Math.ceil((b.units-capacity)*Math.exp(-OVERFLOW_DECAY_RATE*time)):Math.min(capacity,b.units+Math.floor(time*b.rate));
+ // Incoming troops are a conservative estimate: their exact arrival/decay ordering is unknown here.
+ return garrison+reservedFor(state,b);
 }
 
-Object.assign(exports,{DEFAULT_BUILDING_STATS,capacityOf,defenseOf,speedOf,reservedFor,freeSpace,predictedGarrison,transformationOverflow});
+
+Object.assign(exports,{DEFAULT_BUILDING_STATS,capacityOf,defenseOf,speedOf,reservedFor,freeSpace,OVERFLOW_DECAY_RATE,predictedGarrison});
 },
 "src/ui/BuildingPopover.js":(exports,__require)=>{
 const {BUILDING_TYPES,TRANSFORM_COST,typeOf,typeLabel,levelOf,canTransform,upgradeCost,statsFor}=__require("src/game/BuildingTypes.js");
 
-const {capacityOf,defenseOf,speedOf,reservedFor,freeSpace,transformationOverflow}=__require("src/game/BuildingStats.js");
+const {capacityOf,defenseOf,speedOf,reservedFor,freeSpace,OVERFLOW_DECAY_RATE}=__require("src/game/BuildingStats.js");
 
 class BuildingPopover{
  constructor(element,canvas,input,renderer,getGame,isMenuVisible,onTransform){
@@ -128,7 +122,7 @@ class BuildingPopover{
   const upgradeButton=this.find('upgrade-building');
   for(const event of ['pointerenter','focus'])upgradeButton.addEventListener(event,()=>{this.previewUpgrade=true;this.update();});
   for(const event of ['pointerleave','blur'])upgradeButton.addEventListener(event,()=>{this.previewUpgrade=false;this.update();});
-  for(const type of ['barracks','fort','upgrade'])this.find(type==='upgrade'?'upgrade-building':'transform-'+type).addEventListener('click',()=>{
+  for(const type of ['fort','upgrade'])this.find(type==='upgrade'?'upgrade-building':'transform-'+type).addEventListener('click',()=>{
    const b=this.getGame().state.buildings.find(b=>b.id===this.buildingId);if(!b)return;
    this.onTransform(b,type);this.update();
   });
@@ -159,28 +153,28 @@ class BuildingPopover{
   this.find('stats-capacity').textContent=`${b.units} / ${capacityOf(b)}`;
   const fort=typeOf(b)==='fort',fortInfo=this.find('stats-fort');fortInfo.hidden=!fort;
   if(fort)fortInfo.textContent=`Portée ${b.range} · ${b.shotDamage/b.shotInterval} dégâts/s · ${b.units?'Garnison présente':'Garnison requise'}`;
-  const reserved=b.owner?reservedFor(game.state,b):0;
-  this.find('stats-status').textContent=b.owner===0?'Production inactive · bâtiment neutre':freeSpace(game.state,b)===0?`Production arrêtée${reserved?' · '+reserved+' place(s) réservée(s)':''}`:reserved?`${reserved} place(s) réservée(s) aux renforts`:b.rate===0?'Aucune production · fort défensif':'Production active';
+  const incoming=b.owner?reservedFor(game.state,b):0,excess=Math.max(0,b.units-capacityOf(b));
+  this.find('stats-status').textContent=b.owner===0?'Production inactive · bâtiment neutre':excess>0?`SURCHARGE +${excess} · −${(excess*OVERFLOW_DECAY_RATE).toFixed(1)} troupe/s · production arrêtée`:freeSpace(game.state,b)===0?'Capacité atteinte · production arrêtée':b.rate===0?'Aucune production · fort défensif':incoming?`Production active · ${incoming} renfort(s) en route`:'Production active';
+  this.find('stats-capacity').style.color=excess>0?'#b75b28':'';
   const own=b.owner===1,specialize=canTransform(b),cost=upgradeCost(b);
   const next=statsFor(typeOf(b),levelOf(b)+1);
   const previewRange=fort&&this.previewUpgrade&&next?next.range:fort?b.range:BUILDING_TYPES.fort.range;
   this.renderer.rangePreview=fort||own&&specialize&&this.previewFort?{building:b.id,range:previewRange}:null;
   const upgrades=this.find('hover-upgrades');
   upgrades.hidden=!own||cost===null;
-  upgrades.style.width=specialize?'168px':'48px';
+  upgrades.style.width=specialize?'108px':'48px';
   const running=game.state.status==='running';
-  for(const type of ['barracks','fort']){
+  for(const type of ['fort']){
    const button=this.find('transform-'+type);button.hidden=!specialize;
-   const overflow=transformationOverflow(game.state,b,type);
-   button.disabled=!own||!specialize||!running||b.units<TRANSFORM_COST||overflow>0;
+   button.disabled=!own||!specialize||!running||b.units<TRANSFORM_COST;
    const stats=BUILDING_TYPES[type];
-   button.setAttribute('title',overflow>0?`Capacité ${stats.capacity} : ${overflow} troupe(s) de trop, garnison ou groupes en route. Envoyez des troupes ou attendez avant de transformer.`:`${stats.label} N1 · ${stats.rate}/s · capacité ${stats.capacity} · coût ${TRANSFORM_COST} troupes`);
+   button.setAttribute('title',`${stats.label} N1 · ${stats.rate}/s · capacité ${stats.capacity} · coût ${TRANSFORM_COST} troupes`);
   }
   const upgrade=this.find('upgrade-building');upgrade.disabled=!own||!running||cost===null||b.units<cost;
   this.find('upgrade-cost').textContent=cost??'MAX';
   upgrade.setAttribute('aria-label',cost===null?'Niveau maximum':`Améliorer ${typeLabel(b)} au niveau ${levelOf(b)+1} pour ${cost} troupes`);
   upgrade.setAttribute('title',next?`Niveau ${levelOf(b)+1} · ${cost} troupes · défense ${next.defense} · ${next.rate}/s · capacité ${next.capacity}${next.range?' · portée '+next.range:''}${specialize?' · verrouille le type Maison':''}`:'Niveau maximum atteint');
-  this.find('transform-hint').textContent=!running?'Reprenez la partie pour améliorer.':cost===null?'Niveau maximum atteint.':specialize?'Choisir Caserne/Fort ou améliorer la Maison : le type sera définitif.':`${typeLabel(b)} verrouillé · niveau suivant : ${cost} troupes.`;
+  this.find('transform-hint').textContent=!running?'Reprenez la partie pour améliorer.':cost===null?'Niveau maximum atteint.':specialize?'Choisir Fort ou améliorer la Maison : le type sera définitif.':`${typeLabel(b)} verrouillé · niveau suivant : ${cost} troupes.`;
   const v=this.renderer.view,x=v.x+b.x*v.scale,y=v.y+b.y*v.scale;
   // A transparent anchor keeps the building itself available for dragging.
   box.style.left=`${x}px`;box.style.top=`${y}px`;
@@ -209,7 +203,7 @@ const layouts={
 };
 const MAP_NAMES={archipel:'Archipel',croisee:'Croisée',couronne:'Couronne'};
 function makeMap(name='archipel'){
- return (layouts[name]??layouts.archipel).map(([x,y,owner,units],i)=>({id:`b${i}`,name:String(i+1).padStart(2,'0'),x:x*MAP_SPACING,y:y*MAP_SPACING,owner,units,type:'house',level:1,typeLocked:false,nextShotTick:0,range:0,shotDamage:0,shotInterval:1,production:0,...DEFAULT_BUILDING_STATS,defenseDamage:0,radius:37.2}));
+ return (layouts[name]??layouts.archipel).map(([x,y,owner,units],i)=>({id:`b${i}`,name:String(i+1).padStart(2,'0'),x:x*MAP_SPACING,y:y*MAP_SPACING,owner,units:Math.min(units,DEFAULT_BUILDING_STATS.capacity),type:'house',level:1,typeLocked:false,nextShotTick:0,range:0,shotDamage:0,shotInterval:1,production:0,...DEFAULT_BUILDING_STATS,defenseDamage:0,radius:37.2}));
 }
 
 Object.assign(exports,{MAP_SPACING,WORLD,MAP_NAMES,makeMap});
@@ -222,7 +216,7 @@ const {makeMap}=__require("src/game/Map.js");
 const STEP=1/30;
 const ARMY_SPEED=DEFAULT_BUILDING_STATS.troopSpeed;
 function createState(map='archipel'){
- return {version:1,map,tick:0,time:0,status:'ready',winner:null,buildings:makeMap(map),armies:[],nextArmyId:1,events:[],commandLog:[],stats:{1:{sent:0,lost:0,captures:0,spent:0},2:{sent:0,lost:0,captures:0,spent:0}}};
+ return {version:1,map,tick:0,time:0,status:'ready',winner:null,buildings:makeMap(map),armies:[],nextArmyId:1,events:[],commandLog:[],stats:{1:{sent:0,lost:0,captures:0,spent:0,overflowLost:0},2:{sent:0,lost:0,captures:0,spent:0,overflowLost:0}}};
 }
 function totals(state,owner){
  const buildings=state.buildings.filter(b=>b.owner===owner);
@@ -232,6 +226,30 @@ function snapshot(state){return JSON.parse(JSON.stringify(state));}
 function armyPosition(a,time){const p=Math.max(0,Math.min(1,(time-a.departure)/a.duration));return {x:a.sx+(a.tx-a.sx)*p,y:a.sy+(a.ty-a.sy)*p};}
 
 Object.assign(exports,{STEP,ARMY_SPEED,createState,totals,snapshot,armyPosition});
+},
+"src/game/Overflow.js":(exports,__require)=>{
+const {capacityOf,OVERFLOW_DECAY_RATE}=__require("src/game/BuildingStats.js");
+
+const {STEP}=__require("src/game/GameState.js");
+
+// Accumulate fractional losses at the simulation rate, never fractional troops.
+// Only excess garrison decays; armies in transit are unaffected.
+function applyOverflow(state){
+ for(const building of state.buildings){
+  const excess=Math.max(0,building.units-capacityOf(building));
+  if(building.owner===0||excess===0){building.overflowLoss=0;continue;}
+  building.production=0;
+  building.overflowLoss=(building.overflowLoss??0)+excess*OVERFLOW_DECAY_RATE*STEP;
+  const lost=Math.min(excess,Math.floor(building.overflowLoss+1e-9));
+  if(lost>0){
+   building.units-=lost;building.overflowLoss=Math.max(0,building.overflowLoss-lost);
+   const stats=state.stats[building.owner];stats.lost+=lost;stats.overflowLost=(stats.overflowLost??0)+lost;
+  }
+  if(building.units<=capacityOf(building))building.overflowLoss=0;
+ }
+}
+
+Object.assign(exports,{applyOverflow});
 },
 "src/game/FortCombat.js":(exports,__require)=>{
 const {armyPosition,STEP}=__require("src/game/GameState.js");
@@ -283,7 +301,11 @@ function resolveBuildingCombat(building,forces){
  const guards=forces[owner]??0;
  if(attacker.units===0)return {owner,units:guards,damage:building.defenseDamage??0};
  const strength=guards*defense-(building.defenseDamage??0),remaining=strength-attacker.units;
- if(remaining<0)return {owner:attacker.owner,units:-remaining,damage:0};
+ if(remaining<0){
+  // A fractional defense may consume part of the final attacker. Only whole survivors capture.
+  const survivors=Math.floor(-remaining+1e-9);
+  return {owner:survivors>0?attacker.owner:null,units:survivors,damage:0};
+ }
  const units=Math.ceil(remaining/defense);
  return {owner:remaining===0?null:owner,units,damage:units*defense-remaining};
 }
@@ -291,11 +313,13 @@ function resolveBuildingCombat(building,forces){
 Object.assign(exports,{resolveForces,collisionTime,resolveBuildingCombat});
 },
 "src/game/Game.js":(exports,__require)=>{
+const {applyOverflow}=__require("src/game/Overflow.js");
+
 const {BUILDING_TYPES,TRANSFORM_COST,typeOf,levelOf,canTransform,upgradeCost,statsFor}=__require("src/game/BuildingTypes.js");
 
 const {fireForts}=__require("src/game/FortCombat.js");
 
-const {freeSpace,speedOf,transformationOverflow}=__require("src/game/BuildingStats.js");
+const {freeSpace,speedOf,capacityOf}=__require("src/game/BuildingStats.js");
 
 const {STEP,armyPosition}=__require("src/game/GameState.js");
 
@@ -316,15 +340,12 @@ class Game{
   const target=s.buildings.find(b=>b.id===command.target);
   const sources=command.sources.map(id=>s.buildings.find(b=>b.id===id));
   if(!target||sources.some(b=>!b||b.owner!==command.player||b===target))return {ok:false,reason:'Bâtiment invalide'};
-  const requested=sources.reduce((n,b)=>n+Math.floor(b.units*command.fraction),0),room=freeSpace(s,target,command.player);
-  // Reserve destination capacity per faction. No partial order and no discarded troops.
-  if(requested>room)return {ok:false,reason:`Capacité insuffisante : ${room} place(s) disponible(s).`};
   let sent=0;
   for(const b of sources){
    const units=Math.floor(b.units*command.fraction);if(units<1)continue;
    const dx=target.x-b.x,dy=target.y-b.y,d=Math.hypot(dx,dy),nx=dx/d,ny=dy/d;
    const duration=Math.max(STEP,(d-b.radius-target.radius)/speedOf(b));
-   b.units-=units;if(b.units===0)b.defenseDamage=0;sent+=units;
+   b.units-=units;if(b.units===0)b.defenseDamage=0;if(b.units<=capacityOf(b))b.overflowLoss=0;sent+=units;
    s.armies.push({id:`a${s.nextArmyId++}`,owner:command.player,source:b.id,target:target.id,units,sx:b.x+nx*b.radius,sy:b.y+ny*b.radius,tx:target.x-nx*target.radius,ty:target.y-ny*target.radius,departure:s.time,speed:speedOf(b),duration});
   }
   if(!sent)return {ok:false,reason:'Pas assez de troupes'};
@@ -337,11 +358,10 @@ class Game{
  transform(command){
   const s=this.state,b=s.buildings.find(b=>b.id===command.building);
   if(!b||b.owner!==command.player)return {ok:false,reason:'Sélectionnez une maison de votre camp.'};
-  if(!canTransform(b)||!['barracks','fort'].includes(command.buildingType))return {ok:false,reason:'Transformation indisponible.'};
+  if(!canTransform(b)||command.buildingType!=='fort')return {ok:false,reason:'Transformation indisponible.'};
   if(b.units<TRANSFORM_COST)return {ok:false,reason:`Il faut ${TRANSFORM_COST} troupes dans cette maison.`};
-  if(transformationOverflow(s,b,command.buildingType)>0)return {ok:false,reason:`Capacité ${BUILDING_TYPES[command.buildingType].capacity} : envoyez des troupes ou attendez les groupes en route avant de transformer.`};
   b.units-=TRANSFORM_COST;Object.assign(b,BUILDING_TYPES[command.buildingType]);b.type=command.buildingType;b.level=1;b.typeLocked=true;
-  b.production=0;b.nextShotTick=s.tick;b.defenseDamage=0;
+  b.production=0;b.nextShotTick=s.tick;b.defenseDamage=0;if(b.units<=capacityOf(b))b.overflowLoss=0;
   s.stats[command.player].spent=(s.stats[command.player].spent??0)+TRANSFORM_COST;
   s.commandLog.push({type:'transform',player:command.player,building:b.id,buildingType:b.type,tick:s.tick});
   s.events.push({type:'transform',x:b.x,y:b.y,owner:b.owner,time:s.time});
@@ -355,6 +375,7 @@ class Game{
   if(b.units<cost)return {ok:false,reason:`Il faut ${cost} troupes pour améliorer ce bâtiment.`};
   b.units-=cost;Object.assign(b,stats);b.level=level;b.typeLocked=true;
   if(b.units===0)b.defenseDamage=0;
+  if(b.units<=capacityOf(b))b.overflowLoss=0;
   // Preserve production progress, damage and firing cooldown: upgrading cannot heal or fire early.
   s.stats[command.player].spent=(s.stats[command.player].spent??0)+cost;
   s.commandLog.push({type:'upgrade',player:command.player,building:b.id,tick:s.tick});
@@ -365,6 +386,7 @@ class Game{
   const s=this.state;if(s.status!=='running')return;
   s.events=[];
   const start=s.time,end=(s.tick+1)*STEP;
+  applyOverflow(s);
   for(const b of s.buildings){if(b.owner===0)continue;const room=freeSpace(s,b);if(room===0){b.production=0;continue;}b.production+=b.rate*STEP;const n=Math.min(room,Math.floor(b.production+1e-9));b.units+=n;b.production-=n;if(n===room)b.production=0;}
   fireForts(s);
   const events=[];
@@ -400,7 +422,7 @@ class Game{
     const result=resolveBuildingCombat(b,forces);
     for(const owner of [1,2])s.stats[owner].lost+=(forces[owner]??0)-(result.owner===owner?result.units:0);
     b.owner=result.owner??oldOwner;b.units=result.units;b.defenseDamage=result.damage;
-    if(b.owner!==oldOwner){b.production=0;b.nextShotTick=s.tick+1;s.stats[b.owner].captures++;s.events.push({type:'capture',x:b.x,y:b.y,owner:b.owner,time:t});}
+    if(b.owner!==oldOwner){b.overflowLoss=0;b.production=0;b.nextShotTick=s.tick+1;s.stats[b.owner].captures++;s.events.push({type:'capture',x:b.x,y:b.y,owner:b.owner,time:t});}
     else if(arrivals.some(a=>a.owner!==oldOwner))s.events.push({type:'battle',x:b.x,y:b.y,time:t});
     else s.events.push({type:'reinforce',x:b.x,y:b.y,owner:b.owner,time:t});
     for(const a of arrivals)a.units=0;
@@ -462,6 +484,7 @@ Object.assign(exports,{analyzeThreats,reserveFor});
 const {travelTime}=__require("src/ai/Evaluation.js");
 
 function allocateAttack(state,target,sources,needed,reserves,maxSources=99){
+ needed=Math.ceil(needed);
  const selected=[];let committed=0;
  for(const b of [...sources].sort((a,b)=>travelTime(a,target)-travelTime(b,target))){
   if(selected.length>=maxSources)break;
@@ -477,7 +500,7 @@ Object.assign(exports,{allocateAttack});
 "src/ai/AIController.js":(exports,__require)=>{
 const {typeOf,typeLabel,TRANSFORM_COST,canTransform,upgradeCost,levelOf}=__require("src/game/BuildingTypes.js");
 
-const {freeSpace,defenseOf,predictedGarrison,transformationOverflow}=__require("src/game/BuildingStats.js");
+const {freeSpace,defenseOf,predictedGarrison}=__require("src/game/BuildingStats.js");
 
 const {targetScore,travelTime,incoming}=__require("src/ai/Evaluation.js");
 
@@ -499,21 +522,21 @@ class AIController{
    const b=own.find(b=>b.id===threat.id);reserves.set(b.id,Math.max(reserves.get(b.id),Math.ceil(threat.enemy/defenseOf(b))-threat.friendly));
    if(!threat.deficit)continue;
    const donors=own.filter(d=>d.id!==b.id&&travelTime(d,b)+.1<threat.eta);
-   const plan=threat.deficit+2<=freeSpace(s,b)?allocateAttack(s,b,donors,threat.deficit+2,reserves,config.coordination):null;
+   const plan=allocateAttack(s,b,donors,threat.deficit+2,reserves,config.coordination);
    if(plan){for(const a of plan.selected)if(this.send(a.source,b.id,a.amount))this.debug.routes.push({from:a.source,to:b.id,kind:'defend'});this.debug.strategy='Défense';this.log(`Renfort vers ${b.name} : ${plan.committed} unités.`);return;}
    // Evacuate a doomed position if no timely reinforcement can save it.
    if(threat.eta<2&&b.units>3){const safe=own.filter(d=>d!==b&&!threats.some(t=>t.id===d.id&&t.deficit>0)).sort((a,c)=>travelTime(b,a)-travelTime(b,c))[0];if(safe&&this.send(b.id,safe.id,Math.min(b.units,freeSpace(s,safe)))){this.debug.strategy='Repli';this.debug.routes.push({from:b.id,to:safe.id,kind:'defend'});this.log(`Évacuation de ${b.name} vers ${safe.name}.`);return;}}
   }}
   // Specialize at most one house per strategic decision; pay the same cost as the player.
-  const houses=own.filter(b=>canTransform(b)&&b.units>=TRANSFORM_COST+12&&!threats.some(t=>t.id===b.id));
+  const houses=own.filter(b=>canTransform(b)&&b.units>=TRANSFORM_COST+6&&!threats.some(t=>t.id===b.id));
   const enemiesForFort=s.buildings.filter(b=>b.owner!==0&&b.owner!==p);
   const frontHouse=[...houses].sort((a,b)=>Math.min(...enemiesForFort.map(e=>Math.hypot(a.x-e.x,a.y-e.y)))-Math.min(...enemiesForFort.map(e=>Math.hypot(b.x-e.x,b.y-e.y))))[0];
   const buildFort=config.defend&&own.length>=3&&!own.some(b=>typeOf(b)==='fort')&&frontHouse&&enemiesForFort.some(e=>Math.hypot(frontHouse.x-e.x,frontHouse.y-e.y)<550);
-  const specialization=buildFort?{b:frontHouse,type:'fort'}:houses.length?{b:houses[0],type:'barracks'}:null;
-  if(specialization&&transformationOverflow(s,specialization.b,specialization.type)===0){const r=this.game.command({type:'transform',player:p,building:specialization.b.id,buildingType:specialization.type});if(r.ok){this.debug.strategy='Spécialisation';this.log(`${specialization.b.name} devient ${typeLabel(specialization.b)} : ${r.cost} troupes.`);return;}}
+  const specialization=buildFort?{b:frontHouse,type:'fort'}:null;
+  if(specialization){const r=this.game.command({type:'transform',player:p,building:specialization.b.id,buildingType:specialization.type});if(r.ok){this.debug.strategy='Spécialisation';this.log(`${specialization.b.name} devient ${typeLabel(specialization.b)} : ${r.cost} troupes.`);return;}}
   // Develop only surplus garrisons; upgrades use exactly the player's command and costs.
   if(s.time>=30&&own.length>=2){
-   const candidate=own.filter(b=>upgradeCost(b)!==null&&!threats.some(t=>t.id===b.id)&&b.units>=upgradeCost(b)+(reserves.get(b.id)??0)+16)
+   const candidate=own.filter(b=>upgradeCost(b)!==null&&!threats.some(t=>t.id===b.id)&&b.units>=upgradeCost(b)+(reserves.get(b.id)??0)+6)
     .sort((a,b)=>levelOf(a)-levelOf(b)||b.units-a.units)[0];
    if(candidate){const result=this.game.command({type:'upgrade',player:p,building:candidate.id});
     if(result.ok){this.debug.strategy='Amélioration';this.log(`${typeLabel(candidate)} ${candidate.name} → niveau ${levelOf(candidate)} : ${result.cost} troupes.`);return;}
@@ -524,11 +547,10 @@ class AIController{
   for(const evaluation of ranked){
    const target=s.buildings.find(b=>b.id===evaluation.target);
    // Conservative production estimate uses the latest contributor, not only the closest.
-   const room=freeSpace(s,target,p);if(room===0)continue;let needed=Math.min(evaluation.needed,room);let plan=allocateAttack(s,target,own,needed,reserves,config.coordination);
+   let needed=evaluation.needed;let plan=allocateAttack(s,target,own,needed,reserves,config.coordination);
    if(!plan)continue;
    const maxEta=Math.max(...plan.selected.map(a=>travelTime(own.find(b=>b.id===a.source),target)));
-   if(target.owner!==0){needed=Math.min(room,Math.max(1,predictedGarrison(s,target,maxEta)*defenseOf(target)-(target.defenseDamage??0)+4-incoming(s,target,p)));plan=allocateAttack(s,target,own,needed,reserves,config.coordination);if(!plan)continue;}
-   if(plan.committed>freeSpace(s,target,p))continue;
+   if(target.owner!==0){needed=Math.max(1,predictedGarrison(s,target,maxEta)*defenseOf(target)-(target.defenseDamage??0)+4-incoming(s,target,p));plan=allocateAttack(s,target,own,needed,reserves,config.coordination);if(!plan)continue;}
    for(const a of plan.selected)if(this.send(a.source,target.id,a.amount))this.debug.routes.push({from:a.source,to:target.id,kind:'attack'});
    this.debug.strategy=target.owner===0?'Expansion':'Offensive';this.log(`${target.owner===0?'Expansion':'Attaque'} vers ${target.name} : ${plan.committed} unités, ${plan.selected.length} départ(s).`);return;
   }
@@ -549,7 +571,7 @@ const {typeOf,levelOf}=__require("src/game/BuildingTypes.js");
 function buildingPath(ctx,type,radius){
  ctx.beginPath();
  if(type==='house')ctx.arc(0,0,radius,0,Math.PI*2);
- else if(type==='barracks')ctx.roundRect(-radius,-radius,2*radius,2*radius,5);
+
  else{
   for(let i=0;i<6;i++){
    const angle=i*Math.PI/3-Math.PI/2,x=Math.cos(angle)*radius,y=Math.sin(angle)*radius;
@@ -587,10 +609,6 @@ function drawBuilding(ctx,building,color){
    ctx.beginPath();ctx.arc(x,17,level>=3?3:2.5,0,Math.PI*2);ctx.fillStyle='#718a6b';ctx.fill();
    if(level>=3){ctx.beginPath();ctx.arc(x*1.08,8,2.3,0,Math.PI*2);ctx.fill();}
   }
- }else if(type==='barracks'){
-  if(level>=2){roof(ctx,0,-29,34,8,0,color);roof(ctx,-29,0,35,8,Math.PI/2,color);roof(ctx,29,0,35,8,Math.PI/2,color);}
-  if(level>=3)for(const x of [-29,29])for(const y of [-29,29])guard(ctx,x,y,level===4?13:10,level===4);
-  if(level===4)roof(ctx,0,29,32,8,0,color);
  }else{
   if(level>=2){
    for(let i=0;i<6;i++){
@@ -622,7 +640,7 @@ const {drawBuilding}=__require("src/rendering/BuildingArt.js");
 
 const {typeOf,typeLabel,levelOf}=__require("src/game/BuildingTypes.js");
 
-const {freeSpace}=__require("src/game/BuildingStats.js");
+const {freeSpace,capacityOf}=__require("src/game/BuildingStats.js");
 
 const {WORLD,MAP_SPACING}=__require("src/game/Map.js");
 
@@ -657,8 +675,9 @@ class Renderer{
    if(hover){c.beginPath();c.arc(0,0,39,0,Math.PI*2);c.strokeStyle=col+'75';c.lineWidth=1.5;c.stroke();}
    c.fillStyle='#78899a';c.font='600 8px system-ui';c.textAlign='center';c.fillText(`${typeLabel(b).toUpperCase()} ${b.name} · N${levelOf(b)}`,0,-47);
    if(b.owner){
+    const excess=Math.max(0,b.units-capacityOf(b));
     if(b.rate>0){c.beginPath();c.arc(0,0,37,-Math.PI/2,-Math.PI/2+Math.max(0,b.production)*2*Math.PI);c.strokeStyle=col+'75';c.lineWidth=1.5;c.stroke();}
-    c.font='9px system-ui';c.fillStyle=col+'bb';c.fillText(typeOf(b)==='fort'?'TIR AUTO':freeSpace(state,b)===0?'PLEIN':`+${b.rate}/s`,0,56);
+    c.font='9px system-ui';c.fillStyle=col+'bb';if(excess>0)c.fillStyle='#b75b28';c.fillText(excess>0?`SURCHARGE +${excess}`:typeOf(b)==='fort'?'TIR AUTO':freeSpace(state,b)===0?'PLEIN':`+${b.rate}/s`,0,56);
    }
    if(showDebug&&debug.targets.some(e=>e.target===b.id)){c.fillStyle='#ef786b';c.font='600 10px system-ui';c.fillText('CIBLE '+(debug.targets.findIndex(e=>e.target===b.id)+1),0,70);}
    c.restore();

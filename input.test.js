@@ -1,3 +1,4 @@
+import {combatState} from './fixtures.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {InputController} from '../src/input/InputController.js';
@@ -5,7 +6,7 @@ import {Game} from '../src/game/Game.js';
 import {createState} from '../src/game/GameState.js';
 function setup(){
  const canvas=new EventTarget();canvas.focus=()=>{};canvas.setPointerCapture=()=>{};
- const game=new Game(createState());game.state.status='running';const messages=[];
+ const game=new Game(combatState());game.state.status='running';const messages=[];
  const input=new InputController(canvas,{point:(x,y)=>({x,y})},()=>game,()=>.5,m=>messages.push(m));
  const event=(type,b,extra={})=>{const e=new Event(type,{cancelable:true});Object.assign(e,{clientX:b.x,clientY:b.y,button:0,pointerId:1,...extra});canvas.dispatchEvent(e);};
  const click=(b,shiftKey=false)=>{event('pointerdown',b,{shiftKey});event('pointerup',b,{shiftKey});};
@@ -27,9 +28,9 @@ test('Maj + clic ajoute et retire ; Maj + glisser depuis une source sélectionn�
  click(a);click(b,true);assert.equal(input.selected.size,2);click(b,true);assert.deepEqual([...input.selected],[a.id]);
  click(b,true);drag(a,enemy,true);assert.equal(a.units,0);assert.equal(b.units,0);assert.equal(g.state.stats[1].sent,50);
 });
-test('Maj + glisser à capacité insuffisante refuse tout sans perte de troupes',()=>{
+test('Maj + glisser accepte les renforts dépassant la capacité',()=>{
  const {game:g,drag,messages}=setup(),[a,,ally]=g.state.buildings;ally.owner=1;ally.units=7;
- drag(a,ally,true);assert.equal(a.units,44);assert.equal(ally.units,7);assert.equal(g.state.armies.length,0);assert.match(messages.at(-1),/Capacité insuffisante/);
+ drag(a,ally,true);assert.equal(a.units,0);assert.equal(ally.units,7);assert.equal(g.state.armies[0].units,44);assert.match(messages.at(-1),/Tout envoyé/);
 });
 test('glisser 50 % puis Maj + glisser vers le même allié réserve exactement la capacité',()=>{
  const {game:g,drag}=setup(),[a,,ally]=g.state.buildings;ally.owner=1;ally.units=6;
