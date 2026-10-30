@@ -7,6 +7,7 @@ export class InputController {
   this.selected = new Set();
   this.pointer = {...OUTSIDE};
   this.drag = null;
+  this.missileAim = null;
 
   canvas.addEventListener('pointerdown', event => this.down(event));
   canvas.addEventListener('pointermove', event => this.move(event));
@@ -32,6 +33,10 @@ export class InputController {
   this.pointer = this.renderer.point(event.clientX, event.clientY);
   const building = this.hit(this.pointer);
 
+  if (this.missileAim) {
+   this.drag={kind:'missile',pointerId:event.pointerId,start:{...this.pointer},source:this.missileAim};
+   this.canvas.setPointerCapture(event.pointerId);return;
+  }
   if (building?.owner === 1) {
    const wasSelected = this.selected.has(building.id);
    if (!event.shiftKey && !wasSelected) this.selected.clear();
@@ -68,6 +73,13 @@ export class InputController {
   this.drag = null;
   if (this.getGame().state.status !== 'running') return;
 
+  if(drag.kind==='missile'){
+   const target=this.hit(this.pointer);
+   if(!target){this.toast('Choisissez un bâtiment cible.');return;}
+   const result=this.getGame().command({type:'launchMissile',player:1,building:drag.source,target:target.id});
+   if(result.ok){this.missileAim=null;this.toast('Missile lancé.');}else this.toast(result.reason);
+   return;
+  }
   if (drag.kind === 'box') {
    this.selectRectangle(drag.start, this.pointer);
    return;
@@ -98,13 +110,22 @@ export class InputController {
   }
  }
 
+ aimMissile(building){
+  const source=this.getGame().state.buildings.find(b=>b.id===building);
+  if(this.getGame().state.status!=='running'||source?.owner!==1||!source.readyMissile)return;
+  this.drag=null;this.missileAim=building;this.canvas.focus();
+  this.toast('Choisissez la cible du missile · Échap pour annuler.');
+ }
+
  clean() {
   const owned = new Set(this.getGame().state.buildings.filter(b => b.owner === 1).map(b => b.id));
   for (const id of this.selected) if (!owned.has(id)) this.selected.delete(id);
+  if(this.missileAim&&!this.getGame().state.buildings.some(b=>b.id===this.missileAim&&b.owner===1&&b.readyMissile))this.missileAim=null;
  }
 
  reset() {
   this.selected.clear();
+  this.missileAim = null;
   this.drag = null;
   this.pointer = {...OUTSIDE};
  }

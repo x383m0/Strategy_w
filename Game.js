@@ -1,3 +1,5 @@
+import {produceMissile,launchMissile,advanceMissiles,applyPoison} from './Missiles.js';
+import {changeOwner} from './Ownership.js';
 import {applyOverflow} from './Overflow.js';
 import {BUILDING_TYPES,TRANSFORM_COST,typeOf,levelOf,canTransform,upgradeCost,statsFor} from './BuildingTypes.js';
 import {fireForts} from './FortCombat.js';
@@ -11,6 +13,8 @@ export class Game{
   const s=this.state;
   if(s.status!=='running')return {ok:false,reason:'Partie inactive'};
   if(!command||![1,2].includes(command.player))return {ok:false,reason:'Commande invalide'};
+  if(command.type==='produceMissile')return produceMissile(s,command);
+  if(command.type==='launchMissile')return launchMissile(s,command);
   if(command.type==='transform')return this.transform(command);
   if(command.type==='upgrade')return this.upgrade(command);
   if(command.type!=='send')return {ok:false,reason:'Commande invalide'};
@@ -37,7 +41,7 @@ export class Game{
  transform(command){
   const s=this.state,b=s.buildings.find(b=>b.id===command.building);
   if(!b||b.owner!==command.player)return {ok:false,reason:'Sélectionnez une maison de votre camp.'};
-  if(!canTransform(b)||command.buildingType!=='fort')return {ok:false,reason:'Transformation indisponible.'};
+  if(!canTransform(b)||!['fort','silo'].includes(command.buildingType))return {ok:false,reason:'Transformation indisponible.'};
   if(b.units<TRANSFORM_COST)return {ok:false,reason:`Il faut ${TRANSFORM_COST} troupes dans cette maison.`};
   b.units-=TRANSFORM_COST;Object.assign(b,BUILDING_TYPES[command.buildingType]);b.type=command.buildingType;b.level=1;b.typeLocked=true;
   b.production=0;b.nextShotTick=s.tick;b.defenseDamage=0;if(b.units<=capacityOf(b))b.overflowLoss=0;
@@ -100,15 +104,17 @@ export class Game{
     for(const a of arrivals)forces[a.owner]=(forces[a.owner]??0)+a.units;
     const result=resolveBuildingCombat(b,forces);
     for(const owner of [1,2])s.stats[owner].lost+=(forces[owner]??0)-(result.owner===owner?result.units:0);
-    b.owner=result.owner??oldOwner;b.units=result.units;b.defenseDamage=result.damage;
-    if(b.owner!==oldOwner){b.overflowLoss=0;b.production=0;b.nextShotTick=s.tick+1;s.stats[b.owner].captures++;s.events.push({type:'capture',x:b.x,y:b.y,owner:b.owner,time:t});}
+    const newOwner=result.owner??oldOwner;b.units=result.units;b.defenseDamage=result.damage;
+    if(newOwner!==oldOwner)changeOwner(s,b,newOwner,t);
     else if(arrivals.some(a=>a.owner!==oldOwner))s.events.push({type:'battle',x:b.x,y:b.y,time:t});
     else s.events.push({type:'reinforce',x:b.x,y:b.y,owner:b.owner,time:t});
     for(const a of arrivals)a.units=0;
    }
   }
-  s.armies=s.armies.filter(a=>a.units>0);s.tick++;s.time=s.tick*STEP;
-  const alive=[1,2].filter(owner=>s.buildings.some(b=>b.owner===owner)||s.armies.some(a=>a.owner===owner));
+  s.armies=s.armies.filter(a=>a.units>0);
+  advanceMissiles(s);applyPoison(s);
+  s.tick++;s.time=s.tick*STEP;
+  const alive=[1,2].filter(owner=>s.buildings.some(b=>b.owner===owner)||s.armies.some(a=>a.owner===owner)||(s.missiles??[]).some(m=>m.owner===owner));
   if(alive.length<2){s.status='finished';s.winner=alive[0]??0;}
  }
 }

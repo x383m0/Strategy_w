@@ -1,3 +1,4 @@
+import {MISSILE_TYPES} from '../game/Missiles.js';
 import {typeOf,typeLabel,TRANSFORM_COST,canTransform,upgradeCost,levelOf} from '../game/BuildingTypes.js';
 import {freeSpace,defenseOf,predictedGarrison} from '../game/BuildingStats.js';
 import {targetScore,travelTime,incoming} from './Evaluation.js';
@@ -12,6 +13,16 @@ export class AIController{
  think(config){
   const s=this.game.state,p=this.player,own=s.buildings.filter(b=>b.owner===p);this.debug.decisions++;this.debug.routes=[];
   const threats=analyzeThreats(s,p);this.debug.threats=threats;
+  for(const silo of own.filter(b=>typeOf(b)==='silo')){
+   if(silo.readyMissile){
+    const target=s.buildings.filter(b=>b.owner!==p&&(silo.readyMissile==='emp'||b.owner!==0)&&!(silo.readyMissile==='poison'&&b.poison))
+     .sort((a,b)=>(b.owner?100:0)+b.units+b.rate*10-((a.owner?100:0)+a.units+a.rate*10))[0];
+    if(target&&this.game.command({type:'launchMissile',player:p,building:silo.id,target:target.id}).ok){this.debug.strategy='Missile';this.log(`Missile vers ${target.name}.`);return;}
+   }else if(!silo.missileProduction){
+    const kind=['emp','poison','normal'].find(kind=>levelOf(silo)>=MISSILE_TYPES[kind].level&&silo.units>=MISSILE_TYPES[kind].cost);
+    if(kind&&this.game.command({type:'produceMissile',player:p,building:silo.id,missileType:kind}).ok){this.debug.strategy='Fabrication';this.log(`${MISSILE_TYPES[kind].label} en fabrication au silo ${silo.name}.`);return;}
+   }
+  }
   const reserves=new Map(own.map(b=>[b.id,reserveFor(s,b,p)]));
   if(config.defend){for(const threat of threats){
    const b=own.find(b=>b.id===threat.id);reserves.set(b.id,Math.max(reserves.get(b.id),Math.ceil(threat.enemy/defenseOf(b))-threat.friendly));
@@ -27,7 +38,8 @@ export class AIController{
   const enemiesForFort=s.buildings.filter(b=>b.owner!==0&&b.owner!==p);
   const frontHouse=[...houses].sort((a,b)=>Math.min(...enemiesForFort.map(e=>Math.hypot(a.x-e.x,a.y-e.y)))-Math.min(...enemiesForFort.map(e=>Math.hypot(b.x-e.x,b.y-e.y))))[0];
   const buildFort=config.defend&&own.length>=3&&!own.some(b=>typeOf(b)==='fort')&&frontHouse&&enemiesForFort.some(e=>Math.hypot(frontHouse.x-e.x,frontHouse.y-e.y)<550);
-  const specialization=buildFort?{b:frontHouse,type:'fort'}:null;
+  const buildSilo=config.defend&&s.time>=45&&own.length>=3&&!own.some(b=>typeOf(b)==='silo')&&houses.length;
+  const specialization=buildFort?{b:frontHouse,type:'fort'}:buildSilo?{b:houses[0],type:'silo'}:null;
   if(specialization){const r=this.game.command({type:'transform',player:p,building:specialization.b.id,buildingType:specialization.type});if(r.ok){this.debug.strategy='Spécialisation';this.log(`${specialization.b.name} devient ${typeLabel(specialization.b)} : ${r.cost} troupes.`);return;}}
   // Develop only surplus garrisons; upgrades use exactly the player's command and costs.
   if(s.time>=30&&own.length>=2){

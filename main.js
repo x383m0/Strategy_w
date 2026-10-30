@@ -1,3 +1,4 @@
+import {MISSILE_TYPES} from './game/Missiles.js';
 import {typeLabel,levelOf} from './game/BuildingTypes.js';
 import {BuildingPopover} from './ui/BuildingPopover.js';
 import {Game} from './game/Game.js';
@@ -12,6 +13,11 @@ const renderer=new Renderer($('board'));
 function toast(message){$('toast').textContent=message;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2200);}
 const input=new InputController($('board'),renderer,()=>game,()=>.5,toast);
 const buildingPopover=new BuildingPopover($('building-stats'),$('board'),input,renderer,()=>game,()=>!$('overlay').hidden,(building,buildingType)=>{
+ if(buildingType==='launch'){input.aimMissile(building.id);buildingPopover.hide();return;}
+ if(buildingType.startsWith('missile:')){
+  const kind=buildingType.split(':')[1],result=game.command({type:'produceMissile',player:1,building:building.id,missileType:kind});
+  toast(result.ok?`${MISSILE_TYPES[kind].label} · fabrication ${MISSILE_TYPES[kind].seconds} s`:result.reason);hud();return;
+ }
  const upgrade=buildingType==='upgrade';
  const r=game.command(upgrade?{type:'upgrade',player:1,building:building.id}:{type:'transform',player:1,building:building.id,buildingType});
  toast(r.ok?`${typeLabel(building)} · niveau ${levelOf(building)} · ${r.cost} troupes utilisées`:r.reason);hud();

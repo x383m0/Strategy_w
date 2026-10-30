@@ -23,3 +23,7 @@
 .hover-actions span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 .hover-actions b{position:absolute;bottom:-3px;right:-3px;font-size:9px;border-radius:10px;background:#427df0;color:white;padding:2px 4px;border:2px solid white;line-height:1}
 .hover-actions button:disabled{opacity:.65}.sidebar .intelligence{grid-column:auto}
+
+.silo-controls{display:contents}.hover-actions #missile-normal{color:#bd7438}.hover-actions #missile-poison{color:#70983f}.hover-actions #missile-emp{color:#677dc5}.hover-actions button[data-ready="true"]{border-color:#70983f;background:#eef8e5;box-shadow:0 0 0 3px #84a85825}
+
+.stats-card .poison-meta{color:#70983f}

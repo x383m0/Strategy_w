@@ -9,14 +9,14 @@ class Element extends EventTarget{
 }
 function setup(){
  const game=new Game(createState());game.state.status='running';const b=game.state.buildings[0],canvas=new Element(),box=new Element(),children=new Map();
- for(const id of ['stats-range','stats-shot-rate','stats-status-row','upgrade-building','upgrade-cost','stats-card','stats-title','stats-defense','stats-rate','stats-speed','stats-capacity','stats-fort','stats-status','hover-upgrades','transform-fort','transform-hint'])children.set('#'+id,new Element());
+ for(const id of ['stats-poison','silo-controls','missile-normal','missile-poison','missile-emp','missile-cost-normal','missile-cost-poison','missile-cost-emp','transform-silo','stats-range','stats-shot-rate','stats-status-row','upgrade-building','upgrade-cost','stats-card','stats-title','stats-defense','stats-rate','stats-speed','stats-capacity','stats-fort','stats-status','hover-upgrades','transform-fort','transform-hint'])children.set('#'+id,new Element());
  children.get('#stats-card').hidden=false;
  children.get('#stats-card').offsetWidth=184;children.get('#stats-card').offsetHeight=80;
  children.get('#hover-upgrades').offsetWidth=108;children.get('#hover-upgrades').offsetHeight=52;
  box.querySelector=id=>children.get(id);box.contains=e=>[...children.values()].includes(e);
  const input={pointer:{x:b.x,y:b.y},drag:null,selected:new Set(),hit(p){return game.state.buildings.find(n=>Math.hypot(n.x-p.x,n.y-p.y)<n.radius+9);}};
  let menu=false;const commands=[];
- const pop=new BuildingPopover(box,canvas,input,{view:{scale:1,x:0,y:0},width:1568,height:1064},()=>game,()=>menu,(building,buildingType)=>{commands.push(building.id);game.command(buildingType==='upgrade'?{type:'upgrade',player:1,building:building.id}:{type:'transform',player:1,building:building.id,buildingType});});
+ const pop=new BuildingPopover(box,canvas,input,{view:{scale:1,x:0,y:0},width:1568,height:1064},()=>game,()=>menu,(building,buildingType)=>{commands.push(building.id);if(buildingType.startsWith('missile:'))game.command({type:'produceMissile',player:1,building:building.id,missileType:buildingType.split(':')[1]});else if(buildingType==='launch')input.missileAim=building.id;else game.command(buildingType==='upgrade'?{type:'upgrade',player:1,building:building.id}:{type:'transform',player:1,building:building.id,buildingType});});
  return {game,b,canvas,box,input,pop,find:id=>children.get('#'+id),commands,setMenu:v=>{menu=v;}};
 }
 test('fiche et icônes au survol sans sélection ni clic',()=>{const {box,input,pop,find}=setup();assert.equal(input.selected.size,0);pop.update();assert.equal(box.hidden,false);assert.equal(find('stats-defense').textContent,1);assert.equal(find('stats-rate').textContent,'0.5/s');assert.equal(find('stats-speed').textContent,45);assert.equal(find('stats-capacity').textContent,'20 / 20');assert.equal(find('hover-upgrades').hidden,false);assert.equal(find('transform-fort').disabled,false);});
@@ -72,4 +72,15 @@ test('la fiche signale la surcharge et affiche le débit de pertes',()=>{
  assert.equal(find('stats-capacity').textContent,'40 / 20');
  assert.equal(find('stats-status').textContent,'+20 · −2.0/s');assert.equal(find('stats-status-row').hidden,false);
  b.units=10;pop.update();assert.equal(find('stats-capacity').style.color,'');assert.equal(find('stats-status-row').hidden,true);assert.equal(find('stats-status').textContent,'');
+});
+
+test('silo : boutons de fabrication, progression, déblocage et lancement au survol',()=>{
+ const {game,b,pop,find,input}=setup();pop.update();find('transform-silo').dispatchEvent(new Event('click'));
+ assert.equal(b.type,'silo');assert.equal(find('silo-controls').hidden,false);assert.equal(find('missile-poison').disabled,true);
+ b.units=50;pop.update();assert.equal(find('missile-normal').disabled,false);
+ find('missile-normal').dispatchEvent(new Event('click'));assert.equal(b.units,25);pop.update();
+ assert.equal(find('missile-cost-normal').textContent,'10s');assert.equal(find('missile-normal').disabled,true);
+ for(let i=0;i<300;i++)game.step();pop.update();assert.equal(find('missile-cost-normal').textContent,'✓');
+ find('missile-normal').dispatchEvent(new Event('click'));assert.equal(input.missileAim,b.id);assert.equal(pop.element.hidden,true);
+ input.missileAim=null;b.readyMissile=null;b.level=3;pop.update();assert.equal(find('upgrade-building').hidden,true);assert.equal(find('silo-controls').hidden,false);assert.equal(find('hover-upgrades').hidden,false);
 });

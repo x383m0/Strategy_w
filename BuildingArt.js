@@ -5,6 +5,7 @@ import {typeOf,levelOf} from '../game/BuildingTypes.js';
 export function buildingPath(ctx,type,radius){
  ctx.beginPath();
  if(type==='house')ctx.arc(0,0,radius,0,Math.PI*2);
+ else if(type==='silo')ctx.roundRect(-radius,-radius,2*radius,2*radius,6);
 
  else{
   for(let i=0;i<6;i++){
@@ -43,6 +44,13 @@ export function drawBuilding(ctx,building,color){
    ctx.beginPath();ctx.arc(x,17,level>=3?3:2.5,0,Math.PI*2);ctx.fillStyle='#718a6b';ctx.fill();
    if(level>=3){ctx.beginPath();ctx.arc(x*1.08,8,2.3,0,Math.PI*2);ctx.fill();}
   }
+ }else if(type==='silo'){
+  for(const x of [-24,24])for(const y of [-24,24]){
+   ctx.beginPath();ctx.arc(x,y,7,0,Math.PI*2);ctx.fillStyle='#d9ddd9';ctx.fill();ctx.strokeStyle='#7b8a91';ctx.lineWidth=1.5;ctx.stroke();
+   ctx.beginPath();ctx.moveTo(x-4,y+4);ctx.lineTo(x+4,y-4);ctx.stroke();
+  }
+  if(level>=2)roof(ctx,0,-31,24,7,0,color);
+  if(level>=3){roof(ctx,-31,0,20,6,Math.PI/2,color);roof(ctx,31,0,20,6,Math.PI/2,color);}
  }else{
   if(level>=2){
    for(let i=0;i<6;i++){
@@ -61,8 +69,9 @@ export function drawBuilding(ctx,building,color){
  if(level===4){ctx.strokeStyle='#718492';ctx.lineWidth=1;buildingPath(ctx,type,35);ctx.stroke();}
  ctx.fillStyle='#fff';ctx.font='750 21px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(building.units,0,0);
  // Four pips communicate level without increasing the collision footprint.
- for(let i=0;i<4;i++){
-  ctx.beginPath();ctx.arc((i-1.5)*8,43,2.2,0,Math.PI*2);
+ const maxLevel=type==='silo'?3:4;
+ for(let i=0;i<maxLevel;i++){
+  ctx.beginPath();ctx.arc((i-(maxLevel-1)/2)*8,43,2.2,0,Math.PI*2);
   ctx.fillStyle=i<level?color:'#cdd5dd';ctx.fill();
  }
 }

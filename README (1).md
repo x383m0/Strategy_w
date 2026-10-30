@@ -1,4 +1,4 @@
-# Jelly Wars — v0.3.4
+# Jelly Wars — v0.4.0
 
 Jeu de conquête en temps réel, en français, contre une IA heuristique équitable. JavaScript natif, HTML5 Canvas et CSS, sans dépendance ni serveur de jeu en solo.
 
@@ -38,7 +38,7 @@ npm test
 npm run build
 ```
 
-Les 84 tests automatisés passent. Ils couvrent production, commandes invalides, captures, égalités, renforts, collisions continues, arrivées simultanées, pause, victoire, conservation des unités de l’IA replay des commandes, renfort défensif de l’IA, engagements à trois groupes et simulations déterministes IA contre IA sur les trois cartes.
+Les 101 tests automatisés passent. Ils couvrent production, commandes invalides, captures, égalités, renforts, collisions continues, arrivées simultanées, pause, victoire, conservation des unités de l’IA replay des commandes, renfort défensif de l’IA, engagements à trois groupes et simulations déterministes IA contre IA sur les trois cartes.
 
 ## Architecture et limites
 
@@ -236,3 +236,29 @@ Validation : 84 tests réussis. Audit : 9 simulations, 2 039 commandes, 19 582 t
 La fiche affiche uniquement icônes et valeurs : bouclier pour défense, + cerclé pour production, chevrons pour vitesse, groupe de soldats pour capacité. Le nom/type/camp du bâtiment n’est plus visible dans cette fiche. Les libellés restent disponibles aux lecteurs d’écran. La portée et les dégâts/s du fort utilisent une cible et un éclair ; la surcharge utilise un triangle d’alerte, l’excédent et le débit de pertes. Aucun message rédigé n’est visible dans la fiche.
 
 Le cadre passe de 184 à 156 px et conserve deux lignes principales. Les commandes flottantes et le reste de l’interface sont conservés. Validation : 84 tests réussis et vérification navigateur des fiches maison et fort.
+
+## v0.4.0 — Silo et missiles
+
+Une maison N1 non améliorée peut devenir un silo pour 10 troupes, avec verrouillage définitif comme le fort. Le silo dispose de trois niveaux, ne produit aucune troupe et demande des renforts pour financer ses missiles. Défense 1 et vitesse d’envoi 45.
+
+| Niveau | Capacité | Coût pour atteindre ce niveau | Nouveau missile | Coût du missile | Fabrication |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 50 | Transformation : 10 | Balistique | 25 | 10 s |
+| 2 | 75 | 20 | Poison | 30 | 10 s |
+| 3 | 100 | 40 | EMP | 40 | 15 s |
+
+Les missiles précédents restent disponibles aux niveaux supérieurs. Un seul missile stocké ou en fabrication par silo. Les coûts sont prélevés au début de fabrication sur la garnison, suivis dans les dépenses. La pause arrête les compteurs. Les changements de type et niveaux restent conservés après capture.
+
+Au survol : cliquer sur une icône de missile pour fabriquer, suivre les secondes restantes, puis cliquer sur le bouton marqué ✓ et cliquer sur la cible. Échap annule uniquement la visée, sans perdre le missile prêt. Les cibles sont des bâtiments adverses ; l’EMP peut aussi capturer un neutre. Portée : toute la carte. Le vol balistique animé prend 1,5 seconde après lancement. Les missiles ne sont pas interceptés par les troupes ni par les forts.
+
+- Balistique : explosion normale, propriétaire neutre, garnison conservée. Type et niveau conservés.
+- Poison : −1 troupe toutes les 2 secondes, indéfiniment, sans effet cumulatif. Production inchangée, propriétaire inchangé, effectif jamais négatif. Le halo vert et l’icône −1/2s signalent le poison. La neutralisation seule ne le soigne pas ; une conquête par une faction, avec troupes ou EMP, le supprime.
+- EMP : capture au camp du tireur, garnison/type/niveau conservés. Pas de dégâts sur les troupes en chemin.
+
+Toute capture ou neutralisation d’un silo annule sa fabrication sans remboursement. Le missile stocké est également détruit (règle initiale). Un missile déjà lancé poursuit sa mission au nom du camp qui l’a tiré. Si la cible devient alliée avant l’impact, elle n’est pas affectée. La victoire attend la résolution des missiles encore en vol, car une EMP peut encore capturer un bâtiment.
+
+L’IA peut construire des silos en Normal/Difficile à partir de 45 secondes avec au moins trois bâtiments et une maison disponible ; elle peut utiliser les silos qu’elle possède, en payant les mêmes coûts et en respectant fabrication, stock et niveaux. Les cadences de décision restent inchangées.
+
+Validation : tests de chaque coût/délai, déblocages, pause, annulation de production à la capture, conservation des garnisons, poison permanent, neutralisation puis conquête, EMP, vol indépendant du silo, victoire retardée, boutons, ciblage et replays exacts.
+
+Bilan de validation v0.4.0 : 101 tests réussis. Audit : 9 simulations sur trois cartes, 3 020 commandes et 28 082 ticks, avec 9 replays identiques. Vérification navigateur de la transformation en silo, des commandes disponibles/verrouillées, du paiement, du compteur de fabrication, du bouton prêt, du ciblage et de la neutralisation.

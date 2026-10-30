@@ -1,3 +1,4 @@
+import {drawMissiles} from './MissileArt.js';
 import {drawBuilding} from './BuildingArt.js';
 import {typeOf,typeLabel,levelOf} from '../game/BuildingTypes.js';
 import {freeSpace,capacityOf} from '../game/BuildingStats.js';
@@ -8,7 +9,7 @@ export class Renderer{
  constructor(canvas){this.canvas=canvas;this.ctx=canvas.getContext('2d');this.effects=[];this.view={scale:1,x:0,y:0};this.resize();new ResizeObserver(()=>this.resize()).observe(canvas);}
  resize(){const r=this.canvas.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);this.canvas.width=Math.round(r.width*d);this.canvas.height=Math.round(r.height*d);this.dpr=d;this.width=r.width;this.height=r.height;const scale=Math.min(r.width/WORLD.width,r.height/WORLD.height);this.view={scale,x:(r.width-WORLD.width*scale)/2,y:(r.height-WORLD.height*scale)/2};}
  point(clientX,clientY){const r=this.canvas.getBoundingClientRect(),v=this.view;return {x:(clientX-r.left-v.x)/v.scale,y:(clientY-r.top-v.y)/v.scale};}
- event(e,time){if(['battle','capture','reinforce','transform','upgrade','shot'].includes(e.type))this.effects.push({...e,born:time});}
+ event(e,time){if(['battle','capture','reinforce','transform','upgrade','shot','missileImpact','neutralize'].includes(e.type))this.effects.push({...e,born:time});}
  line(a,b,color,dashed=false){const c=this.ctx;c.beginPath();c.moveTo(a.x,a.y);c.lineTo(b.x,b.y);c.strokeStyle=color;c.lineWidth=2;c.setLineDash(dashed?[7,8]:[]);c.stroke();c.setLineDash([]);}
  draw(state,input,debug,showDebug,wallTime){
   const c=this.ctx,v=this.view;c.setTransform(this.dpr,0,0,this.dpr,0,0);c.clearRect(0,0,this.width,this.height);c.save();c.translate(v.x,v.y);c.scale(v.scale,v.scale);
@@ -23,12 +24,16 @@ export class Renderer{
    c.beginPath();c.arc(p.x,p.y,radius,0,Math.PI*2);c.fillStyle=col;c.fill();c.strokeStyle='#fff';c.lineWidth=3;c.stroke();
    c.font=`750 ${Math.max(17,radius*.8)}px system-ui`;c.textAlign='center';c.textBaseline='middle';c.fillStyle='#fff';c.fillText(a.units,p.x,p.y+.5);
   }
+  if(input.missileAim){const target=input.hit(input.pointer);if(target){c.beginPath();c.arc(target.x,target.y,target.radius+14,0,Math.PI*2);c.strokeStyle='#c47b42';c.lineWidth=3;c.setLineDash([6,5]);c.stroke();c.setLineDash([]);}}
   if(input.drag?.kind==='send'){for(const b of state.buildings.filter(b=>input.selected.has(b.id)&&b.owner===1)){this.line(b,input.pointer,'#427df0a0',true);}const target=input.hit(input.pointer);if(target){c.beginPath();c.arc(target.x,target.y,44,0,Math.PI*2);c.strokeStyle='#427df090';c.lineWidth=2;c.stroke();}}
   for(const b of state.buildings){const selected=input.selected.has(b.id)&&b.owner===1,hover=input.hit(input.pointer)?.id===b.id,col=colors[b.owner];
    const preview=this.rangePreview?.building===b.id;
    if(preview||typeOf(b)==='fort'&&(selected||hover)){const range=preview?this.rangePreview.range:b.range;c.beginPath();c.arc(b.x,b.y,range,0,Math.PI*2);c.fillStyle=col+'0b';c.fill();c.setLineDash([7,8]);c.strokeStyle=col+'90';c.lineWidth=2;c.stroke();c.setLineDash([]);c.fillStyle=col;c.font='600 12px system-ui';c.textAlign='center';c.fillText(`PORTÉE ${range}`,b.x,b.y-range+18);}
    c.save();c.translate(b.x,b.y);c.scale(b.radius/31,b.radius/31);if(selected){c.beginPath();c.arc(0,0,43,0,Math.PI*2);c.strokeStyle=col;c.lineWidth=2;c.stroke();c.fillStyle='#427df00c';c.fill();}
+   if(b.poison){c.beginPath();c.arc(0,0,40,0,Math.PI*2);c.fillStyle='#82a64220';c.fill();c.strokeStyle='#79a24c';c.lineWidth=2;c.setLineDash([4,4]);c.stroke();c.setLineDash([]);}
    drawBuilding(c,b,col);
+   if(b.missileProduction){const job=b.missileProduction;c.beginPath();c.arc(0,0,39,-Math.PI/2,-Math.PI/2+Math.PI*2*(state.tick-job.startTick)/(job.finishTick-job.startTick));c.strokeStyle='#d19756';c.lineWidth=3;c.stroke();}
+   if(b.readyMissile){c.fillStyle='#70983f';c.font='bold 12px system-ui';c.fillText('✓',0,-35);}
    if(hover){c.beginPath();c.arc(0,0,39,0,Math.PI*2);c.strokeStyle=col+'75';c.lineWidth=1.5;c.stroke();}
    c.fillStyle='#78899a';c.font='600 8px system-ui';c.textAlign='center';c.fillText(`${typeLabel(b).toUpperCase()} ${b.name} · N${levelOf(b)}`,0,-47);
    if(b.owner){
@@ -40,6 +45,7 @@ export class Renderer{
    c.restore();
   }
   if(input.drag?.kind==='box'){const a=input.drag.start,b=input.pointer;c.fillStyle='#427df00d';c.strokeStyle='#427df080';c.lineWidth=1.5;c.fillRect(a.x,a.y,b.x-a.x,b.y-a.y);c.strokeRect(a.x,a.y,b.x-a.x,b.y-a.y);}
-  this.effects=this.effects.filter(e=>wallTime-e.born<.7);for(const e of this.effects){const t=(wallTime-e.born)/.7;if(e.type==='shot'){if(t<.3){c.globalAlpha=1-t/.3;this.line(e,{x:e.tx,y:e.ty},colors[e.owner]);}continue;}c.globalAlpha=1-t;c.strokeStyle=e.type==='battle'?'#e0a168':colors[e.owner??1];c.lineWidth=e.type==='capture'?4:2;c.beginPath();c.arc(e.x,e.y,12+t*53,0,Math.PI*2);c.stroke();}c.globalAlpha=1;c.restore();
+  drawMissiles(c,state);
+  this.effects=this.effects.filter(e=>wallTime-e.born<.7);for(const e of this.effects){const t=(wallTime-e.born)/.7;if(e.type==='missileImpact'){const color=e.kind==='poison'?'#84ab4b':e.kind==='emp'?'#7b9ce5':'#e69a4e';c.globalAlpha=1-t;c.beginPath();c.arc(e.x,e.y,15+t*100,0,Math.PI*2);c.fillStyle=color+'35';c.fill();c.strokeStyle=color;c.lineWidth=e.kind==='emp'?4:2;c.stroke();if(e.kind==='emp'){c.beginPath();c.arc(e.x,e.y,5+t*70,0,Math.PI*2);c.stroke();}continue;}if(e.type==='shot'){if(t<.3){c.globalAlpha=1-t/.3;this.line(e,{x:e.tx,y:e.ty},colors[e.owner]);}continue;}c.globalAlpha=1-t;c.strokeStyle=e.type==='battle'?'#e0a168':colors[e.owner??1];c.lineWidth=e.type==='capture'?4:2;c.beginPath();c.arc(e.x,e.y,12+t*53,0,Math.PI*2);c.stroke();}c.globalAlpha=1;c.restore();
  }
 }

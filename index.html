@@ -25,16 +25,20 @@
 .hover-actions span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 .hover-actions b{position:absolute;bottom:-3px;right:-3px;font-size:9px;border-radius:10px;background:#427df0;color:white;padding:2px 4px;border:2px solid white;line-height:1}
 .hover-actions button:disabled{opacity:.65}.sidebar .intelligence{grid-column:auto}
+
+.silo-controls{display:contents}.hover-actions #missile-normal{color:#bd7438}.hover-actions #missile-poison{color:#70983f}.hover-actions #missile-emp{color:#677dc5}.hover-actions button[data-ready="true"]{border-color:#70983f;background:#eef8e5;box-shadow:0 0 0 3px #84a85825}
+
+.stats-card .poison-meta{color:#70983f}
 </style></head>
 <body>
-<header class="topbar"><a class="brand" href="./" aria-label="Jelly Wars accueil"><span class="brand-icon"><i></i><i></i><i></i></span><span>jelly<span class="brand-light">wars</span><small>STRATÉGIE EN TEMPS RÉEL</small></span></a><nav><span class="nav-active"><span class="live-dot"></span> SOLO CONTRE L’IA</span><button id="help" class="plain" aria-label="Afficher les contrôles">Comment jouer <span class="key">?</span></button></nav><div class="version">PROTOTYPE <span>v0.3.4</span></div></header>
+<header class="topbar"><a class="brand" href="./" aria-label="Jelly Wars accueil"><span class="brand-icon"><i></i><i></i><i></i></span><span>jelly<span class="brand-light">wars</span><small>STRATÉGIE EN TEMPS RÉEL</small></span></a><nav><span class="nav-active"><span class="live-dot"></span> SOLO CONTRE L’IA</span><button id="help" class="plain" aria-label="Afficher les contrôles">Comment jouer <span class="key">?</span></button></nav><div class="version">PROTOTYPE <span>v0.4.0</span></div></header>
 <main>
 <section class="page-heading"><div><div class="eyebrow">LE TERRITOIRE SE MÉRITE.</div><h1>Prenez le contrôle<span>.</span></h1><p>Déployez vos troupes. Lisez le jeu. Gardez une longueur d’avance.</p></div><button id="new-game" class="outline"><span>↻</span> Nouvelle partie</button></section>
 <div class="workspace">
 <section class="battlefield" aria-label="Champ de bataille">
 <div class="battle-toolbar"><div class="map-label"><span class="map-icon">◈</span><div><strong id="map-title">Archipel</strong><small>CONQUÊTE TOTALE</small></div></div><div class="battle-status"><span id="running-dot" class="live-dot"></span><span id="status">PRÊT À JOUER</span><span class="toolbar-divider"></span><time id="timer">00:00</time><button id="pause" class="icon-btn" aria-label="Mettre en pause" title="Pause (Espace)">Ⅱ</button></div></div>
-<div class="canvas-wrap"><canvas id="board" tabindex="0" aria-label="Carte interactive. Glissez d’un bâtiment bleu vers une cible pour envoyer des troupes."></canvas><div class="map-corner top-left">SECTEUR <b id="sector">01</b></div><div class="map-corner bottom-right">JELLY WARS / TERRAIN TACTIQUE</div><div id="building-stats" class="building-stats" role="group" aria-label="Statistiques et transformations du bâtiment" hidden><div id="stats-card" class="stats-card" aria-labelledby="stats-title"><strong id="stats-title" class="sr-only"></strong><dl><dt aria-label="Défense"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6Z"/></svg></dt><dd id="stats-defense" aria-label="Défense"></dd><dt aria-label="Production par seconde"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12h6m-3-3v6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0"/></svg></dt><dd id="stats-rate" aria-label="Production par seconde"></dd><dt aria-label="Vitesse"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 5 7 7-7 7m7-14 7 7-7 7"/></svg></dt><dd id="stats-speed" aria-label="Vitesse"></dd><dt aria-label="Capacité"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-6 8v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m1 3a5 5 0 0 1 3 4v2"/></svg></dt><dd id="stats-capacity" aria-label="Capacité"></dd></dl><small id="stats-status-row" class="stat-meta overflow-meta" hidden aria-label="Surcharge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 21h20ZM12 9v5m0 3v1"/></svg><span id="stats-status"></span></small><small id="stats-fort" class="stat-meta fort-meta" hidden><span aria-label="Portée"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4m0 12v4M2 12h4m12 0h4M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0"/></svg><b id="stats-range"></b></span><span aria-label="Dégâts par seconde"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-8Z"/></svg><b id="stats-shot-rate"></b></span></small></div><div id="hover-upgrades" class="hover-upgrades" hidden><small id="transform-hint">Transformer · 10 troupes</small><div class="hover-actions"><button id="upgrade-building" aria-describedby="transform-hint" type="button" aria-label="Améliorer le bâtiment"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6M5 20h14"/></svg><span>Améliorer</span><b id="upgrade-cost">10</b></button><button id="transform-fort" aria-describedby="transform-hint" type="button" aria-label="Transformer en fort pour 10 troupes" title="Fort : défense 2 · 2 tirs/s · coût 10 troupes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V4h4v4h3V4h3v4h3V4h3v17M3 21h18M9 21v-6h6v6"/></svg><span>Fort</span><b>10</b></button></div></div></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
-<div id="overlay" class="overlay"><div class="start-card"><span class="card-badge">VOTRE PROCHAINE CONQUÊTE</span><div class="start-symbol"><i></i><span>↗</span><i></i></div><h2 id="overlay-title">Chaque mouvement compte.</h2><p id="overlay-description">Une carte. Deux camps. Aucune unité gratuite.<br>Le meilleur stratège l’emporte.</p><div id="setup"><label for="map-select">TERRAIN<select id="map-select"><option value="archipel">01 — Archipel</option><option value="croisee">02 — Croisée</option><option value="couronne">03 — Couronne</option></select></label><label for="difficulty">ADVERSAIRE<select id="difficulty"><option value="easy">IA · Facile</option><option value="normal" selected>IA · Normal</option><option value="hard">IA · Difficile</option></select></label></div><button id="start" class="primary">Lancer la conquête <span>↗</span></button><small class="menu-version">Jelly Wars · Version 0.3.4</small><small id="overlay-footnote">Capturez les bâtiments et éliminez les dernières troupes.</small></div></div>
+<div class="canvas-wrap"><canvas id="board" tabindex="0" aria-label="Carte interactive. Glissez d’un bâtiment bleu vers une cible pour envoyer des troupes."></canvas><div class="map-corner top-left">SECTEUR <b id="sector">01</b></div><div class="map-corner bottom-right">JELLY WARS / TERRAIN TACTIQUE</div><div id="building-stats" class="building-stats" role="group" aria-label="Statistiques et transformations du bâtiment" hidden><div id="stats-card" class="stats-card" aria-labelledby="stats-title"><strong id="stats-title" class="sr-only"></strong><dl><dt aria-label="Défense"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6Z"/></svg></dt><dd id="stats-defense" aria-label="Défense"></dd><dt aria-label="Production par seconde"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12h6m-3-3v6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0"/></svg></dt><dd id="stats-rate" aria-label="Production par seconde"></dd><dt aria-label="Vitesse"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 5 7 7-7 7m7-14 7 7-7 7"/></svg></dt><dd id="stats-speed" aria-label="Vitesse"></dd><dt aria-label="Capacité"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-6 8v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m1 3a5 5 0 0 1 3 4v2"/></svg></dt><dd id="stats-capacity" aria-label="Capacité"></dd></dl><small id="stats-status-row" class="stat-meta overflow-meta" hidden aria-label="Surcharge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 21h20ZM12 9v5m0 3v1"/></svg><span id="stats-status"></span></small><small id="stats-poison" class="stat-meta poison-meta" hidden aria-label="Empoisonnement : une troupe toutes les deux secondes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s-7 8-7 12a7 7 0 0 0 14 0c0-4-7-12-7-12Z"/></svg><b>−1/2s</b></small><small id="stats-fort" class="stat-meta fort-meta" hidden><span aria-label="Portée"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4m0 12v4M2 12h4m12 0h4M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0"/></svg><b id="stats-range"></b></span><span aria-label="Dégâts par seconde"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-8Z"/></svg><b id="stats-shot-rate"></b></span></small></div><div id="hover-upgrades" class="hover-upgrades" hidden><small id="transform-hint">Transformer · 10 troupes</small><div class="hover-actions"><button id="upgrade-building" aria-describedby="transform-hint" type="button" aria-label="Améliorer le bâtiment"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6M5 20h14"/></svg><span>Améliorer</span><b id="upgrade-cost">10</b></button><button id="transform-silo" aria-describedby="transform-hint" type="button" aria-label="Transformer en silo pour 10 troupes" title="Silo · capacité 50 · coût 10 troupes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V9h16v12M3 21h18M8 9V5l4-3 4 3v4M9 16h6m-3-4v7"/></svg><span>Silo</span><b>10</b></button><button id="transform-fort" aria-describedby="transform-hint" type="button" aria-label="Transformer en fort pour 10 troupes" title="Fort : défense 2 · 2 tirs/s · coût 10 troupes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V4h4v4h3V4h3v4h3V4h3v17M3 21h18M9 21v-6h6v6"/></svg><span>Fort</span><b>10</b></button><div id="silo-controls" class="silo-controls" hidden><button id="missile-normal" type="button" aria-label="Fabriquer ou lancer un missile Balistique"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 16 1-7 6-6 3 3-6 6-7 1Zm-1 1-3 3m10-13 3 3"/></svg><span>Balistique</span><b id="missile-cost-normal"></b></button><button id="missile-poison" type="button" aria-label="Fabriquer ou lancer un missile Poison"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 16 1-7 6-6 3 3-6 6-7 1Zm-2 2-2 2m12-5 3 4h-6Z"/></svg><span>Poison</span><b id="missile-cost-poison"></b></button><button id="missile-emp" type="button" aria-label="Fabriquer ou lancer un missile EMP"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 16 1-7 6-6 3 3-6 6-7 1Zm5-9-3 5h4l-3 5"/></svg><span>EMP</span><b id="missile-cost-emp"></b></button></div></div></div></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="overlay" class="overlay"><div class="start-card"><span class="card-badge">VOTRE PROCHAINE CONQUÊTE</span><div class="start-symbol"><i></i><span>↗</span><i></i></div><h2 id="overlay-title">Chaque mouvement compte.</h2><p id="overlay-description">Une carte. Deux camps. Aucune unité gratuite.<br>Le meilleur stratège l’emporte.</p><div id="setup"><label for="map-select">TERRAIN<select id="map-select"><option value="archipel">01 — Archipel</option><option value="croisee">02 — Croisée</option><option value="couronne">03 — Couronne</option></select></label><label for="difficulty">ADVERSAIRE<select id="difficulty"><option value="easy">IA · Facile</option><option value="normal" selected>IA · Normal</option><option value="hard">IA · Difficile</option></select></label></div><button id="start" class="primary">Lancer la conquête <span>↗</span></button><small class="menu-version">Jelly Wars · Version 0.4.0</small><small id="overlay-footnote">Capturez les bâtiments et éliminez les dernières troupes.</small></div></div>
 </div>
 <div class="battle-footer"><span><i class="legend-dot blue"></i>VOUS</span><span><i class="legend-dot coral"></i>IA</span><span><i class="legend-dot gray"></i>NEUTRE</span><span class="footer-note">Les troupes se combattent aussi en chemin.</span></div>
 </section>
@@ -44,9 +48,9 @@
 <section class="panel intelligence"><div class="panel-heading"><h2><span class="ai-icon">✳</span> Dans la tête de l’IA</h2><label class="switch" title="Afficher les calculs réels de l’IA"><input id="debug-toggle" type="checkbox" aria-label="Activer le mode développeur"><span></span></label></div><p id="ai-hint">Activez le mode développeur pour voir ses cibles et comprendre ses décisions.</p><div id="debug" hidden><div class="strategy-line"><span>STRATÉGIE</span><strong id="ai-strategy">Observation</strong></div><div id="ai-targets"></div><div class="debug-log" id="ai-log"></div><small id="ai-performance"></small></div><div class="fair-play"><span>◇</span> Mêmes règles. Même production.</div></section>
 </aside></div>
 <section class="controls-strip" aria-label="Commandes"><div class="control-intro"><span>↗</span><strong>Votre prochain mouvement</strong></div><div><span class="control-num">01</span><p><b>Glissez vers une cible</b><small>Glisser : 50 % · Maj + glisser : tout.</small></p></div><div><span class="control-num">02</span><p><b>Coordonnez vos forces</b><small>Maj + clic ou rectangle de sélection.</small></p></div><div><span class="key">ESPACE</span><p><b>Prenez le temps</b><small>Mettez la partie en pause.</small></p></div></section>
-<footer class="page-footer"><span>JELLY WARS <b>/</b> UN JEU DE DÉCISIONS.</span><span>Solo v0.3.4 <i>·</i> Multijoueur prévu à la dernière étape</span></footer>
+<footer class="page-footer"><span>JELLY WARS <b>/</b> UN JEU DE DÉCISIONS.</span><span>Solo v0.4.0 <i>·</i> Multijoueur prévu à la dernière étape</span></footer>
 </main>
-<dialog id="help-dialog"><button id="close-help" class="icon-btn close-dialog" aria-label="Fermer">×</button><div class="eyebrow">GUIDE TACTIQUE</div><h2>Le terrain est à vous.</h2><p>Au niveau 1, les maisons produisent <strong>0,5 troupe/s</strong> et les forts ne produisent pas de troupes. Les neutres ne produisent pas avant leur capture.</p><ul><li><strong>Glissez</strong> d’un bâtiment bleu vers un autre pour envoyer 50 % des troupes.</li><li><strong>Maj + glissez vers une cible</strong> pour envoyer toutes les troupes disponibles des bâtiments sélectionnés. Fonctionne vers les bâtiments alliés, neutres et ennemis.</li><li><strong>Maj + clic</strong> ajoute un bâtiment à votre sélection. Vous pouvez aussi tracer un rectangle sur le fond.</li><li>Glissez depuis un bâtiment sélectionné pour donner le même ordre à tout le groupe.</li> <li>En chemin, une unité élimine une unité adverse. Au bâtiment, les attaquants sont divisés par sa défense : défense 1 sans réduction, défense 2 dégâts divisés par deux. Les survivants continuent leur route.</li><li>Survolez un bâtiment pour consulter ses statistiques. Les maisons sont rondes et les forts hexagonaux.</li><li>Survolez une maison de votre camp et cliquez sur une petite icône pour la transformer : 10 troupes pour un fort (défense 2, production 0/s). Transformation immédiate et définitive. Une garnison au-dessus de sa capacité subit une attrition progressive.</li><li>Un fort avec au moins 1 troupe tire automatiquement : 1 dégât par tir, 2 tirs/s, portée de 240 unités de carte. Survolez le fort ou le bouton Fort avant construction pour prévisualiser sa portée. Sa garnison ne consomme pas de munition. Le type est conservé après capture.</li><li>La capacité dépend du type et du niveau : consultez la fiche au survol. Au niveau 1 : 20 pour les maisons, 50 pour les forts. Les envois ne sont pas limités par la capacité de la cible, alliée ou ennemie. Au-delà de sa capacité, un bâtiment arrête sa production et perd progressivement 10 % de ses troupes excédentaires par seconde. Les pertes cessent à la limite ou après avoir libéré assez de place. Un bâtiment est capturé lorsqu’il reste au moins un attaquant.</li><li><strong>Quatre niveaux par type.</strong> La flèche au survol améliore le bâtiment : 10, puis 20, puis 30 troupes pour les niveaux 2, 3 et 4. Améliorer une maison verrouille son type : elle ne peut plus devenir un fort. La spécialisation en fort est aussi définitive. Type et niveau sont conservés après capture. Le coût et les prochaines statistiques sont visibles sur le bouton.</li><li>La victoire exige l’élimination de tous les bâtiments et groupes ennemis.</li><li><strong>Espace</strong> : pause. <strong>Échap</strong> : désélectionner. Sur écran tactile, glissez pour attaquer.</li></ul><button id="help-ok" class="primary">À moi de jouer <span>↗</span></button></dialog>
+<dialog id="help-dialog"><button id="close-help" class="icon-btn close-dialog" aria-label="Fermer">×</button><div class="eyebrow">GUIDE TACTIQUE</div><h2>Le terrain est à vous.</h2><p>Au niveau 1, les maisons produisent <strong>0,5 troupe/s</strong> et les forts ne produisent pas de troupes. Les neutres ne produisent pas avant leur capture.</p><ul><li><strong>Glissez</strong> d’un bâtiment bleu vers un autre pour envoyer 50 % des troupes.</li><li><strong>Maj + glissez vers une cible</strong> pour envoyer toutes les troupes disponibles des bâtiments sélectionnés. Fonctionne vers les bâtiments alliés, neutres et ennemis.</li><li><strong>Maj + clic</strong> ajoute un bâtiment à votre sélection. Vous pouvez aussi tracer un rectangle sur le fond.</li><li>Glissez depuis un bâtiment sélectionné pour donner le même ordre à tout le groupe.</li> <li>En chemin, une unité élimine une unité adverse. Au bâtiment, les attaquants sont divisés par sa défense : défense 1 sans réduction, défense 2 dégâts divisés par deux. Les survivants continuent leur route.</li><li>Survolez un bâtiment pour consulter ses statistiques. Les maisons sont rondes, les forts hexagonaux et les silos carrés.</li><li>Survolez une maison de votre camp et cliquez sur une petite icône pour la transformer : 10 troupes pour un fort (défense 2, production 0/s) ou un silo (production 0/s, capacité 50). Transformation immédiate et définitive. Une garnison au-dessus de sa capacité subit une attrition progressive.</li><li>Un fort avec au moins 1 troupe tire automatiquement : 1 dégât par tir, 2 tirs/s, portée de 240 unités de carte. Survolez le fort ou le bouton Fort avant construction pour prévisualiser sa portée. Sa garnison ne consomme pas de munition. Le type est conservé après capture.</li><li>La capacité dépend du type et du niveau : consultez la fiche au survol. Au niveau 1 : 20 pour les maisons, 50 pour les forts. Les envois ne sont pas limités par la capacité de la cible, alliée ou ennemie. Au-delà de sa capacité, un bâtiment arrête sa production et perd progressivement 10 % de ses troupes excédentaires par seconde. Les pertes cessent à la limite ou après avoir libéré assez de place. Un bâtiment est capturé lorsqu’il reste au moins un attaquant.</li><li><strong>Quatre niveaux pour maisons et forts, trois pour le silo.</strong> La flèche au survol améliore le bâtiment : 10, puis 20, puis 30 troupes pour les niveaux 2, 3 et 4. Améliorer une maison verrouille son type : elle ne peut plus devenir un fort. La spécialisation en fort ou silo est aussi définitive. Type et niveau sont conservés après capture. Le coût et les prochaines statistiques sont visibles sur le bouton.</li><li><strong>Silo :</strong> capacité 50/75/100, améliorations 20 puis 40 troupes. Il ne produit pas de troupes : envoyez-lui des renforts pour payer ses missiles. Un seul missile stocké ou en fabrication. Balistique N1 : 25 troupes, 10 s, cible rendue neutre. Poison N2 : 30 troupes, 10 s, −1 troupe toutes les 2 s jusqu’à capture. EMP N3 : 40 troupes, 15 s, cible capturée. La garnison est conservée lors de la neutralisation et de l’EMP.</li><li>Survolez le silo, cliquez sur un missile pour le fabriquer, puis sur son bouton marqué ✓ pour viser. Cliquez ensuite sur un bâtiment adverse ; l’EMP peut aussi capturer un neutre. Échap annule le ciblage sans perdre le missile. Portée : toute la carte. Le vol balistique dure 1,5 s après le lancement. Si le silo est capturé ou neutralisé, la fabrication est annulée sans remboursement et le missile stocké est perdu. Les missiles déjà en vol continuent. Le poison ne se cumule pas et ne disparaît pas lors d’une simple neutralisation.</li><li>La victoire exige l’élimination de tous les bâtiments et groupes ennemis.</li><li><strong>Espace</strong> : pause. <strong>Échap</strong> : désélectionner. Sur écran tactile, glissez pour attaquer.</li></ul><button id="help-ok" class="primary">À moi de jouer <span>↗</span></button></dialog>
 <script>(()=>{
 'use strict';
 const modules={"src/game/BuildingTypes.js":(exports,__require)=>{
@@ -54,6 +58,7 @@ const TRANSFORM_COST = 10;
 const MAX_LEVEL = 4;
 const BUILDING_TYPES = Object.freeze({
  house: Object.freeze({label:'Maison',defense:1,rate:.5,troopSpeed:45,capacity:20,range:0,shotDamage:0,shotInterval:1}),
+ silo: Object.freeze({label:'Silo',defense:1,rate:0,troopSpeed:45,capacity:50,range:0,shotDamage:0,shotInterval:1}),
  fort: Object.freeze({label:'Fort',defense:2,rate:0,troopSpeed:45,capacity:50,range:240,shotDamage:1,shotInterval:.5})
 });
 // Two building types, each with four levels.
@@ -64,6 +69,7 @@ const BUILDING_LEVELS = Object.freeze({
   Object.freeze({...BUILDING_TYPES.house,rate:1.5,capacity:40}),
   Object.freeze({...BUILDING_TYPES.house,rate:2,capacity:50})
  ]),
+ silo: Object.freeze([BUILDING_TYPES.silo,Object.freeze({...BUILDING_TYPES.silo,capacity:75}),Object.freeze({...BUILDING_TYPES.silo,capacity:100})]),
  fort: Object.freeze([
   BUILDING_TYPES.fort,
   Object.freeze({...BUILDING_TYPES.fort,defense:2.5,capacity:65,range:260}),
@@ -75,7 +81,7 @@ const typeOf = b => b.type ?? 'house';
 const levelOf = b => b.level ?? 1;
 const typeLabel = b => BUILDING_TYPES[typeOf(b)]?.label ?? 'Maison';
 const canTransform = b => typeOf(b) === 'house' && levelOf(b) === 1 && !b.typeLocked;
-const upgradeCost = b => levelOf(b) < MAX_LEVEL ? levelOf(b) * 10 : null;
+const upgradeCost = b => typeOf(b)==='silo'?(levelOf(b)<3?levelOf(b)*20:null):levelOf(b)<MAX_LEVEL?levelOf(b)*10:null;
 const statsFor = (type, level) => BUILDING_LEVELS[type]?.[level - 1];
 
 Object.assign(exports,{TRANSFORM_COST,MAX_LEVEL,BUILDING_TYPES,BUILDING_LEVELS,typeOf,levelOf,typeLabel,canTransform,upgradeCost,statsFor});
@@ -99,103 +105,6 @@ function predictedGarrison(state,b,seconds){
 
 
 Object.assign(exports,{DEFAULT_BUILDING_STATS,capacityOf,defenseOf,speedOf,reservedFor,freeSpace,OVERFLOW_DECAY_RATE,predictedGarrison});
-},
-"src/ui/BuildingPopover.js":(exports,__require)=>{
-const {BUILDING_TYPES,TRANSFORM_COST,typeOf,typeLabel,levelOf,canTransform,upgradeCost,statsFor}=__require("src/game/BuildingTypes.js");
-
-const {capacityOf,defenseOf,speedOf,OVERFLOW_DECAY_RATE}=__require("src/game/BuildingStats.js");
-
-class BuildingPopover{
- constructor(element,canvas,input,renderer,getGame,isMenuVisible,onTransform){
-  Object.assign(this,{element,canvas,input,renderer,getGame,isMenuVisible,onTransform});
-  this.buildingId=null;this.pointerInside=false;this.focusInside=false;this.keepUntil=0;this.previewFort=false;this.previewUpgrade=false;
-  this.find=id=>element.querySelector('#'+id);
-  element.addEventListener('pointerenter',()=>{this.pointerInside=true;});
-  element.addEventListener('pointermove',()=>{this.pointerInside=true;});
-  element.addEventListener('pointerleave',()=>{this.pointerInside=false;this.keepUntil=performance.now()+280;});
-  element.addEventListener('focusin',()=>{this.focusInside=true;});
-  element.addEventListener('focusout',e=>{this.focusInside=element.contains(e.relatedTarget);this.keepUntil=performance.now()+280;});
-  for(const event of ['pointermove','pointerup'])canvas.addEventListener(event,()=>this.update());
-  canvas.addEventListener('pointerleave',()=>{this.keepUntil=performance.now()+280;this.update();});
-  const fortButton=this.find('transform-fort');
-  for(const event of ['pointerenter','focus'])fortButton.addEventListener(event,()=>{this.previewFort=true;this.update();});
-  for(const event of ['pointerleave','blur'])fortButton.addEventListener(event,()=>{this.previewFort=false;this.update();});
-  const upgradeButton=this.find('upgrade-building');
-  for(const event of ['pointerenter','focus'])upgradeButton.addEventListener(event,()=>{this.previewUpgrade=true;this.update();});
-  for(const event of ['pointerleave','blur'])upgradeButton.addEventListener(event,()=>{this.previewUpgrade=false;this.update();});
-  for(const type of ['fort','upgrade'])this.find(type==='upgrade'?'upgrade-building':'transform-'+type).addEventListener('click',()=>{
-   const b=this.getGame().state.buildings.find(b=>b.id===this.buildingId);if(!b)return;
-   this.onTransform(b,type);this.update();
-  });
- }
- inCorridor(){
-  if(this.element.hidden||!this.buildingId)return false;
-  const b=this.getGame().state.buildings.find(b=>b.id===this.buildingId);if(!b)return false;
-  const v=this.renderer.view,p=this.input.pointer,x=v.x+p.x*v.scale,y=v.y+p.y*v.scale,bx=v.x+b.x*v.scale,by=v.y+b.y*v.scale,r=(b.radius+9)*v.scale;
-  const anchorX=parseFloat(this.element.style.left)||0,anchorY=parseFloat(this.element.style.top)||0;
-  return ['stats-card','hover-upgrades'].some(id=>{
-   const el=this.find(id);if(el.hidden)return false;
-   const left=anchorX+parseFloat(el.style.left),top=anchorY+parseFloat(el.style.top);
-   return x>=Math.min(left,bx-r)&&x<=Math.max(left+el.offsetWidth,bx+r)&&y>=Math.min(top,by-r)&&y<=Math.max(top+el.offsetHeight,by+r);
-  });
- }
- hide(){this.renderer.rangePreview=null;this.previewFort=false;this.previewUpgrade=false;this.element.hidden=true;this.canvas.removeAttribute('aria-describedby');this.buildingId=null;this.pointerInside=false;this.focusInside=false;this.keepUntil=0;}
- update(now=performance.now()){
-  if(this.isMenuVisible()||this.input.drag){this.hide();return;}
-  const game=this.getGame(),hit=this.input.hit(this.input.pointer);
-  if(hit){if(hit.id!==this.buildingId){this.previewFort=false;this.previewUpgrade=false;}this.buildingId=hit.id;this.keepUntil=now+280;}
-  else if(!this.pointerInside&&!this.focusInside&&!this.inCorridor()&&now>=this.keepUntil){this.hide();return;}
-  const b=game.state.buildings.find(b=>b.id===this.buildingId);if(!b){this.hide();return;}
-  const box=this.element;box.hidden=false;this.canvas.setAttribute('aria-describedby',box.id);
-  this.find('stats-title').textContent=`${typeLabel(b)} ${b.name} · N${levelOf(b)} · ${['Neutre','Votre camp','IA'][b.owner]}`;
-  this.find('stats-defense').textContent=defenseOf(b);
-  this.find('stats-rate').textContent=`${b.rate}/s`;
-  this.find('stats-speed').textContent=speedOf(b);
-  this.find('stats-capacity').textContent=`${b.units} / ${capacityOf(b)}`;
-  const fort=typeOf(b)==='fort',fortInfo=this.find('stats-fort');fortInfo.hidden=!fort;
-  if(fort){
-   this.find('stats-range').textContent=b.range;
-   this.find('stats-shot-rate').textContent=`${b.shotDamage/b.shotInterval}/s`;
-   fortInfo.style.opacity=b.units?1:.45;
-   fortInfo.setAttribute('aria-label',`Portée ${b.range}, ${b.shotDamage/b.shotInterval} dégâts par seconde, ${b.units?'garnison présente':'garnison requise'}`);
-  }
-  const excess=Math.max(0,b.units-capacityOf(b));
-  this.find('stats-status-row').hidden=b.owner===0||excess===0;
-  this.find('stats-status').textContent=excess>0?`+${excess} · −${(excess*OVERFLOW_DECAY_RATE).toFixed(1)}/s`:'';
-  this.find('stats-capacity').style.color=excess>0?'#b75b28':'';
-  const own=b.owner===1,specialize=canTransform(b),cost=upgradeCost(b);
-  const next=statsFor(typeOf(b),levelOf(b)+1);
-  const previewRange=fort&&this.previewUpgrade&&next?next.range:fort?b.range:BUILDING_TYPES.fort.range;
-  this.renderer.rangePreview=fort||own&&specialize&&this.previewFort?{building:b.id,range:previewRange}:null;
-  const upgrades=this.find('hover-upgrades');
-  upgrades.hidden=!own||cost===null;
-  upgrades.style.width=specialize?'108px':'48px';
-  const running=game.state.status==='running';
-  for(const type of ['fort']){
-   const button=this.find('transform-'+type);button.hidden=!specialize;
-   button.disabled=!own||!specialize||!running||b.units<TRANSFORM_COST;
-   const stats=BUILDING_TYPES[type];
-   button.setAttribute('title',`${stats.label} N1 · ${stats.rate}/s · capacité ${stats.capacity} · coût ${TRANSFORM_COST} troupes`);
-  }
-  const upgrade=this.find('upgrade-building');upgrade.disabled=!own||!running||cost===null||b.units<cost;
-  this.find('upgrade-cost').textContent=cost??'MAX';
-  upgrade.setAttribute('aria-label',cost===null?'Niveau maximum':`Améliorer ${typeLabel(b)} au niveau ${levelOf(b)+1} pour ${cost} troupes`);
-  upgrade.setAttribute('title',next?`Niveau ${levelOf(b)+1} · ${cost} troupes · défense ${next.defense} · ${next.rate}/s · capacité ${next.capacity}${next.range?' · portée '+next.range:''}${specialize?' · verrouille le type Maison':''}`:'Niveau maximum atteint');
-  this.find('transform-hint').textContent=!running?'Reprenez la partie pour améliorer.':cost===null?'Niveau maximum atteint.':specialize?'Choisir Fort ou améliorer la Maison : le type sera définitif.':`${typeLabel(b)} verrouillé · niveau suivant : ${cost} troupes.`;
-  const v=this.renderer.view,x=v.x+b.x*v.scale,y=v.y+b.y*v.scale;
-  // A transparent anchor keeps the building itself available for dragging.
-  box.style.left=`${x}px`;box.style.top=`${y}px`;
-  const radius=b.radius*v.scale,card=this.find('stats-card');
-  const place=(el,top)=>{
-   el.style.left=`${Math.max(6,Math.min(this.renderer.width-el.offsetWidth-6,x-el.offsetWidth/2))-x}px`;
-   el.style.top=`${Math.max(6,Math.min(this.renderer.height-el.offsetHeight-6,top))-y}px`;
-  };
-  place(card,y+radius+10);
-  place(upgrades,y-radius-upgrades.offsetHeight-12);
- }
-}
-
-Object.assign(exports,{BuildingPopover});
 },
 "src/game/Map.js":(exports,__require)=>{
 const {DEFAULT_BUILDING_STATS}=__require("src/game/BuildingStats.js");
@@ -223,7 +132,7 @@ const {makeMap}=__require("src/game/Map.js");
 const STEP=1/30;
 const ARMY_SPEED=DEFAULT_BUILDING_STATS.troopSpeed;
 function createState(map='archipel'){
- return {version:1,map,tick:0,time:0,status:'ready',winner:null,buildings:makeMap(map),armies:[],nextArmyId:1,events:[],commandLog:[],stats:{1:{sent:0,lost:0,captures:0,spent:0,overflowLost:0},2:{sent:0,lost:0,captures:0,spent:0,overflowLost:0}}};
+ return {version:1,map,tick:0,time:0,status:'ready',winner:null,buildings:makeMap(map),armies:[],missiles:[],nextMissileId:1,nextArmyId:1,events:[],commandLog:[],stats:{1:{sent:0,lost:0,captures:0,spent:0,overflowLost:0},2:{sent:0,lost:0,captures:0,spent:0,overflowLost:0}}};
 }
 function totals(state,owner){
  const buildings=state.buildings.filter(b=>b.owner===owner);
@@ -233,6 +142,206 @@ function snapshot(state){return JSON.parse(JSON.stringify(state));}
 function armyPosition(a,time){const p=Math.max(0,Math.min(1,(time-a.departure)/a.duration));return {x:a.sx+(a.tx-a.sx)*p,y:a.sy+(a.ty-a.sy)*p};}
 
 Object.assign(exports,{STEP,ARMY_SPEED,createState,totals,snapshot,armyPosition});
+},
+"src/game/Ownership.js":(exports,__require)=>{
+// All captures share this reset, including missile impacts and ordinary combat.
+function changeOwner(state,building,owner,time=state.time){
+ if(building.owner===owner)return;
+ building.owner=owner;building.production=0;building.overflowLoss=0;building.nextShotTick=state.tick+1;
+ building.missileProduction=null;building.readyMissile=null;
+ // Neutralisation is not a conquest: poison persists until a faction captures it.
+ if(owner!==0){building.poison=null;state.stats[owner].captures++;}
+ state.events.push({type:owner===0?'neutralize':'capture',x:building.x,y:building.y,owner,time});
+}
+
+Object.assign(exports,{changeOwner});
+},
+"src/game/Missiles.js":(exports,__require)=>{
+const {typeOf,levelOf}=__require("src/game/BuildingTypes.js");
+
+const {STEP}=__require("src/game/GameState.js");
+
+const {capacityOf}=__require("src/game/BuildingStats.js");
+
+const {changeOwner}=__require("src/game/Ownership.js");
+
+const MISSILE_TYPES=Object.freeze({
+ normal:Object.freeze({label:'Balistique',level:1,cost:25,seconds:10,color:'#dd8a4d'}),
+ poison:Object.freeze({label:'Poison',level:2,cost:30,seconds:10,color:'#78a74b'}),
+ emp:Object.freeze({label:'EMP',level:3,cost:40,seconds:15,color:'#779fe8'})
+});
+const MISSILE_FLIGHT_SECONDS=1.5;
+function produceMissile(state,command){
+ const b=state.buildings.find(b=>b.id===command.building),spec=typeof command.missileType==='string'&&Object.hasOwn(MISSILE_TYPES,command.missileType)?MISSILE_TYPES[command.missileType]:null;
+ if(!b||b.owner!==command.player||typeOf(b)!=='silo')return {ok:false,reason:'Choisissez un silo de votre camp.'};
+ if(!spec||levelOf(b)<spec.level)return {ok:false,reason:'Missile non débloqué.'};
+ if(b.missileProduction||b.readyMissile)return {ok:false,reason:'Le silo contient déjà un missile ou une fabrication en cours.'};
+ if(b.units<spec.cost)return {ok:false,reason:`Il faut ${spec.cost} troupes dans le silo.`};
+ b.units-=spec.cost;if(b.units===0)b.defenseDamage=0;if(b.units<=capacityOf(b))b.overflowLoss=0;
+ b.missileProduction={type:command.missileType,owner:command.player,startTick:state.tick,finishTick:state.tick+Math.round(spec.seconds/STEP)};
+ state.stats[command.player].spent+=spec.cost;
+ state.commandLog.push({type:'produceMissile',player:command.player,building:b.id,missileType:command.missileType,tick:state.tick});
+ return {ok:true,cost:spec.cost};
+}
+function launchMissile(state,command){
+ const b=state.buildings.find(b=>b.id===command.building),target=state.buildings.find(b=>b.id===command.target);
+ if(!b||b.owner!==command.player||typeOf(b)!=='silo'||!b.readyMissile)return {ok:false,reason:'Aucun missile prêt dans ce silo.'};
+ if(!target||target===b||target.owner===command.player)return {ok:false,reason:'Choisissez une cible adverse ou neutre.'};
+ const kind=b.readyMissile;
+ if(kind!=='emp'&&target.owner===0)return {ok:false,reason:'Ce missile nécessite un bâtiment adverse.'};
+ if(kind==='poison'&&target.poison)return {ok:false,reason:'Ce bâtiment est déjà empoisonné.'};
+ state.missiles??=[];state.nextMissileId??=1;
+ state.missiles.push({id:`m${state.nextMissileId++}`,type:kind,owner:command.player,source:b.id,target:target.id,x:b.x,y:b.y,tx:target.x,ty:target.y,startTick:state.tick,impactTick:state.tick+Math.round(MISSILE_FLIGHT_SECONDS/STEP)});
+ b.readyMissile=null;
+ state.commandLog.push({type:'launchMissile',player:command.player,building:b.id,target:target.id,tick:state.tick});
+ return {ok:true};
+}
+function advanceMissiles(state){
+ const endTick=state.tick+1;
+ for(const b of state.buildings){
+  const job=b.missileProduction;
+  if(job&&job.owner!==b.owner){b.missileProduction=null;continue;}
+  if(job&&endTick>=job.finishTick){b.readyMissile=job.type;b.missileProduction=null;}
+ }
+ const active=[];
+ for(const missile of state.missiles??[]){
+  if(endTick<missile.impactTick){active.push(missile);continue;}
+  const target=state.buildings.find(b=>b.id===missile.target);
+  if(!target||target.owner===missile.owner)continue;
+  const time=endTick*STEP;
+  if(missile.type==='normal'&&target.owner!==0)changeOwner(state,target,0,time);
+  if(missile.type==='emp')changeOwner(state,target,missile.owner,time);
+  if(missile.type==='poison'&&target.owner!==0&&!target.poison)target.poison={nextTick:endTick+Math.round(2/STEP)};
+  state.events.push({type:'missileImpact',kind:missile.type,x:target.x,y:target.y,owner:missile.owner,time});
+ }
+ state.missiles=active;
+}
+function applyPoison(state){
+ for(const b of state.buildings){
+  if(!b.poison||state.tick+1<b.poison.nextTick)continue;
+  b.poison.nextTick+=Math.round(2/STEP);
+  if(b.units>0){b.units--;if(b.owner){state.stats[b.owner].lost++;state.stats[b.owner].poisonLost=(state.stats[b.owner].poisonLost??0)+1;}}
+  if(b.units===0)b.defenseDamage=0;
+  if(b.units<=capacityOf(b))b.overflowLoss=0;
+ }
+}
+
+Object.assign(exports,{MISSILE_TYPES,MISSILE_FLIGHT_SECONDS,produceMissile,launchMissile,advanceMissiles,applyPoison});
+},
+"src/ui/BuildingPopover.js":(exports,__require)=>{
+const {MISSILE_TYPES}=__require("src/game/Missiles.js");
+
+const {STEP}=__require("src/game/GameState.js");
+
+const {BUILDING_TYPES,TRANSFORM_COST,typeOf,typeLabel,levelOf,canTransform,upgradeCost,statsFor}=__require("src/game/BuildingTypes.js");
+
+const {capacityOf,defenseOf,speedOf,OVERFLOW_DECAY_RATE}=__require("src/game/BuildingStats.js");
+
+class BuildingPopover{
+ constructor(element,canvas,input,renderer,getGame,isMenuVisible,onTransform){
+  Object.assign(this,{element,canvas,input,renderer,getGame,isMenuVisible,onTransform});
+  this.buildingId=null;this.pointerInside=false;this.focusInside=false;this.keepUntil=0;this.previewFort=false;this.previewUpgrade=false;
+  this.find=id=>element.querySelector('#'+id);
+  element.addEventListener('pointerenter',()=>{this.pointerInside=true;});
+  element.addEventListener('pointermove',()=>{this.pointerInside=true;});
+  element.addEventListener('pointerleave',()=>{this.pointerInside=false;this.keepUntil=performance.now()+280;});
+  element.addEventListener('focusin',()=>{this.focusInside=true;});
+  element.addEventListener('focusout',e=>{this.focusInside=element.contains(e.relatedTarget);this.keepUntil=performance.now()+280;});
+  for(const event of ['pointermove','pointerup'])canvas.addEventListener(event,()=>this.update());
+  canvas.addEventListener('pointerleave',()=>{this.keepUntil=performance.now()+280;this.update();});
+  const fortButton=this.find('transform-fort');
+  for(const event of ['pointerenter','focus'])fortButton.addEventListener(event,()=>{this.previewFort=true;this.update();});
+  for(const event of ['pointerleave','blur'])fortButton.addEventListener(event,()=>{this.previewFort=false;this.update();});
+  const upgradeButton=this.find('upgrade-building');
+  for(const event of ['pointerenter','focus'])upgradeButton.addEventListener(event,()=>{this.previewUpgrade=true;this.update();});
+  for(const event of ['pointerleave','blur'])upgradeButton.addEventListener(event,()=>{this.previewUpgrade=false;this.update();});
+  for(const type of ['fort','silo','upgrade'])this.find(type==='upgrade'?'upgrade-building':'transform-'+type).addEventListener('click',()=>{
+   const b=this.getGame().state.buildings.find(b=>b.id===this.buildingId);if(!b)return;
+   this.onTransform(b,type);this.update();
+  });
+  for(const kind of Object.keys(MISSILE_TYPES))this.find('missile-'+kind).addEventListener('click',()=>{
+   const b=this.getGame().state.buildings.find(b=>b.id===this.buildingId);if(!b)return;
+   this.onTransform(b,b.readyMissile===kind?'launch':'missile:'+kind);this.update();
+  });
+ }
+ inCorridor(){
+  if(this.element.hidden||!this.buildingId)return false;
+  const b=this.getGame().state.buildings.find(b=>b.id===this.buildingId);if(!b)return false;
+  const v=this.renderer.view,p=this.input.pointer,x=v.x+p.x*v.scale,y=v.y+p.y*v.scale,bx=v.x+b.x*v.scale,by=v.y+b.y*v.scale,r=(b.radius+9)*v.scale;
+  const anchorX=parseFloat(this.element.style.left)||0,anchorY=parseFloat(this.element.style.top)||0;
+  return ['stats-card','hover-upgrades'].some(id=>{
+   const el=this.find(id);if(el.hidden)return false;
+   const left=anchorX+parseFloat(el.style.left),top=anchorY+parseFloat(el.style.top);
+   return x>=Math.min(left,bx-r)&&x<=Math.max(left+el.offsetWidth,bx+r)&&y>=Math.min(top,by-r)&&y<=Math.max(top+el.offsetHeight,by+r);
+  });
+ }
+ hide(){this.renderer.rangePreview=null;this.previewFort=false;this.previewUpgrade=false;this.element.hidden=true;this.canvas.removeAttribute('aria-describedby');this.buildingId=null;this.pointerInside=false;this.focusInside=false;this.keepUntil=0;}
+ update(now=performance.now()){
+  if(this.isMenuVisible()||this.input.drag||this.input.missileAim){this.hide();return;}
+  const game=this.getGame(),hit=this.input.hit(this.input.pointer);
+  if(hit){if(hit.id!==this.buildingId){this.previewFort=false;this.previewUpgrade=false;}this.buildingId=hit.id;this.keepUntil=now+280;}
+  else if(!this.pointerInside&&!this.focusInside&&!this.inCorridor()&&now>=this.keepUntil){this.hide();return;}
+  const b=game.state.buildings.find(b=>b.id===this.buildingId);if(!b){this.hide();return;}
+  const box=this.element;box.hidden=false;this.canvas.setAttribute('aria-describedby',box.id);
+  this.find('stats-title').textContent=`${typeLabel(b)} ${b.name} · N${levelOf(b)} · ${['Neutre','Votre camp','IA'][b.owner]}`;
+  this.find('stats-defense').textContent=defenseOf(b);
+  this.find('stats-rate').textContent=`${b.rate}/s`;
+  this.find('stats-speed').textContent=speedOf(b);
+  this.find('stats-capacity').textContent=`${b.units} / ${capacityOf(b)}`;
+  this.find('stats-poison').hidden=!b.poison;
+  const fort=typeOf(b)==='fort',fortInfo=this.find('stats-fort');fortInfo.hidden=!fort;
+  if(fort){
+   this.find('stats-range').textContent=b.range;
+   this.find('stats-shot-rate').textContent=`${b.shotDamage/b.shotInterval}/s`;
+   fortInfo.style.opacity=b.units?1:.45;
+   fortInfo.setAttribute('aria-label',`Portée ${b.range}, ${b.shotDamage/b.shotInterval} dégâts par seconde, ${b.units?'garnison présente':'garnison requise'}`);
+  }
+  const excess=Math.max(0,b.units-capacityOf(b));
+  this.find('stats-status-row').hidden=b.owner===0||excess===0;
+  this.find('stats-status').textContent=excess>0?`+${excess} · −${(excess*OVERFLOW_DECAY_RATE).toFixed(1)}/s`:'';
+  this.find('stats-capacity').style.color=excess>0?'#b75b28':'';
+  const own=b.owner===1,specialize=canTransform(b),cost=upgradeCost(b);
+  const next=statsFor(typeOf(b),levelOf(b)+1);
+  const previewRange=fort&&this.previewUpgrade&&next?next.range:fort?b.range:BUILDING_TYPES.fort.range;
+  this.renderer.rangePreview=fort||own&&specialize&&this.previewFort?{building:b.id,range:previewRange}:null;
+  const upgrades=this.find('hover-upgrades');
+  const silo=typeOf(b)==='silo';
+  upgrades.hidden=!own||cost===null&&!silo;
+  upgrades.style.width=silo?(cost===null?'168px':'228px'):specialize?'168px':'48px';
+  this.find('silo-controls').hidden=!silo;
+  for(const [kind,spec] of Object.entries(MISSILE_TYPES)){
+   const button=this.find('missile-'+kind),job=b.missileProduction,ready=b.readyMissile===kind;
+   button.disabled=!own||game.state.status!=='running'||levelOf(b)<spec.level||!!job||!!b.readyMissile&&!ready||!ready&&b.units<spec.cost;
+   this.find('missile-cost-'+kind).textContent=job?.type===kind?`${Math.max(0,Math.ceil((job.finishTick-game.state.tick)*STEP))}s`:ready?'✓':spec.cost;
+   button.setAttribute('data-ready',String(ready));
+   button.setAttribute('title',levelOf(b)<spec.level?`${spec.label} · niveau ${spec.level} requis`:ready?`${spec.label} prêt · cliquer puis choisir la cible`:`${spec.label} · ${spec.cost} troupes · ${spec.seconds} secondes`);
+  }
+  const running=game.state.status==='running';
+  for(const type of ['fort','silo']){
+   const button=this.find('transform-'+type);button.hidden=!specialize;
+   button.disabled=!own||!specialize||!running||b.units<TRANSFORM_COST;
+   const stats=BUILDING_TYPES[type];
+   button.setAttribute('title',`${stats.label} N1 · ${stats.rate}/s · capacité ${stats.capacity} · coût ${TRANSFORM_COST} troupes`);
+  }
+  const upgrade=this.find('upgrade-building');upgrade.hidden=cost===null;upgrade.disabled=!own||!running||cost===null||b.units<cost;
+  this.find('upgrade-cost').textContent=cost??'MAX';
+  upgrade.setAttribute('aria-label',cost===null?'Niveau maximum':`Améliorer ${typeLabel(b)} au niveau ${levelOf(b)+1} pour ${cost} troupes`);
+  upgrade.setAttribute('title',next?`Niveau ${levelOf(b)+1} · ${cost} troupes · défense ${next.defense} · ${next.rate}/s · capacité ${next.capacity}${next.range?' · portée '+next.range:''}${specialize?' · verrouille le type Maison':''}`:'Niveau maximum atteint');
+  this.find('transform-hint').textContent=!running?'Reprenez la partie pour améliorer.':cost===null?'Niveau maximum atteint.':specialize?'Choisir Fort/Silo ou améliorer la Maison : le type sera définitif.':`${typeLabel(b)} verrouillé · niveau suivant : ${cost} troupes.`;
+  const v=this.renderer.view,x=v.x+b.x*v.scale,y=v.y+b.y*v.scale;
+  // A transparent anchor keeps the building itself available for dragging.
+  box.style.left=`${x}px`;box.style.top=`${y}px`;
+  const radius=b.radius*v.scale,card=this.find('stats-card');
+  const place=(el,top)=>{
+   el.style.left=`${Math.max(6,Math.min(this.renderer.width-el.offsetWidth-6,x-el.offsetWidth/2))-x}px`;
+   el.style.top=`${Math.max(6,Math.min(this.renderer.height-el.offsetHeight-6,top))-y}px`;
+  };
+  place(card,y+radius+10);
+  place(upgrades,y-radius-upgrades.offsetHeight-12);
+ }
+}
+
+Object.assign(exports,{BuildingPopover});
 },
 "src/game/Overflow.js":(exports,__require)=>{
 const {capacityOf,OVERFLOW_DECAY_RATE}=__require("src/game/BuildingStats.js");
@@ -320,6 +429,10 @@ function resolveBuildingCombat(building,forces){
 Object.assign(exports,{resolveForces,collisionTime,resolveBuildingCombat});
 },
 "src/game/Game.js":(exports,__require)=>{
+const {produceMissile,launchMissile,advanceMissiles,applyPoison}=__require("src/game/Missiles.js");
+
+const {changeOwner}=__require("src/game/Ownership.js");
+
 const {applyOverflow}=__require("src/game/Overflow.js");
 
 const {BUILDING_TYPES,TRANSFORM_COST,typeOf,levelOf,canTransform,upgradeCost,statsFor}=__require("src/game/BuildingTypes.js");
@@ -339,6 +452,8 @@ class Game{
   const s=this.state;
   if(s.status!=='running')return {ok:false,reason:'Partie inactive'};
   if(!command||![1,2].includes(command.player))return {ok:false,reason:'Commande invalide'};
+  if(command.type==='produceMissile')return produceMissile(s,command);
+  if(command.type==='launchMissile')return launchMissile(s,command);
   if(command.type==='transform')return this.transform(command);
   if(command.type==='upgrade')return this.upgrade(command);
   if(command.type!=='send')return {ok:false,reason:'Commande invalide'};
@@ -365,7 +480,7 @@ class Game{
  transform(command){
   const s=this.state,b=s.buildings.find(b=>b.id===command.building);
   if(!b||b.owner!==command.player)return {ok:false,reason:'Sélectionnez une maison de votre camp.'};
-  if(!canTransform(b)||command.buildingType!=='fort')return {ok:false,reason:'Transformation indisponible.'};
+  if(!canTransform(b)||!['fort','silo'].includes(command.buildingType))return {ok:false,reason:'Transformation indisponible.'};
   if(b.units<TRANSFORM_COST)return {ok:false,reason:`Il faut ${TRANSFORM_COST} troupes dans cette maison.`};
   b.units-=TRANSFORM_COST;Object.assign(b,BUILDING_TYPES[command.buildingType]);b.type=command.buildingType;b.level=1;b.typeLocked=true;
   b.production=0;b.nextShotTick=s.tick;b.defenseDamage=0;if(b.units<=capacityOf(b))b.overflowLoss=0;
@@ -428,15 +543,17 @@ class Game{
     for(const a of arrivals)forces[a.owner]=(forces[a.owner]??0)+a.units;
     const result=resolveBuildingCombat(b,forces);
     for(const owner of [1,2])s.stats[owner].lost+=(forces[owner]??0)-(result.owner===owner?result.units:0);
-    b.owner=result.owner??oldOwner;b.units=result.units;b.defenseDamage=result.damage;
-    if(b.owner!==oldOwner){b.overflowLoss=0;b.production=0;b.nextShotTick=s.tick+1;s.stats[b.owner].captures++;s.events.push({type:'capture',x:b.x,y:b.y,owner:b.owner,time:t});}
+    const newOwner=result.owner??oldOwner;b.units=result.units;b.defenseDamage=result.damage;
+    if(newOwner!==oldOwner)changeOwner(s,b,newOwner,t);
     else if(arrivals.some(a=>a.owner!==oldOwner))s.events.push({type:'battle',x:b.x,y:b.y,time:t});
     else s.events.push({type:'reinforce',x:b.x,y:b.y,owner:b.owner,time:t});
     for(const a of arrivals)a.units=0;
    }
   }
-  s.armies=s.armies.filter(a=>a.units>0);s.tick++;s.time=s.tick*STEP;
-  const alive=[1,2].filter(owner=>s.buildings.some(b=>b.owner===owner)||s.armies.some(a=>a.owner===owner));
+  s.armies=s.armies.filter(a=>a.units>0);
+  advanceMissiles(s);applyPoison(s);
+  s.tick++;s.time=s.tick*STEP;
+  const alive=[1,2].filter(owner=>s.buildings.some(b=>b.owner===owner)||s.armies.some(a=>a.owner===owner)||(s.missiles??[]).some(m=>m.owner===owner));
   if(alive.length<2){s.status='finished';s.winner=alive[0]??0;}
  }
 }
@@ -505,6 +622,8 @@ function allocateAttack(state,target,sources,needed,reserves,maxSources=99){
 Object.assign(exports,{allocateAttack});
 },
 "src/ai/AIController.js":(exports,__require)=>{
+const {MISSILE_TYPES}=__require("src/game/Missiles.js");
+
 const {typeOf,typeLabel,TRANSFORM_COST,canTransform,upgradeCost,levelOf}=__require("src/game/BuildingTypes.js");
 
 const {freeSpace,defenseOf,predictedGarrison}=__require("src/game/BuildingStats.js");
@@ -524,6 +643,16 @@ class AIController{
  think(config){
   const s=this.game.state,p=this.player,own=s.buildings.filter(b=>b.owner===p);this.debug.decisions++;this.debug.routes=[];
   const threats=analyzeThreats(s,p);this.debug.threats=threats;
+  for(const silo of own.filter(b=>typeOf(b)==='silo')){
+   if(silo.readyMissile){
+    const target=s.buildings.filter(b=>b.owner!==p&&(silo.readyMissile==='emp'||b.owner!==0)&&!(silo.readyMissile==='poison'&&b.poison))
+     .sort((a,b)=>(b.owner?100:0)+b.units+b.rate*10-((a.owner?100:0)+a.units+a.rate*10))[0];
+    if(target&&this.game.command({type:'launchMissile',player:p,building:silo.id,target:target.id}).ok){this.debug.strategy='Missile';this.log(`Missile vers ${target.name}.`);return;}
+   }else if(!silo.missileProduction){
+    const kind=['emp','poison','normal'].find(kind=>levelOf(silo)>=MISSILE_TYPES[kind].level&&silo.units>=MISSILE_TYPES[kind].cost);
+    if(kind&&this.game.command({type:'produceMissile',player:p,building:silo.id,missileType:kind}).ok){this.debug.strategy='Fabrication';this.log(`${MISSILE_TYPES[kind].label} en fabrication au silo ${silo.name}.`);return;}
+   }
+  }
   const reserves=new Map(own.map(b=>[b.id,reserveFor(s,b,p)]));
   if(config.defend){for(const threat of threats){
    const b=own.find(b=>b.id===threat.id);reserves.set(b.id,Math.max(reserves.get(b.id),Math.ceil(threat.enemy/defenseOf(b))-threat.friendly));
@@ -539,7 +668,8 @@ class AIController{
   const enemiesForFort=s.buildings.filter(b=>b.owner!==0&&b.owner!==p);
   const frontHouse=[...houses].sort((a,b)=>Math.min(...enemiesForFort.map(e=>Math.hypot(a.x-e.x,a.y-e.y)))-Math.min(...enemiesForFort.map(e=>Math.hypot(b.x-e.x,b.y-e.y))))[0];
   const buildFort=config.defend&&own.length>=3&&!own.some(b=>typeOf(b)==='fort')&&frontHouse&&enemiesForFort.some(e=>Math.hypot(frontHouse.x-e.x,frontHouse.y-e.y)<550);
-  const specialization=buildFort?{b:frontHouse,type:'fort'}:null;
+  const buildSilo=config.defend&&s.time>=45&&own.length>=3&&!own.some(b=>typeOf(b)==='silo')&&houses.length;
+  const specialization=buildFort?{b:frontHouse,type:'fort'}:buildSilo?{b:houses[0],type:'silo'}:null;
   if(specialization){const r=this.game.command({type:'transform',player:p,building:specialization.b.id,buildingType:specialization.type});if(r.ok){this.debug.strategy='Spécialisation';this.log(`${specialization.b.name} devient ${typeLabel(specialization.b)} : ${r.cost} troupes.`);return;}}
   // Develop only surplus garrisons; upgrades use exactly the player's command and costs.
   if(s.time>=30&&own.length>=2){
@@ -570,6 +700,25 @@ class AIController{
 
 Object.assign(exports,{DIFFICULTIES,AIController});
 },
+"src/rendering/MissileArt.js":(exports,__require)=>{
+const {MISSILE_TYPES}=__require("src/game/Missiles.js");
+
+function drawMissiles(ctx,state){
+ for(const missile of state.missiles??[]){
+  const p=Math.max(0,Math.min(1,(state.tick-missile.startTick)/(missile.impactTick-missile.startTick)));
+  const dx=missile.tx-missile.x,dy=missile.ty-missile.y;
+  const x=missile.x+dx*p,y=missile.y+dy*p-Math.sin(p*Math.PI)*140;
+  const angle=Math.atan2(dy-Math.cos(p*Math.PI)*Math.PI*140,dx),color=MISSILE_TYPES[missile.type].color;
+  ctx.save();ctx.translate(x,y);ctx.rotate(angle);
+  ctx.beginPath();ctx.moveTo(-11,-3);ctx.lineTo(-35,0);ctx.lineTo(-11,3);ctx.fillStyle=color+'85';ctx.fill();
+  ctx.beginPath();ctx.roundRect(-10,-4,19,8,3);ctx.fillStyle='#f3f3eb';ctx.fill();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.stroke();
+  ctx.beginPath();ctx.moveTo(8,-4);ctx.lineTo(16,0);ctx.lineTo(8,4);ctx.closePath();ctx.fillStyle=color;ctx.fill();
+  ctx.restore();
+ }
+}
+
+Object.assign(exports,{drawMissiles});
+},
 "src/rendering/BuildingArt.js":(exports,__require)=>{
 const {typeOf,levelOf}=__require("src/game/BuildingTypes.js");
 
@@ -578,6 +727,7 @@ const {typeOf,levelOf}=__require("src/game/BuildingTypes.js");
 function buildingPath(ctx,type,radius){
  ctx.beginPath();
  if(type==='house')ctx.arc(0,0,radius,0,Math.PI*2);
+ else if(type==='silo')ctx.roundRect(-radius,-radius,2*radius,2*radius,6);
 
  else{
   for(let i=0;i<6;i++){
@@ -616,6 +766,13 @@ function drawBuilding(ctx,building,color){
    ctx.beginPath();ctx.arc(x,17,level>=3?3:2.5,0,Math.PI*2);ctx.fillStyle='#718a6b';ctx.fill();
    if(level>=3){ctx.beginPath();ctx.arc(x*1.08,8,2.3,0,Math.PI*2);ctx.fill();}
   }
+ }else if(type==='silo'){
+  for(const x of [-24,24])for(const y of [-24,24]){
+   ctx.beginPath();ctx.arc(x,y,7,0,Math.PI*2);ctx.fillStyle='#d9ddd9';ctx.fill();ctx.strokeStyle='#7b8a91';ctx.lineWidth=1.5;ctx.stroke();
+   ctx.beginPath();ctx.moveTo(x-4,y+4);ctx.lineTo(x+4,y-4);ctx.stroke();
+  }
+  if(level>=2)roof(ctx,0,-31,24,7,0,color);
+  if(level>=3){roof(ctx,-31,0,20,6,Math.PI/2,color);roof(ctx,31,0,20,6,Math.PI/2,color);}
  }else{
   if(level>=2){
    for(let i=0;i<6;i++){
@@ -634,8 +791,9 @@ function drawBuilding(ctx,building,color){
  if(level===4){ctx.strokeStyle='#718492';ctx.lineWidth=1;buildingPath(ctx,type,35);ctx.stroke();}
  ctx.fillStyle='#fff';ctx.font='750 21px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(building.units,0,0);
  // Four pips communicate level without increasing the collision footprint.
- for(let i=0;i<4;i++){
-  ctx.beginPath();ctx.arc((i-1.5)*8,43,2.2,0,Math.PI*2);
+ const maxLevel=type==='silo'?3:4;
+ for(let i=0;i<maxLevel;i++){
+  ctx.beginPath();ctx.arc((i-(maxLevel-1)/2)*8,43,2.2,0,Math.PI*2);
   ctx.fillStyle=i<level?color:'#cdd5dd';ctx.fill();
  }
 }
@@ -643,6 +801,8 @@ function drawBuilding(ctx,building,color){
 Object.assign(exports,{buildingPath,drawBuilding});
 },
 "src/rendering/Renderer.js":(exports,__require)=>{
+const {drawMissiles}=__require("src/rendering/MissileArt.js");
+
 const {drawBuilding}=__require("src/rendering/BuildingArt.js");
 
 const {typeOf,typeLabel,levelOf}=__require("src/game/BuildingTypes.js");
@@ -658,7 +818,7 @@ class Renderer{
  constructor(canvas){this.canvas=canvas;this.ctx=canvas.getContext('2d');this.effects=[];this.view={scale:1,x:0,y:0};this.resize();new ResizeObserver(()=>this.resize()).observe(canvas);}
  resize(){const r=this.canvas.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);this.canvas.width=Math.round(r.width*d);this.canvas.height=Math.round(r.height*d);this.dpr=d;this.width=r.width;this.height=r.height;const scale=Math.min(r.width/WORLD.width,r.height/WORLD.height);this.view={scale,x:(r.width-WORLD.width*scale)/2,y:(r.height-WORLD.height*scale)/2};}
  point(clientX,clientY){const r=this.canvas.getBoundingClientRect(),v=this.view;return {x:(clientX-r.left-v.x)/v.scale,y:(clientY-r.top-v.y)/v.scale};}
- event(e,time){if(['battle','capture','reinforce','transform','upgrade','shot'].includes(e.type))this.effects.push({...e,born:time});}
+ event(e,time){if(['battle','capture','reinforce','transform','upgrade','shot','missileImpact','neutralize'].includes(e.type))this.effects.push({...e,born:time});}
  line(a,b,color,dashed=false){const c=this.ctx;c.beginPath();c.moveTo(a.x,a.y);c.lineTo(b.x,b.y);c.strokeStyle=color;c.lineWidth=2;c.setLineDash(dashed?[7,8]:[]);c.stroke();c.setLineDash([]);}
  draw(state,input,debug,showDebug,wallTime){
   const c=this.ctx,v=this.view;c.setTransform(this.dpr,0,0,this.dpr,0,0);c.clearRect(0,0,this.width,this.height);c.save();c.translate(v.x,v.y);c.scale(v.scale,v.scale);
@@ -673,12 +833,16 @@ class Renderer{
    c.beginPath();c.arc(p.x,p.y,radius,0,Math.PI*2);c.fillStyle=col;c.fill();c.strokeStyle='#fff';c.lineWidth=3;c.stroke();
    c.font=`750 ${Math.max(17,radius*.8)}px system-ui`;c.textAlign='center';c.textBaseline='middle';c.fillStyle='#fff';c.fillText(a.units,p.x,p.y+.5);
   }
+  if(input.missileAim){const target=input.hit(input.pointer);if(target){c.beginPath();c.arc(target.x,target.y,target.radius+14,0,Math.PI*2);c.strokeStyle='#c47b42';c.lineWidth=3;c.setLineDash([6,5]);c.stroke();c.setLineDash([]);}}
   if(input.drag?.kind==='send'){for(const b of state.buildings.filter(b=>input.selected.has(b.id)&&b.owner===1)){this.line(b,input.pointer,'#427df0a0',true);}const target=input.hit(input.pointer);if(target){c.beginPath();c.arc(target.x,target.y,44,0,Math.PI*2);c.strokeStyle='#427df090';c.lineWidth=2;c.stroke();}}
   for(const b of state.buildings){const selected=input.selected.has(b.id)&&b.owner===1,hover=input.hit(input.pointer)?.id===b.id,col=colors[b.owner];
    const preview=this.rangePreview?.building===b.id;
    if(preview||typeOf(b)==='fort'&&(selected||hover)){const range=preview?this.rangePreview.range:b.range;c.beginPath();c.arc(b.x,b.y,range,0,Math.PI*2);c.fillStyle=col+'0b';c.fill();c.setLineDash([7,8]);c.strokeStyle=col+'90';c.lineWidth=2;c.stroke();c.setLineDash([]);c.fillStyle=col;c.font='600 12px system-ui';c.textAlign='center';c.fillText(`PORTÉE ${range}`,b.x,b.y-range+18);}
    c.save();c.translate(b.x,b.y);c.scale(b.radius/31,b.radius/31);if(selected){c.beginPath();c.arc(0,0,43,0,Math.PI*2);c.strokeStyle=col;c.lineWidth=2;c.stroke();c.fillStyle='#427df00c';c.fill();}
+   if(b.poison){c.beginPath();c.arc(0,0,40,0,Math.PI*2);c.fillStyle='#82a64220';c.fill();c.strokeStyle='#79a24c';c.lineWidth=2;c.setLineDash([4,4]);c.stroke();c.setLineDash([]);}
    drawBuilding(c,b,col);
+   if(b.missileProduction){const job=b.missileProduction;c.beginPath();c.arc(0,0,39,-Math.PI/2,-Math.PI/2+Math.PI*2*(state.tick-job.startTick)/(job.finishTick-job.startTick));c.strokeStyle='#d19756';c.lineWidth=3;c.stroke();}
+   if(b.readyMissile){c.fillStyle='#70983f';c.font='bold 12px system-ui';c.fillText('✓',0,-35);}
    if(hover){c.beginPath();c.arc(0,0,39,0,Math.PI*2);c.strokeStyle=col+'75';c.lineWidth=1.5;c.stroke();}
    c.fillStyle='#78899a';c.font='600 8px system-ui';c.textAlign='center';c.fillText(`${typeLabel(b).toUpperCase()} ${b.name} · N${levelOf(b)}`,0,-47);
    if(b.owner){
@@ -690,7 +854,8 @@ class Renderer{
    c.restore();
   }
   if(input.drag?.kind==='box'){const a=input.drag.start,b=input.pointer;c.fillStyle='#427df00d';c.strokeStyle='#427df080';c.lineWidth=1.5;c.fillRect(a.x,a.y,b.x-a.x,b.y-a.y);c.strokeRect(a.x,a.y,b.x-a.x,b.y-a.y);}
-  this.effects=this.effects.filter(e=>wallTime-e.born<.7);for(const e of this.effects){const t=(wallTime-e.born)/.7;if(e.type==='shot'){if(t<.3){c.globalAlpha=1-t/.3;this.line(e,{x:e.tx,y:e.ty},colors[e.owner]);}continue;}c.globalAlpha=1-t;c.strokeStyle=e.type==='battle'?'#e0a168':colors[e.owner??1];c.lineWidth=e.type==='capture'?4:2;c.beginPath();c.arc(e.x,e.y,12+t*53,0,Math.PI*2);c.stroke();}c.globalAlpha=1;c.restore();
+  drawMissiles(c,state);
+  this.effects=this.effects.filter(e=>wallTime-e.born<.7);for(const e of this.effects){const t=(wallTime-e.born)/.7;if(e.type==='missileImpact'){const color=e.kind==='poison'?'#84ab4b':e.kind==='emp'?'#7b9ce5':'#e69a4e';c.globalAlpha=1-t;c.beginPath();c.arc(e.x,e.y,15+t*100,0,Math.PI*2);c.fillStyle=color+'35';c.fill();c.strokeStyle=color;c.lineWidth=e.kind==='emp'?4:2;c.stroke();if(e.kind==='emp'){c.beginPath();c.arc(e.x,e.y,5+t*70,0,Math.PI*2);c.stroke();}continue;}if(e.type==='shot'){if(t<.3){c.globalAlpha=1-t/.3;this.line(e,{x:e.tx,y:e.ty},colors[e.owner]);}continue;}c.globalAlpha=1-t;c.strokeStyle=e.type==='battle'?'#e0a168':colors[e.owner??1];c.lineWidth=e.type==='capture'?4:2;c.beginPath();c.arc(e.x,e.y,12+t*53,0,Math.PI*2);c.stroke();}c.globalAlpha=1;c.restore();
  }
 }
 
@@ -706,6 +871,7 @@ class InputController {
   this.selected = new Set();
   this.pointer = {...OUTSIDE};
   this.drag = null;
+  this.missileAim = null;
 
   canvas.addEventListener('pointerdown', event => this.down(event));
   canvas.addEventListener('pointermove', event => this.move(event));
@@ -731,6 +897,10 @@ class InputController {
   this.pointer = this.renderer.point(event.clientX, event.clientY);
   const building = this.hit(this.pointer);
 
+  if (this.missileAim) {
+   this.drag={kind:'missile',pointerId:event.pointerId,start:{...this.pointer},source:this.missileAim};
+   this.canvas.setPointerCapture(event.pointerId);return;
+  }
   if (building?.owner === 1) {
    const wasSelected = this.selected.has(building.id);
    if (!event.shiftKey && !wasSelected) this.selected.clear();
@@ -767,6 +937,13 @@ class InputController {
   this.drag = null;
   if (this.getGame().state.status !== 'running') return;
 
+  if(drag.kind==='missile'){
+   const target=this.hit(this.pointer);
+   if(!target){this.toast('Choisissez un bâtiment cible.');return;}
+   const result=this.getGame().command({type:'launchMissile',player:1,building:drag.source,target:target.id});
+   if(result.ok){this.missileAim=null;this.toast('Missile lancé.');}else this.toast(result.reason);
+   return;
+  }
   if (drag.kind === 'box') {
    this.selectRectangle(drag.start, this.pointer);
    return;
@@ -797,13 +974,22 @@ class InputController {
   }
  }
 
+ aimMissile(building){
+  const source=this.getGame().state.buildings.find(b=>b.id===building);
+  if(this.getGame().state.status!=='running'||source?.owner!==1||!source.readyMissile)return;
+  this.drag=null;this.missileAim=building;this.canvas.focus();
+  this.toast('Choisissez la cible du missile · Échap pour annuler.');
+ }
+
  clean() {
   const owned = new Set(this.getGame().state.buildings.filter(b => b.owner === 1).map(b => b.id));
   for (const id of this.selected) if (!owned.has(id)) this.selected.delete(id);
+  if(this.missileAim&&!this.getGame().state.buildings.some(b=>b.id===this.missileAim&&b.owner===1&&b.readyMissile))this.missileAim=null;
  }
 
  reset() {
   this.selected.clear();
+  this.missileAim = null;
   this.drag = null;
   this.pointer = {...OUTSIDE};
  }
@@ -812,6 +998,8 @@ class InputController {
 Object.assign(exports,{InputController});
 },
 "src/main.js":(exports,__require)=>{
+const {MISSILE_TYPES}=__require("src/game/Missiles.js");
+
 const {typeLabel,levelOf}=__require("src/game/BuildingTypes.js");
 
 const {BuildingPopover}=__require("src/ui/BuildingPopover.js");
@@ -834,6 +1022,11 @@ const renderer=new Renderer($('board'));
 function toast(message){$('toast').textContent=message;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2200);}
 const input=new InputController($('board'),renderer,()=>game,()=>.5,toast);
 const buildingPopover=new BuildingPopover($('building-stats'),$('board'),input,renderer,()=>game,()=>!$('overlay').hidden,(building,buildingType)=>{
+ if(buildingType==='launch'){input.aimMissile(building.id);buildingPopover.hide();return;}
+ if(buildingType.startsWith('missile:')){
+  const kind=buildingType.split(':')[1],result=game.command({type:'produceMissile',player:1,building:building.id,missileType:kind});
+  toast(result.ok?`${MISSILE_TYPES[kind].label} · fabrication ${MISSILE_TYPES[kind].seconds} s`:result.reason);hud();return;
+ }
  const upgrade=buildingType==='upgrade';
  const r=game.command(upgrade?{type:'upgrade',player:1,building:building.id}:{type:'transform',player:1,building:building.id,buildingType});
  toast(r.ok?`${typeLabel(building)} · niveau ${levelOf(building)} · ${r.cost} troupes utilisées`:r.reason);hud();

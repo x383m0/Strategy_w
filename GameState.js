@@ -3,7 +3,7 @@ import {makeMap} from './Map.js';
 export const STEP=1/30;
 export const ARMY_SPEED=DEFAULT_BUILDING_STATS.troopSpeed;
 export function createState(map='archipel'){
- return {version:1,map,tick:0,time:0,status:'ready',winner:null,buildings:makeMap(map),armies:[],nextArmyId:1,events:[],commandLog:[],stats:{1:{sent:0,lost:0,captures:0,spent:0,overflowLost:0},2:{sent:0,lost:0,captures:0,spent:0,overflowLost:0}}};
+ return {version:1,map,tick:0,time:0,status:'ready',winner:null,buildings:makeMap(map),armies:[],missiles:[],nextMissileId:1,nextArmyId:1,events:[],commandLog:[],stats:{1:{sent:0,lost:0,captures:0,spent:0,overflowLost:0},2:{sent:0,lost:0,captures:0,spent:0,overflowLost:0}}};
 }
 export function totals(state,owner){
  const buildings=state.buildings.filter(b=>b.owner===owner);

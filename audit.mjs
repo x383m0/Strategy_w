@@ -19,8 +19,8 @@ for(const map of ['archipel','croisee','couronne']){
     if(own.length){
      const source=pick(own),target=pick(game.state.buildings);
      const action=random();
-     const command=action<.1 ? {type:'upgrade',player,building:source.id} : action<.2
-      ? {type:'transform',player,building:source.id,buildingType:'fort'}
+     const command=action<.06?{type:'produceMissile',player,building:source.id,missileType:pick(['normal','poison','emp'])}:action<.12?{type:'launchMissile',player,building:source.id,target:target.id}:action<.2 ? {type:'upgrade',player,building:source.id} : action<.3
+      ? {type:'transform',player,building:source.id,buildingType:random()<.5?'fort':'silo'}
       : {type:'send',player,sources:[source.id],target:target.id,fraction:random()<.5?1:.5};
      const before=snapshot(game.state);
      if(!game.command(command).ok)assert.deepEqual(game.state,before,'A refused command changed state');

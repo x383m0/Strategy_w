@@ -71,3 +71,11 @@ test('perte de capture du pointeur annule le glisser et permet un nouvel ordre',
  assert.equal(input.drag,null);event('pointerup',enemy);assert.equal(g.state.armies.length,0);
  drag(a,enemy,true);assert.equal(g.state.stats[1].sent,44);
 });
+
+test('ciblage missile : clic sur la cible sans ordre de troupes, Échap/reset annule',()=>{
+ const {game:g,input,click}=setup(),[source,enemy]=g.state.buildings;
+ assert.equal(g.command({type:'transform',player:1,building:source.id,buildingType:'silo'}).ok,true);
+ source.readyMissile='normal';input.aimMissile(source.id);assert.equal(input.missileAim,source.id);
+ click(enemy);assert.equal(g.state.missiles.length,1);assert.equal(g.state.armies.length,0);assert.equal(input.missileAim,null);
+ source.readyMissile='emp';input.aimMissile(source.id);input.reset();assert.equal(input.missileAim,null);assert.equal(source.readyMissile,'emp');
+});

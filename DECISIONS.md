@@ -115,3 +115,9 @@ Demandé : supprimer la caserne et donner ses statistiques à la maison : produc
 ## Envois libres et surcharge — v0.3.3
 
 Demandé : aucune limite de capacité sur les envois, même groupés et dirigés vers un ennemi. Dépassement autorisé sur les alliés avec pertes proportionnelles à l’excédent. Implémenté pour les deux camps et après capture : production arrêtée à capacité, attrition de l’excédent à 10 %/s (taux provisoire). Pas de pertes instantanées à l’arrivée, pas de réservations. Les troupes restent entières via un accumulateur à pas fixe. Les anciennes règles de refus pour capacité et de réservation sont remplacées.
+
+## Silo — v0.4.0
+
+Confirmé par l’utilisateur : maison N1 → silo pour 10 troupes ; garnison conservée par neutralisation et EMP ; fabrication puis choix de cible. Silo : trois niveaux, production 0, capacités 50/75/100, améliorations 20/40. Balistique : 25, 10 s, rend neutre. Poison : 30, 10 s, débloqué N2, −1 troupe/2 s jusqu’à capture. EMP : 40, 15 s, débloquée N3, capture au tireur. Annulation de fabrication si silo conquis.
+
+Première implémentation : un seul missile stocké par silo, portée carte entière, coûts en garnison, vol balistique 1,5 s, pas d’interception. Stock prêt détruit aussi lors du changement de propriétaire, sans remboursement de fabrication. Poison non cumulatif, conservé lors de neutralisation seule, guéri par conquête. Un bâtiment devenu allié avant impact n’est pas affecté. Les missiles en vol maintiennent leur camp même après capture du lanceur et empêchent une victoire prématurée.
