@@ -9,7 +9,7 @@ class Element extends EventTarget{
 }
 function setup(){
  const game=new Game(createState());game.state.status='running';const b=game.state.buildings[0],canvas=new Element(),box=new Element(),children=new Map();
- for(const id of ['upgrade-building','upgrade-cost','stats-card','stats-title','stats-defense','stats-rate','stats-speed','stats-capacity','stats-fort','stats-status','hover-upgrades','transform-fort','transform-hint'])children.set('#'+id,new Element());
+ for(const id of ['stats-range','stats-shot-rate','stats-status-row','upgrade-building','upgrade-cost','stats-card','stats-title','stats-defense','stats-rate','stats-speed','stats-capacity','stats-fort','stats-status','hover-upgrades','transform-fort','transform-hint'])children.set('#'+id,new Element());
  children.get('#stats-card').hidden=false;
  children.get('#stats-card').offsetWidth=184;children.get('#stats-card').offsetHeight=80;
  children.get('#hover-upgrades').offsetWidth=108;children.get('#hover-upgrades').offsetHeight=52;
@@ -46,7 +46,7 @@ test('aperçu de portée avant transformation, au focus et sur le fort, puis fer
  find('transform-fort').dispatchEvent(new Event('focus'));assert.equal(pop.renderer.rangePreview.range,240);
  find('transform-fort').dispatchEvent(new Event('blur'));assert.equal(pop.renderer.rangePreview,null);
  find('transform-fort').dispatchEvent(new Event('click'));assert.equal(b.type,'fort');
- assert.equal(find('stats-fort').textContent,'Portée 240 · 2 dégâts/s · Garnison présente');
+ assert.equal(find('stats-range').textContent,240);assert.equal(find('stats-shot-rate').textContent,'2/s');
  assert.equal(pop.renderer.rangePreview.range,240);
  input.drag={kind:'send'};pop.update();assert.equal(pop.renderer.rangePreview,null);
  input.drag=null;pop.update();setMenu(true);pop.update();assert.equal(pop.renderer.rangePreview,null);
@@ -70,6 +70,6 @@ test('améliorer un fort prévisualise sa prochaine portée',()=>{
 test('la fiche signale la surcharge et affiche le débit de pertes',()=>{
  const {b,pop,find}=setup();b.units=40;pop.update();
  assert.equal(find('stats-capacity').textContent,'40 / 20');
- assert.match(find('stats-status').textContent,/SURCHARGE \+20/);assert.match(find('stats-status').textContent,/2.0 troupe\/s/);
- b.units=10;pop.update();assert.equal(find('stats-capacity').style.color,'');assert.doesNotMatch(find('stats-status').textContent,/SURCHARGE/);
+ assert.equal(find('stats-status').textContent,'+20 · −2.0/s');assert.equal(find('stats-status-row').hidden,false);
+ b.units=10;pop.update();assert.equal(find('stats-capacity').style.color,'');assert.equal(find('stats-status-row').hidden,true);assert.equal(find('stats-status').textContent,'');
 });

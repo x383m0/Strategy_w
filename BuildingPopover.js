@@ -1,5 +1,5 @@
 import {BUILDING_TYPES,TRANSFORM_COST,typeOf,typeLabel,levelOf,canTransform,upgradeCost,statsFor} from '../game/BuildingTypes.js';
-import {capacityOf,defenseOf,speedOf,reservedFor,freeSpace,OVERFLOW_DECAY_RATE} from '../game/BuildingStats.js';
+import {capacityOf,defenseOf,speedOf,OVERFLOW_DECAY_RATE} from '../game/BuildingStats.js';
 export class BuildingPopover{
  constructor(element,canvas,input,renderer,getGame,isMenuVisible,onTransform){
   Object.assign(this,{element,canvas,input,renderer,getGame,isMenuVisible,onTransform});
@@ -48,9 +48,15 @@ export class BuildingPopover{
   this.find('stats-speed').textContent=speedOf(b);
   this.find('stats-capacity').textContent=`${b.units} / ${capacityOf(b)}`;
   const fort=typeOf(b)==='fort',fortInfo=this.find('stats-fort');fortInfo.hidden=!fort;
-  if(fort)fortInfo.textContent=`Portée ${b.range} · ${b.shotDamage/b.shotInterval} dégâts/s · ${b.units?'Garnison présente':'Garnison requise'}`;
-  const incoming=b.owner?reservedFor(game.state,b):0,excess=Math.max(0,b.units-capacityOf(b));
-  this.find('stats-status').textContent=b.owner===0?'Production inactive · bâtiment neutre':excess>0?`SURCHARGE +${excess} · −${(excess*OVERFLOW_DECAY_RATE).toFixed(1)} troupe/s · production arrêtée`:freeSpace(game.state,b)===0?'Capacité atteinte · production arrêtée':b.rate===0?'Aucune production · fort défensif':incoming?`Production active · ${incoming} renfort(s) en route`:'Production active';
+  if(fort){
+   this.find('stats-range').textContent=b.range;
+   this.find('stats-shot-rate').textContent=`${b.shotDamage/b.shotInterval}/s`;
+   fortInfo.style.opacity=b.units?1:.45;
+   fortInfo.setAttribute('aria-label',`Portée ${b.range}, ${b.shotDamage/b.shotInterval} dégâts par seconde, ${b.units?'garnison présente':'garnison requise'}`);
+  }
+  const excess=Math.max(0,b.units-capacityOf(b));
+  this.find('stats-status-row').hidden=b.owner===0||excess===0;
+  this.find('stats-status').textContent=excess>0?`+${excess} · −${(excess*OVERFLOW_DECAY_RATE).toFixed(1)}/s`:'';
   this.find('stats-capacity').style.color=excess>0?'#b75b28':'';
   const own=b.owner===1,specialize=canTransform(b),cost=upgradeCost(b);
   const next=statsFor(typeOf(b),levelOf(b)+1);

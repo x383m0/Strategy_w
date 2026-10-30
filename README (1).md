@@ -1,4 +1,4 @@
-# Jelly Wars — v0.3.3
+# Jelly Wars — v0.3.4
 
 Jeu de conquête en temps réel, en français, contre une IA heuristique équitable. JavaScript natif, HTML5 Canvas et CSS, sans dépendance ni serveur de jeu en solo.
 
@@ -230,3 +230,9 @@ Aucune suppression instantanée à l’arrivée ou à la capture : tous les surv
 La fiche affiche « SURCHARGE », l’excédent et le débit de pertes ; les effectifs en surcharge sont signalés en orange. L’IA peut planifier des attaques supérieures à la capacité ennemie et ses estimations incluent les défenseurs excédentaires. Les transformations ne sont plus bloquées par la capacité.
 
 Validation : 84 tests réussis. Audit : 9 simulations, 2 039 commandes, 19 582 ticks, 9 replays identiques. Tests des attaques de groupe, renforts en surcharge, captures excédentaires, pause, départ, amélioration, faible excédent et estimations de l’IA. Cette règle remplace toutes les anciennes règles de capacité stricte et de réservation décrites dans l’historique.
+
+## v0.3.4 — Statistiques au survol sans texte visible
+
+La fiche affiche uniquement icônes et valeurs : bouclier pour défense, + cerclé pour production, chevrons pour vitesse, groupe de soldats pour capacité. Le nom/type/camp du bâtiment n’est plus visible dans cette fiche. Les libellés restent disponibles aux lecteurs d’écran. La portée et les dégâts/s du fort utilisent une cible et un éclair ; la surcharge utilise un triangle d’alerte, l’excédent et le débit de pertes. Aucun message rédigé n’est visible dans la fiche.
+
+Le cadre passe de 184 à 156 px et conserve deux lignes principales. Les commandes flottantes et le reste de l’interface sont conservés. Validation : 84 tests réussis et vérification navigateur des fiches maison et fort.
