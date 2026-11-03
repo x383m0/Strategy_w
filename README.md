@@ -1,12 +1,18 @@
-# Jelly Wars — v0.9.1
+# Jelly Wars — v0.10.0
 
 Jeu de stratégie en français, Canvas et SVG, sans dépendance de compilation. Huit cartes de neuf bâtiments, solo contre une IA et duel à deux.
 
 ## Jouer et publier
 
-Le fichier `index.html` à la racine est autonome : code et styles sont intégrés. Le remplacer dans le dépôt GitHub Pages suffit à mettre le jeu à jour. Vérifier « Version 0.9.1 » dans le menu. Ne pas publier `templates/page.html` à sa place.
+Le fichier `index.html` à la racine est autonome : code et styles sont intégrés. Le remplacer dans le dépôt GitHub Pages suffit à mettre le jeu à jour. Vérifier « Version 0.10.0 » dans le menu. Ne pas publier `templates/page.html` à sa place.
 
 Pour jouer localement : `python3 -m http.server 8000`, puis ouvrir `http://localhost:8000`.
+
+## Nouveautés 0.10.0
+
+- IA : départs décalés des attaques de groupe pour rapprocher les arrivées, attente plafonnée à 8 secondes. Les troupes restent dans leur bâtiment avant le départ. Perdre une source, changer de propriétaire de cible ou devoir défendre en urgence annule les départs en attente. Les trajets et vitesses restent normaux.
+- Duel sans pause : bouton masqué, Espace et anciennes commandes réseau de pause ignorés. Les menus et le masquage de l’onglet ne mettent plus le duel en pause ; la simulation hôte utilise une boucle de minuterie distincte du rendu. Le navigateur peut ralentir ses minuteries en arrière-plan. Une déconnexion arrête toujours le duel.
+- Archipel, Vallée, Rivières, Plateaux et Littoral retravaillés : garnisons d’ouverture, positions, reliefs et conseils. Neuf bâtiments, symétrie et soutien des forts conservés. Voir `docs/CARTES.md`.
 
 ## Nouveautés 0.9.1
 
@@ -40,7 +46,7 @@ Les salons utilisent six lettres majuscules, par exemple KRMVTA, sans chiffres n
 
 ## Commandes
 
-Glisser d’un bâtiment de son camp vers une cible envoie 50 %. Maj + glisser envoie 100 %. Maj + clic ou rectangle de sélection permet de commander plusieurs bâtiments. Les troupes combattent aussi en chemin. Espace ou bouton de pause suspend la partie.
+Glisser d’un bâtiment de son camp vers une cible envoie 50 %. Maj + glisser envoie 100 %. Maj + clic ou rectangle de sélection permet de commander plusieurs bâtiments. Les troupes combattent aussi en chemin. Espace ou bouton de pause suspend la partie en solo uniquement.
 
 Survol d’un bâtiment : statistiques compactes par icônes, commandes flottantes au-dessus. Améliorer une maison ou la transformer verrouille son type, même après capture. La légende sous le terrain indique les trois silhouettes.
 
@@ -62,11 +68,11 @@ Duel → Internet · automatique → Créer un salon, puis Copier le lien du sal
 
 Le mode automatique utilise PeerJS Cloud pour la mise en relation. Certains réseaux peuvent bloquer la connexion directe : choisir alors Relais personnalisé, qui nécessite un service HTTPS à héberger séparément. Le serveur Node optionnel est inclus, sans dépendance ; `npm run dev` sert jeu et relais localement, `npm run relay` lance l’API seule. Les codes LOCAL restent réservés au même navigateur.
 
-Consulter `docs/MULTIJOUEUR.md` pour l’installation du relais et les limites de validation. Création d’un salon Internet vérifiée, mais la négociation WebRTC a expiré dans le navigateur de développement. Le duel par relais a été vérifié dans deux onglets ; aucun test entre deux machines distantes n’a été réalisé. Garder l’onglet hôte ouvert ; une déconnexion arrête le duel.
+Consulter `docs/MULTIJOUEUR.md` pour l’installation du relais et les limites de validation. Création d’un salon Internet vérifiée, mais la négociation WebRTC a expiré dans le navigateur de développement. Le duel par relais a été vérifié dans deux onglets ; aucun test entre deux machines distantes n’a été réalisé. Garder l’onglet hôte ouvert ; une déconnexion arrête le duel. Les menus et le masquage de l’onglet ne mettent plus le multijoueur en pause.
 
 ## Développement et vérification
 
-`npm test` : 164 tests. `npm run audit` : 24 simulations avec replays exacts. `npm run balance` : 18 simulations comparatives. `npm run build` génère le fichier racine et `dist/index.html`. Les sources sont dans `src/`, `style.css` et `templates/page.html`.
+`npm test` : 168 tests. `npm run audit` : 24 simulations avec replays exacts. `npm run balance` : 18 simulations comparatives. `npm run build` génère le fichier racine et `dist/index.html`. Les sources sont dans `src/`, `style.css` et `templates/page.html`.
 
 Les tests vérifient la simulation, les coûts, captures, collisions continues aux virages, missiles, pause, commandes réseau, aperçus et démarrage du HTML autonome. Ils ne constituent pas une preuve d’équilibrage entre joueurs.
 
