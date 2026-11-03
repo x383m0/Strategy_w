@@ -51,3 +51,11 @@ test('la difficulté choisie avant lancement applique aussi son premier délai',
   if(expected===0)assert.equal(decisions,0);else assert.ok(decisions>=expected);
  }
 });
+
+test('les contrôles audio restent utilisables sans Web Audio et après une nouvelle partie',async()=>{
+ const {elements:e,tick}=await boot();
+ e.get('audio-volume').oninput({target:{value:'60'}});assert.equal(e.get('audio-value').textContent,'60 %');
+ e.get('audio-mute').onclick();assert.equal(e.get('audio-mute').textContent,'Son coupé');
+ e.get('start').onclick();tick(1);e.get('new-game').onclick();assert.equal(e.get('audio-value').textContent,'60 %');
+ e.get('audio-mute').onclick();assert.equal(e.get('audio-mute').textContent,'Son activé');
+});

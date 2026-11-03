@@ -9,7 +9,7 @@ class Element extends EventTarget{
 }
 function setup(){
  const game=new Game(createState());game.state.status='running';const b=game.state.buildings[0],canvas=new Element(),box=new Element(),children=new Map();
- for(const id of ['stats-poison','silo-controls','missile-normal','missile-poison','missile-emp','missile-cost-normal','missile-cost-poison','missile-cost-emp','transform-silo','stats-range','stats-shot-rate','stats-status-row','upgrade-building','upgrade-cost','stats-card','stats-title','stats-defense','stats-rate','stats-speed','stats-capacity','stats-fort','stats-status','hover-upgrades','transform-fort','transform-hint'])children.set('#'+id,new Element());
+ for(const id of ['missile-progress-normal','missile-progress-poison','missile-progress-emp','stats-poison','silo-controls','missile-normal','missile-poison','missile-emp','missile-cost-normal','missile-cost-poison','missile-cost-emp','transform-silo','stats-range','stats-shot-rate','stats-status-row','upgrade-building','upgrade-cost','stats-card','stats-title','stats-defense','stats-rate','stats-speed','stats-capacity','stats-fort','stats-status','hover-upgrades','transform-fort','transform-hint'])children.set('#'+id,new Element());
  children.get('#stats-card').hidden=false;
  children.get('#stats-card').offsetWidth=184;children.get('#stats-card').offsetHeight=80;
  children.get('#hover-upgrades').offsetWidth=108;children.get('#hover-upgrades').offsetHeight=52;
@@ -84,3 +84,16 @@ test('silo : boutons de fabrication, progression, déblocage et lancement au sur
  find('missile-normal').dispatchEvent(new Event('click'));assert.equal(input.missileAim,b.id);assert.equal(pop.element.hidden,true);
  input.missileAim=null;b.readyMissile=null;b.level=3;pop.update();assert.equal(find('upgrade-building').hidden,true);assert.equal(find('silo-controls').hidden,false);assert.equal(find('hover-upgrades').hidden,false);
 });
+
+ test('anneau de fabrication : progression à mi-parcours, gel en pause et retrait à la fin',()=>{
+ const {game,b,pop,find}=setup();pop.update();find('transform-silo').dispatchEvent(new Event('click'));b.units=50;
+ find('missile-normal').dispatchEvent(new Event('click'));
+ for(let i=0;i<150;i++)game.step();pop.update();
+ assert.equal(find('missile-progress-normal').style.strokeDashoffset,'50');
+ assert.equal(find('missile-normal').attrs.get('data-producing'),'true');
+ game.state.status='paused';for(let i=0;i<30;i++)game.step();pop.update();
+ assert.equal(find('missile-progress-normal').style.strokeDashoffset,'50');
+ game.state.status='running';for(let i=0;i<150;i++)game.step();pop.update();
+ assert.equal(find('missile-normal').attrs.get('data-producing'),'false');
+ assert.equal(find('missile-cost-normal').textContent,'✓');
+ });

@@ -79,3 +79,10 @@ test('ciblage missile : clic sur la cible sans ordre de troupes, Échap/reset an
  click(enemy);assert.equal(g.state.missiles.length,1);assert.equal(g.state.armies.length,0);assert.equal(input.missileAim,null);
  source.readyMissile='emp';input.aimMissile(source.id);input.reset();assert.equal(input.missileAim,null);assert.equal(source.readyMissile,'emp');
 });
+
+test('relâcher un bouton secondaire ne termine pas un glisser principal',()=>{
+ const {game:g,event,input}=setup(),[source,target]=g.state.buildings;
+ event('pointerdown',source);event('pointerup',target,{button:2});
+ assert.ok(input.drag);assert.equal(g.state.armies.length,0);
+ event('pointerup',target,{button:0});assert.equal(g.state.armies.length,1);
+});

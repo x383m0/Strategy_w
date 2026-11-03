@@ -24,6 +24,23 @@
 .hover-actions b{position:absolute;bottom:-3px;right:-3px;font-size:9px;border-radius:10px;background:#427df0;color:white;padding:2px 4px;border:2px solid white;line-height:1}
 .hover-actions button:disabled{opacity:.65}.sidebar .intelligence{grid-column:auto}
 
-.silo-controls{display:contents}.hover-actions #missile-normal{color:#bd7438}.hover-actions #missile-poison{color:#70983f}.hover-actions #missile-emp{color:#677dc5}.hover-actions button[data-ready="true"]{border-color:#70983f;background:#eef8e5;box-shadow:0 0 0 3px #84a85825}
+.silo-controls{display:contents}.hover-actions #missile-normal{color:#d64444}.hover-actions #missile-poison{color:#46983e}.hover-actions #missile-emp{color:#357bdb}.hover-actions button[data-ready="true"]{border-color:#70983f;background:#eef8e5;box-shadow:0 0 0 3px #84a85825}
 
 .stats-card .poison-meta{color:#70983f}
+
+/* Filled missile silhouettes stay legible inside the floating circular buttons. */
+.hover-actions .missile-icon{width:32px;height:32px;fill:currentColor;stroke:none}
+
+/* Audio settings share the sidebar and remain available while the game is paused. */
+.audio-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.audio-heading button{border:1px solid #dbe5f3;background:#eef4ff;color:#426fac;border-radius:7px;padding:6px 9px;font-size:10px}
+.audio-heading button[aria-pressed="true"]{background:#f2f4f7;color:#778397;border-color:#e1e5ec}
+.audio-panel label{display:flex;justify-content:space-between;font-size:10px;color:#718198;margin-bottom:9px}
+.audio-panel output{font-variant-numeric:tabular-nums;color:#425673}
+.audio-panel input[type="range"]{background:#dce7fa;margin:4px 0 6px;height:6px;accent-color:var(--blue)}
+.hover-actions .missile-progress{display:none;position:absolute;inset:-2px;width:48px;height:48px;fill:none;stroke-width:2.8;transform:rotate(-90deg);pointer-events:none}
+.hover-actions button[data-producing="true"]{opacity:1;background:#fff}
+.hover-actions button[data-producing="true"] .missile-progress{display:block}
+.missile-progress .progress-track{stroke:currentColor;opacity:.16}
+.missile-progress .progress-value{stroke:currentColor;stroke-dasharray:100;stroke-dashoffset:100;stroke-linecap:round}
+@media(max-width:760px){.audio-panel{grid-column:1/-1}}

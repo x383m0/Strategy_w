@@ -31,6 +31,7 @@ export function launchMissile(state,command){
  state.missiles??=[];state.nextMissileId??=1;
  state.missiles.push({id:`m${state.nextMissileId++}`,type:kind,owner:command.player,source:b.id,target:target.id,x:b.x,y:b.y,tx:target.x,ty:target.y,startTick:state.tick,impactTick:state.tick+Math.round(MISSILE_FLIGHT_SECONDS/STEP)});
  b.readyMissile=null;
+ state.events.push({type:'missileLaunch',kind,owner:command.player,x:b.x,y:b.y,time:state.time});
  state.commandLog.push({type:'launchMissile',player:command.player,building:b.id,target:target.id,tick:state.tick});
  return {ok:true};
 }
@@ -45,8 +46,12 @@ export function advanceMissiles(state){
  for(const missile of state.missiles??[]){
   if(endTick<missile.impactTick){active.push(missile);continue;}
   const target=state.buildings.find(b=>b.id===missile.target);
-  if(!target||target.owner===missile.owner)continue;
+  if(!target)continue;
   const time=endTick*STEP;
+  if(target.owner===missile.owner){
+   state.events.push({type:'missileImpact',kind:missile.type,x:target.x,y:target.y,owner:missile.owner,time,harmless:true});
+   continue;
+  }
   if(missile.type==='normal'&&target.owner!==0)changeOwner(state,target,0,time);
   if(missile.type==='emp')changeOwner(state,target,missile.owner,time);
   if(missile.type==='poison'&&target.owner!==0&&!target.poison)target.poison={nextTick:endTick+Math.round(2/STEP)};

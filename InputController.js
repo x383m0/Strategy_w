@@ -66,6 +66,7 @@ export class InputController {
  }
 
  up(event) {
+  if(event.button!==0)return;
   if (this.drag && this.drag.pointerId !== event.pointerId) return;
   this.pointer = this.renderer.point(event.clientX, event.clientY);
   if (!this.drag) return;

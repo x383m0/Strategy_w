@@ -116,3 +116,9 @@ test('types de missile hérités du prototype refusés sans mutation',()=>{
   const before=snapshot(game.state);assert.equal(produce(game,silo,missileType).ok,false);assert.deepEqual(game.state,before);
  }
 });
+
+test('une cible devenue alliée reçoit un impact visuel sans subir l’effet du missile',()=>{
+ const {game,silo,target}=setup();ready(silo,'normal');launch(game,silo,target);changeOwner(game.state,target,1);
+ const units=target.units;steps(game,45);assert.equal(target.owner,1);assert.equal(target.units,units);
+ assert.ok(game.state.events.some(e=>e.type==='missileImpact'&&e.harmless));
+});

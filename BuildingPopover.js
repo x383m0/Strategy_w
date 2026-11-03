@@ -79,6 +79,11 @@ export class BuildingPopover{
    button.disabled=!own||game.state.status!=='running'||levelOf(b)<spec.level||!!job||!!b.readyMissile&&!ready||!ready&&b.units<spec.cost;
    this.find('missile-cost-'+kind).textContent=job?.type===kind?`${Math.max(0,Math.ceil((job.finishTick-game.state.tick)*STEP))}s`:ready?'✓':spec.cost;
    button.setAttribute('data-ready',String(ready));
+   const active=job?.type===kind,progress=active?Math.max(0,Math.min(1,(game.state.tick-job.startTick)/(job.finishTick-job.startTick))):0;
+   button.setAttribute('data-producing',String(active));
+   this.find('missile-progress-'+kind).style.strokeDashoffset=String(100-progress*100);
+   if(active)button.setAttribute('aria-label',`${spec.label} · fabrication ${Math.round(progress*100)} %`);
+   else button.setAttribute('aria-label',ready?`Lancer un missile ${spec.label}`:`Fabriquer un missile ${spec.label}`);
    button.setAttribute('title',levelOf(b)<spec.level?`${spec.label} · niveau ${spec.level} requis`:ready?`${spec.label} prêt · cliquer puis choisir la cible`:`${spec.label} · ${spec.cost} troupes · ${spec.seconds} secondes`);
   }
   const running=game.state.status==='running';

@@ -8,6 +8,6 @@ export function fireForts(state){
   const target=candidates[0];if(!target)continue;
   const damage=Math.min(b.shotDamage,target.a.units);target.a.units-=damage;state.stats[target.a.owner].lost+=damage;
   b.nextShotTick=state.tick+Math.max(1,Math.round(b.shotInterval/STEP));
-  state.events.push({type:'shot',x:b.x,y:b.y,tx:target.p.x,ty:target.p.y,owner:b.owner,units:damage,time:state.time});
+  state.events.push({type:'shot',source:b.id,target:target.a.id,x:b.x,y:b.y,radius:b.radius,tx:target.p.x,ty:target.p.y,vx:target.a.units>0?(target.a.tx-target.a.sx)/target.a.duration:0,vy:target.a.units>0?(target.a.ty-target.a.sy)/target.a.duration:0,owner:b.owner,units:damage,time:state.time});
  }
 }

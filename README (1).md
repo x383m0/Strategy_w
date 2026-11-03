@@ -1,4 +1,4 @@
-# Jelly Wars — v0.4.0
+# Jelly Wars — v0.4.3
 
 Jeu de conquête en temps réel, en français, contre une IA heuristique équitable. JavaScript natif, HTML5 Canvas et CSS, sans dépendance ni serveur de jeu en solo.
 
@@ -14,9 +14,9 @@ Ouvrir `http://localhost:8000`. Le fichier `index.html` fourni contient tout le 
 
 ## GitHub Pages
 
-Pour corriger le lancement, remplacer le fichier `index.html` à la racine du dépôt par celui de la v0.2.3. Vous pouvez aussi importer tout le contenu de ce dossier pour conserver les sources à jour. Dans Settings → Pages, choisir Deploy from a branch, puis la branche principale et le dossier `/ (root)`. Le jeu publié utilise uniquement `index.html`, autonome : aucun chargement de `src/` ou de `style.css` ne peut mélanger les versions. Il fonctionne sous un sous-dossier de dépôt.
+Pour corriger le lancement, remplacer le fichier `index.html` à la racine du dépôt par celui de la version fournie. Vous pouvez aussi importer tout le contenu de ce dossier pour conserver les sources à jour. Dans Settings → Pages, choisir Deploy from a branch, puis la branche principale et le dossier `/ (root)`. Le jeu publié utilise uniquement `index.html`, autonome : aucun chargement de `src/` ou de `style.css` ne peut mélanger les versions. Il fonctionne sous un sous-dossier de dépôt.
 
-Aucune compilation n’est nécessaire pour publier les fichiers fournis. Après une modification des sources, lancer `npm run build` : il assemble `templates/page.html`, `style.css` et `src/` dans le fichier autonome `index.html`, ainsi que dans `dist/index.html`. Ne pas modifier directement le fichier HTML généré. Après publication, vérifier que le menu indique 0.2.3.
+Aucune compilation n’est nécessaire pour publier les fichiers fournis. Après une modification des sources, lancer `npm run build` : il assemble `templates/page.html`, `style.css` et `src/` dans le fichier autonome `index.html`, ainsi que dans `dist/index.html`. Ne pas modifier directement le fichier HTML généré. Après publication, vérifier que le menu indique 0.4.3.
 
 ## Commandes
 
@@ -38,7 +38,7 @@ npm test
 npm run build
 ```
 
-Les 101 tests automatisés passent. Ils couvrent production, commandes invalides, captures, égalités, renforts, collisions continues, arrivées simultanées, pause, victoire, conservation des unités de l’IA replay des commandes, renfort défensif de l’IA, engagements à trois groupes et simulations déterministes IA contre IA sur les trois cartes.
+Les 113 tests automatisés passent. Ils couvrent production, commandes invalides, captures, égalités, renforts, collisions continues, arrivées simultanées, pause, victoire, conservation des unités de l’IA replay des commandes, renfort défensif de l’IA, engagements à trois groupes et simulations déterministes IA contre IA sur les trois cartes.
 
 ## Architecture et limites
 
@@ -262,3 +262,26 @@ L’IA peut construire des silos en Normal/Difficile à partir de 45 secondes av
 Validation : tests de chaque coût/délai, déblocages, pause, annulation de production à la capture, conservation des garnisons, poison permanent, neutralisation puis conquête, EMP, vol indépendant du silo, victoire retardée, boutons, ciblage et replays exacts.
 
 Bilan de validation v0.4.0 : 101 tests réussis. Audit : 9 simulations sur trois cartes, 3 020 commandes et 28 082 ticks, avec 9 replays identiques. Vérification navigateur de la transformation en silo, des commandes disponibles/verrouillées, du paiement, du compteur de fabrication, du bouton prêt, du ciblage et de la neutralisation.
+
+## v0.4.1 — Tirs des forts et corrections
+
+Les forts tirent un projectile lumineux animé, avec courte traînée aux couleurs du camp, flash au bord du bâtiment et étincelles à l’impact. La courte trajectoire utilise la position et la vitesse enregistrées au tir ; l’effet reste visible même si le groupe cible disparaît. Les dégâts de simulation restent instantanés, 1 par tir, à 2 tirs/s : l’animation ne peut ni ajouter de dégâts ni modifier les collisions. Les effets sont regroupés dans `src/rendering/CombatEffects.js`, avec isolation de l’opacité Canvas pour éviter une fuite entre effets. Les impacts balistiques des missiles gagnent aussi une onde de poussière et des particules.
+
+Deux bugs reproduits puis corrigés :
+
+- Un événement de relâchement du bouton secondaire pouvait terminer un glisser commencé avec le bouton principal. Seul le relâchement principal termine désormais l’ordre.
+- Un missile disparaissait sans impact visuel si sa cible était devenue alliée pendant son vol. L’explosion visuelle reste maintenant visible, atténuée et sans appliquer l’effet du missile au bâtiment allié.
+
+Validation : 106 tests réussis, notamment régressions des deux bugs, déplacement du projectile, positions finies, conservation des événements, restauration Canvas et absence de double dégât sur une cible détruite. Audit : 9 simulations, 3 020 commandes et 28 082 ticks, 9 replays identiques. Rendu et démarrage vérifiés dans le navigateur.
+
+## v0.4.2 — Icônes des missiles
+
+Les trois boutons de missile utilisent une silhouette pleine de 32 px, avec pointe et ailerons, inspirée de la référence fournie. Balistique rouge, poison vert, EMP bleu. Les coûts, états désactivés, compteurs et indicateurs de missile prêt sont conservés.
+
+## v0.4.3 — Sons et retours visuels
+
+- Effets sonores synthétisés localement pour les envois, captures, neutralisations, tirs de fort, lancements/impacts de missile et améliorations. Activation après un geste utilisateur, sans fichier audio externe.
+- Réglages Audio dans la colonne latérale : volume et mode muet, mémorisés dans le navigateur si le stockage est disponible. La pause et une nouvelle partie arrêtent les sons actifs. Aucun son manqué n’est rejoué.
+- Captures : double onde de couleur, particules et légère impulsion du bâtiment. Les préférences système de réduction des animations sont respectées.
+- Anneau de fabrication coloré autour du bouton missile, compteur en secondes et coche à la fin. La progression suit la simulation et se fige en pause.
+- Correction de la collecte des événements : les commandes exécutées entre deux pas de simulation conservent leurs retours visuels et sonores, sans doublon. Aucun changement des dégâts, coûts, délais ou règles de conquête.
