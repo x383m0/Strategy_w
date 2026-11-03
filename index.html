@@ -50,69 +50,46 @@
 /* Terrain stays behind high-contrast controls and troop counts. */
 .canvas-wrap{background:#e4edda}.map-corner{color:#63755f}.bottom-right{color:#6f806b}
 .start-card #setup{display:grid;grid-template-columns:1fr 1fr;gap:10px}.start-card #setup label:first-child{grid-column:1/-1}
+
+.multiplayer-panel h2{margin-bottom:12px}.multiplayer-panel p{font-size:11px;color:#718198;line-height:1.6}.multiplayer-panel label{display:block;font-size:10px;margin:12px 0 5px}.multiplayer-panel textarea{width:100%;resize:vertical;border:1px solid #d8e1ee;border-radius:6px;padding:7px;font:10px monospace;color:#3e526f;background:#f7f9fc}.multiplayer-panel button{border:1px solid #d5e0f0;border-radius:6px;background:#eef4ff;padding:7px 9px;color:#426fac;font-size:11px}.net-actions{display:flex;gap:6px;flex-wrap:wrap}.multiplayer-panel small{display:block;font-size:9px;line-height:1.5;color:#8795a7;margin-top:10px}#net-status{color:#426fac}#net-copy{margin-top:7px}.multiplayer-panel{grid-column:1/-1}
+/* Field manual — a quiet contemporary strategy interface, built around the map. */
+:root{--bg:#e9eee7;--ink:#263f35;--muted:#728174;--line:#d8e1d5;--blue:#427df0;--radius:14px}
+.topbar{height:70px;padding:0 3%;background:#f8faf5;border-color:#d5dfd0}.brand{font-size:25px}.brand small{color:#788a78}.topbar nav{gap:24px}.plain{font-size:12px;color:#405b49}.nav-active{font-size:10px;color:#46664f}.version{color:#6a806b}
+main{max-width:1800px;padding:22px 3% 0}.page-heading{margin-bottom:18px}.page-heading h1{font-size:25px;letter-spacing:-.6px;margin:5px 0}.page-heading p{font-size:12px;color:#647868;max-width:850px}.eyebrow{font-size:9px;color:#58735b}.outline{background:#f7faf4;border-color:#ccd9c7;color:#3a5c46}
+.workspace{grid-template-columns:minmax(0,1fr) 224px;gap:16px}.battlefield{border-color:#cad8c4;box-shadow:0 8px 32px #1b3a2810}.battle-toolbar{height:55px;background:#f7faf3;padding:0 20px}.battle-status{font-size:9px;color:#54705b}.map-label strong{font-size:14px;color:#334f3b}.map-label small{color:#6c826d}.map-icon{color:#618263}.battle-footer{background:#f6f9f1;color:#637e65;padding:0 18px;font-size:8px;height:35px}.map-corner{font-size:8px;color:#657e5c}
+.canvas-wrap{aspect-ratio:1120/760;min-height:380px}.sidebar{gap:12px}.panel{padding:16px;background:#f8faf5;border-color:#d4e0ce;border-radius:12px}.panel h2{font-size:13px}.metrics strong{font-size:23px}.metrics div+div{padding-left:8px}.metrics span{font-size:7px}.faction-title{font-size:10px}.intelligence summary{cursor:pointer;font-size:11px;font-weight:700;color:#496b50}.intelligence .panel-heading{margin-top:16px}.intelligence p{font-size:11px}.controls-strip{padding:17px 0}.controls-strip p{font-size:11px}.controls-strip small{color:#6b806c}
+.primary{background:#355e45;border:1px solid #2c513b;font-size:13px;border-radius:9px;padding:13px 16px}.primary:hover{background:#294e37}.overlay{background:#e8eee2b5;backdrop-filter:blur(5px)}.start-card{width:590px;max-width:calc(100% - 24px);max-height:calc(100% - 24px);overflow:auto;padding:23px;background:#fbfcf8;border:1px solid #bdcdb6;border-radius:16px;box-shadow:0 16px 60px #17311e29}.card-badge{color:#4e7452;border-color:#d5e3cd;background:#edf4e7;font-size:9px}.start-card h2{font-size:25px;color:#2b4934;margin:16px 0 7px}.start-card p{font-size:12px;line-height:1.65;color:#657b67;margin-bottom:12px}.start-card .map-opening{font-size:11px;background:#edf3e7;border-left:3px solid #92ac7d;padding:9px 12px;text-align:left;border-radius:4px}.start-card #setup{grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.start-card #setup label:first-child{grid-column:auto}.start-card select{font-size:12px;padding:9px;border-color:#cfddc8;background:#f4f8ef;color:#35513b}.start-card label{font-size:9px;color:#6f856d}.start-card .menu-version{font-size:9px}.start-card .map-preview{height:175px;background:#e2ebd9;border:1px solid #ccd9c3;border-radius:9px;overflow:hidden;margin-top:14px}.map-preview svg{display:block;width:100%;height:100%}.featured-maps{display:flex;gap:7px;justify-content:center;margin-top:10px}.featured-maps button{padding:7px 12px;border:1px solid #cbdac3;border-radius:6px;background:#eef5e7;color:#42634b;font-size:11px}.featured-maps button:hover{background:#ddebd3}
+.building-icon{width:38px;height:38px;display:grid;place-items:center}.hover-actions .building-miniature{width:38px;height:38px;fill:none;stroke:none}.hover-actions button{width:48px;height:48px;background:#f5f8ee;border:2px solid #fff;color:#47749a;box-shadow:0 4px 12px #253d6133}.hover-actions button:hover:enabled{background:#e2edd7}.hover-actions b{background:#355c44;font-size:10px;padding:3px 5px}.stats-card{border-color:#c4d3bc;background:#fcfdf8f5;color:#334f3d}.stats-card dt{color:#6c846b}.stats-card dd{font-size:11px}.building-guide{display:flex;justify-content:center;gap:44px;margin:17px 0;padding:13px 16px;border:1px solid #d0ddc8;border-radius:10px;background:#f5f8f0}.building-guide>div{display:flex;gap:9px;align-items:center;color:#4d7457}.building-guide svg{width:43px;height:43px;flex-shrink:0}.building-guide strong{display:block;font-size:12px}.building-guide small{display:block;font-size:10px;color:#71866e;margin-top:3px}
+.order-preview,.missile-alert,.lesson-hint{position:absolute;z-index:4;pointer-events:none;padding:10px 13px;border-radius:8px;font-size:12px;line-height:1.5;box-shadow:0 3px 12px #18352220;max-width:calc(100% - 24px)}.order-preview{bottom:32px;left:12px;background:#f9fcf1f5;border:1px solid #acbf9d;color:#2f5138;font-weight:650}.missile-alert{top:12px;left:50%;transform:translateX(-50%);background:#fff0e8f5;border:1px solid #d37c63;color:#9d3e2f;font-weight:750}.lesson-hint{top:12px;left:12px;max-width:330px;background:#f8fbeef2;border:1px solid #c7d9b5;color:#46613e;font-size:11px}.missile-alert:not([hidden])~.lesson-hint{top:70px}
+dialog{background:#fafcf6;color:#36543e;border:1px solid #bdcdb3;border-radius:15px;padding:25px;max-width:500px;width:calc(100% - 28px)}dialog::backdrop{background:#1f3a2c66;backdrop-filter:blur(3px)}dialog .panel{border:0;padding:10px 0;background:transparent}.audio-panel label{font-size:12px}.audio-heading button,.multiplayer-panel button{background:#e6efdd;color:#355c40;border-color:#cbdcc2}.multiplayer-panel p{font-size:12px}.multiplayer-panel small{font-size:10px}.close-dialog{float:right;position:sticky;top:0;z-index:3}
+#result-box table{width:100%;border-collapse:collapse;margin:14px 0;font-size:12px;text-align:left}#result-box th,#result-box td{padding:8px;border-bottom:1px solid #dbe5d3}#result-box td{text-align:right;font-variant-numeric:tabular-nums}#result-box thead{color:#64805f}#result-box .result-events p{font-size:10px;margin:4px 0;text-align:left}.page-footer{color:#6e856c;padding:16px 0}
+@media(max-width:1050px){.workspace{grid-template-columns:minmax(0,1fr)}.sidebar{grid-template-columns:1fr auto}.overview .faction{display:inline-block;width:49%;vertical-align:top}.overview .faction+.faction{margin-top:0}.overview .territory{margin-top:12px}.intelligence{max-width:240px}.topbar nav{gap:14px}.topbar .nav-active{display:none}}
+@media(max-width:760px){.topbar{height:60px;padding:0 14px}.topbar nav{display:flex;gap:12px}.topbar .plain{font-size:11px}.topbar .version{display:none}.brand{font-size:22px}.brand small{display:none}.page-heading{margin-bottom:12px}.page-heading h1{font-size:22px}.page-heading p{font-size:11px}.page-heading .eyebrow{display:none}main{padding:15px 10px 0}.canvas-wrap{aspect-ratio:1120/960;min-height:420px}.start-card{padding:16px;max-height:calc(100% - 16px)}.start-card .map-preview{height:120px}.start-card h2{font-size:21px}.start-card .map-opening{font-size:10px;padding:7px}.featured-maps button{font-size:10px;padding:6px 9px}.start-card #setup{gap:8px}.start-card select{font-size:11px;padding:7px}.building-guide{gap:12px;padding:10px;justify-content:space-between}.building-guide svg{width:32px;height:32px}.building-guide strong{font-size:10px}.building-guide small{font-size:8px}.building-guide>div{gap:5px}.sidebar{display:block}.intelligence{max-width:none;margin-top:10px}.order-preview{font-size:10px;padding:8px}.lesson-hint{font-size:10px;max-width:230px}.missile-alert{font-size:10px;width:max-content}.controls-strip{gap:12px}.controls-strip>div{min-width:130px}.controls-strip .control-intro{display:none}}
 </style></head>
 <body>
-<header class="topbar"><a class="brand" href="./" aria-label="Jelly Wars accueil"><span class="brand-icon"><i></i><i></i><i></i></span><span>jelly<span class="brand-light">wars</span><small>STRATÉGIE EN TEMPS RÉEL</small></span></a><nav><span class="nav-active"><span class="live-dot"></span> SOLO CONTRE L’IA</span><button id="help" class="plain" aria-label="Afficher les contrôles">Comment jouer <span class="key">?</span></button></nav><div class="version">PROTOTYPE <span>v0.5.0</span></div></header>
+<header class="topbar"><a class="brand" href="./" aria-label="Jelly Wars accueil"><span class="brand-icon"><i></i><i></i><i></i></span><span>jelly<span class="brand-light">wars</span><small>STRATÉGIE EN TEMPS RÉEL</small></span></a><nav><span id="mode-label" class="nav-active"><span class="live-dot"></span> SOLO CONTRE L’IA</span><button id="menu-solo" class="plain">Solo</button><button id="menu-multi" class="plain">Duel</button><button id="menu-settings" class="plain">Réglages</button><button id="help" class="plain" aria-label="Afficher les contrôles">Comment jouer <span class="key">?</span></button></nav><div class="version">PROTOTYPE <span>v0.7.0</span></div></header>
 <main>
-<section class="page-heading"><div><div class="eyebrow">LE TERRITOIRE SE MÉRITE.</div><h1>Prenez le contrôle<span>.</span></h1><p>Déployez vos troupes. Lisez le jeu. Gardez une longueur d’avance.</p></div><button id="new-game" class="outline"><span>↻</span> Nouvelle partie</button></section>
+<section class="page-heading"><div><div class="eyebrow">CENTRE DE COMMANDE</div><h1 id="mission-title">Chaque position compte.</h1><p id="mission-subtitle">Développez votre territoire. Choisissez vos batailles.</p></div><button id="new-game" class="outline"><span>↻</span> Nouvelle partie</button></section>
 <div class="workspace">
 <section class="battlefield" aria-label="Champ de bataille">
 <div class="battle-toolbar"><div class="map-label"><span class="map-icon">◈</span><div><strong id="map-title">Archipel</strong><small>CONQUÊTE TOTALE</small></div></div><div class="battle-status"><span id="running-dot" class="live-dot"></span><span id="status">PRÊT À JOUER</span><span class="toolbar-divider"></span><time id="timer">00:00</time><button id="pause" class="icon-btn" aria-label="Mettre en pause" title="Pause (Espace)">Ⅱ</button></div></div>
-<div class="canvas-wrap"><canvas id="board" tabindex="0" aria-label="Carte interactive. Glissez d’un bâtiment bleu vers une cible pour envoyer des troupes."></canvas><div class="map-corner top-left">SECTEUR <b id="sector">01</b></div><div class="map-corner bottom-right">JELLY WARS / TERRAIN TACTIQUE</div><div id="building-stats" class="building-stats" role="group" aria-label="Statistiques et transformations du bâtiment" hidden><div id="stats-card" class="stats-card" aria-labelledby="stats-title"><strong id="stats-title" class="sr-only"></strong><dl><dt aria-label="Défense"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6Z"/></svg></dt><dd id="stats-defense" aria-label="Défense"></dd><dt aria-label="Production par seconde"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12h6m-3-3v6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0"/></svg></dt><dd id="stats-rate" aria-label="Production par seconde"></dd><dt aria-label="Vitesse"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 5 7 7-7 7m7-14 7 7-7 7"/></svg></dt><dd id="stats-speed" aria-label="Vitesse"></dd><dt aria-label="Capacité"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-6 8v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m1 3a5 5 0 0 1 3 4v2"/></svg></dt><dd id="stats-capacity" aria-label="Capacité"></dd></dl><small id="stats-status-row" class="stat-meta overflow-meta" hidden aria-label="Surcharge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 21h20ZM12 9v5m0 3v1"/></svg><span id="stats-status"></span></small><small id="stats-poison" class="stat-meta poison-meta" hidden aria-label="Empoisonnement : une troupe toutes les deux secondes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s-7 8-7 12a7 7 0 0 0 14 0c0-4-7-12-7-12Z"/></svg><b>−1/2s</b></small><small id="stats-fort" class="stat-meta fort-meta" hidden><span aria-label="Portée"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4m0 12v4M2 12h4m12 0h4M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0"/></svg><b id="stats-range"></b></span><span aria-label="Dégâts par seconde"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-8Z"/></svg><b id="stats-shot-rate"></b></span></small></div><div id="hover-upgrades" class="hover-upgrades" hidden><small id="transform-hint">Transformer · 10 troupes</small><div class="hover-actions"><button id="upgrade-building" aria-describedby="transform-hint" type="button" aria-label="Améliorer le bâtiment"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6M5 20h14"/></svg><span>Améliorer</span><b id="upgrade-cost">10</b></button><button id="transform-silo" aria-describedby="transform-hint" type="button" aria-label="Transformer en silo pour 10 troupes" title="Silo · capacité 50 · coût 10 troupes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V9h16v12M3 21h18M8 9V5l4-3 4 3v4M9 16h6m-3-4v7"/></svg><span>Silo</span><b>10</b></button><button id="transform-fort" aria-describedby="transform-hint" type="button" aria-label="Transformer en fort pour 10 troupes" title="Fort : défense 2 · 2 tirs/s · coût 10 troupes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V4h4v4h3V4h3v4h3V4h3v17M3 21h18M9 21v-6h6v6"/></svg><span>Fort</span><b>10</b></button><div id="silo-controls" class="silo-controls" hidden><button id="missile-normal" type="button" aria-label="Fabriquer ou lancer un missile Balistique"><svg class="missile-progress" viewBox="0 0 48 48" aria-hidden="true"><circle class="progress-track" cx="24" cy="24" r="21"/><circle id="missile-progress-normal" class="progress-value" cx="24" cy="24" r="21" pathLength="100"/></svg><svg class="missile-icon" viewBox="0 0 32 32" aria-hidden="true"><g transform="rotate(45 16 16)"><path d="M16 1 11.5 10h9ZM11.5 11.5h9V25h-9ZM10 19l-5 6v5l5-3ZM22 19l5 6v5l-5-3ZM12 26.5h8V30h-8Z"/></g></svg><span>Balistique</span><b id="missile-cost-normal"></b></button><button id="missile-poison" type="button" aria-label="Fabriquer ou lancer un missile Poison"><svg class="missile-progress" viewBox="0 0 48 48" aria-hidden="true"><circle class="progress-track" cx="24" cy="24" r="21"/><circle id="missile-progress-poison" class="progress-value" cx="24" cy="24" r="21" pathLength="100"/></svg><svg class="missile-icon" viewBox="0 0 32 32" aria-hidden="true"><g transform="rotate(45 16 16)"><path d="M16 1 11.5 10h9ZM11.5 11.5h9V25h-9ZM10 19l-5 6v5l5-3ZM22 19l5 6v5l-5-3ZM12 26.5h8V30h-8Z"/></g></svg><span>Poison</span><b id="missile-cost-poison"></b></button><button id="missile-emp" type="button" aria-label="Fabriquer ou lancer un missile EMP"><svg class="missile-progress" viewBox="0 0 48 48" aria-hidden="true"><circle class="progress-track" cx="24" cy="24" r="21"/><circle id="missile-progress-emp" class="progress-value" cx="24" cy="24" r="21" pathLength="100"/></svg><svg class="missile-icon" viewBox="0 0 32 32" aria-hidden="true"><g transform="rotate(45 16 16)"><path d="M16 1 11.5 10h9ZM11.5 11.5h9V25h-9ZM10 19l-5 6v5l5-3ZM22 19l5 6v5l-5-3ZM12 26.5h8V30h-8Z"/></g></svg><span>EMP</span><b id="missile-cost-emp"></b></button></div></div></div></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
-<div id="overlay" class="overlay"><div class="start-card"><span class="card-badge">VOTRE PROCHAINE CONQUÊTE</span><div class="start-symbol"><i></i><span>↗</span><i></i></div><h2 id="overlay-title">Chaque mouvement compte.</h2><p id="overlay-description">Une carte. Deux camps. Aucune unité gratuite.<br>Le meilleur stratège l’emporte.</p><div id="setup"><label for="map-select">TERRAIN<select id="map-select"><option value="archipel">01 — Archipel</option><option value="croisee">02 — Croisée</option><option value="couronne">03 — Couronne</option><option value="vallee">04 — Vallée</option><option value="rivieres">05 — Rivières</option><option value="plateaux">06 — Plateaux</option><option value="littoral">07 — Littoral</option><option value="bastion">08 — Bastion</option></select></label><label for="neutral-forts">FORTS NEUTRES<select id="neutral-forts"><option value="terrain" selected>Selon la carte</option><option value="0">Aucun</option><option value="1">1 fort central</option><option value="3">3 forts</option></select></label><label for="difficulty">ADVERSAIRE<select id="difficulty"><option value="easy">IA · Facile</option><option value="normal" selected>IA · Normal</option><option value="hard">IA · Difficile</option></select></label></div><button id="start" class="primary">Lancer la conquête <span>↗</span></button><small class="menu-version">Jelly Wars · Version 0.5.0</small><small id="overlay-footnote">Capturez les bâtiments et éliminez les dernières troupes.</small></div></div>
+<div class="canvas-wrap"><canvas id="board" tabindex="0" aria-label="Carte interactive. Glissez d’un bâtiment bleu vers une cible pour envoyer des troupes."></canvas><div class="map-corner top-left">SECTEUR <b id="sector">01</b></div><div class="map-corner bottom-right">JELLY WARS / TERRAIN TACTIQUE</div><div id="building-stats" class="building-stats" role="group" aria-label="Statistiques et transformations du bâtiment" hidden><div id="stats-card" class="stats-card" aria-labelledby="stats-title"><strong id="stats-title" class="sr-only"></strong><dl><dt aria-label="Défense"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6Z"/></svg></dt><dd id="stats-defense" aria-label="Défense"></dd><dt aria-label="Production par seconde"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12h6m-3-3v6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0"/></svg></dt><dd id="stats-rate" aria-label="Production par seconde"></dd><dt aria-label="Vitesse"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 5 7 7-7 7m7-14 7 7-7 7"/></svg></dt><dd id="stats-speed" aria-label="Vitesse"></dd><dt aria-label="Capacité"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-6 8v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m1 3a5 5 0 0 1 3 4v2"/></svg></dt><dd id="stats-capacity" aria-label="Capacité"></dd></dl><small id="stats-status-row" class="stat-meta overflow-meta" hidden aria-label="Surcharge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 21h20ZM12 9v5m0 3v1"/></svg><span id="stats-status"></span></small><small id="stats-poison" class="stat-meta poison-meta" hidden aria-label="Empoisonnement : une troupe toutes les deux secondes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s-7 8-7 12a7 7 0 0 0 14 0c0-4-7-12-7-12Z"/></svg><b>−1/2s</b></small><small id="stats-fort" class="stat-meta fort-meta" hidden><span aria-label="Portée"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4m0 12v4M2 12h4m12 0h4M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0"/></svg><b id="stats-range"></b></span><span aria-label="Dégâts par seconde"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-8Z"/></svg><b id="stats-shot-rate"></b></span></small></div><div id="hover-upgrades" class="hover-upgrades" hidden><small id="transform-hint">Transformer · 10 troupes</small><div class="hover-actions"><button id="upgrade-building" aria-describedby="transform-hint" type="button" aria-label="Améliorer le bâtiment"><i id="icon-upgrade-building" class="building-icon"></i><span>Améliorer</span><b id="upgrade-cost">10</b></button><button id="transform-silo" aria-describedby="transform-hint" type="button" aria-label="Transformer en silo pour 10 troupes" title="Silo · capacité 50 · coût 10 troupes"><i id="icon-transform-silo" class="building-icon"></i><span>Silo</span><b>10</b></button><button id="transform-fort" aria-describedby="transform-hint" type="button" aria-label="Transformer en fort pour 10 troupes" title="Fort : défense 2 · 2 tirs/s · coût 10 troupes"><i id="icon-transform-fort" class="building-icon"></i><span>Fort</span><b>10</b></button><div id="silo-controls" class="silo-controls" hidden><button id="missile-normal" type="button" aria-label="Fabriquer ou lancer un missile Balistique"><svg class="missile-progress" viewBox="0 0 48 48" aria-hidden="true"><circle class="progress-track" cx="24" cy="24" r="21"/><circle id="missile-progress-normal" class="progress-value" cx="24" cy="24" r="21" pathLength="100"/></svg><svg class="missile-icon" viewBox="0 0 32 32" aria-hidden="true"><g transform="rotate(45 16 16)"><path d="M16 1 11.5 10h9ZM11.5 11.5h9V25h-9ZM10 19l-5 6v5l5-3ZM22 19l5 6v5l-5-3ZM12 26.5h8V30h-8Z"/></g></svg><span>Balistique</span><b id="missile-cost-normal"></b></button><button id="missile-poison" type="button" aria-label="Fabriquer ou lancer un missile Poison"><svg class="missile-progress" viewBox="0 0 48 48" aria-hidden="true"><circle class="progress-track" cx="24" cy="24" r="21"/><circle id="missile-progress-poison" class="progress-value" cx="24" cy="24" r="21" pathLength="100"/></svg><svg class="missile-icon" viewBox="0 0 32 32" aria-hidden="true"><g transform="rotate(45 16 16)"><path d="M16 1 11.5 10h9ZM11.5 11.5h9V25h-9ZM10 19l-5 6v5l5-3ZM22 19l5 6v5l-5-3ZM12 26.5h8V30h-8Z"/></g></svg><span>Poison</span><b id="missile-cost-poison"></b></button><button id="missile-emp" type="button" aria-label="Fabriquer ou lancer un missile EMP"><svg class="missile-progress" viewBox="0 0 48 48" aria-hidden="true"><circle class="progress-track" cx="24" cy="24" r="21"/><circle id="missile-progress-emp" class="progress-value" cx="24" cy="24" r="21" pathLength="100"/></svg><svg class="missile-icon" viewBox="0 0 32 32" aria-hidden="true"><g transform="rotate(45 16 16)"><path d="M16 1 11.5 10h9ZM11.5 11.5h9V25h-9ZM10 19l-5 6v5l5-3ZM22 19l5 6v5l-5-3ZM12 26.5h8V30h-8Z"/></g></svg><span>EMP</span><b id="missile-cost-emp"></b></button></div></div></div></div><div id="order-preview" class="order-preview" role="status" hidden></div><div id="missile-alert" class="missile-alert" role="status" hidden></div><div id="lesson-hint" class="lesson-hint" role="status" hidden></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="overlay" class="overlay"><div class="start-card"><span id="overlay-badge" class="card-badge">PRÉPARER UNE OPÉRATION</span><div id="map-preview" class="map-preview"></div><div class="featured-maps"><button id="map-croisee" type="button">Carrefour</button><button id="map-couronne" type="button">Deux fronts</button><button id="map-bastion" type="button">Forteresse</button></div><h2 id="overlay-title">Choisissez votre terrain.</h2><p id="overlay-description">Développez votre territoire et éliminez les forces adverses.</p><p id="map-opening" class="map-opening"></p><div id="result-box" hidden></div><div id="setup"><label for="map-select">TERRAIN<select id="map-select"><option value="archipel">01 — Archipel</option><option value="croisee">02 — Carrefour</option><option value="couronne">03 — Deux fronts</option><option value="vallee">04 — Vallée</option><option value="rivieres">05 — Rivières</option><option value="plateaux">06 — Plateaux</option><option value="littoral">07 — Littoral</option><option value="bastion">08 — Forteresse</option></select></label><label for="neutral-forts">FORTS NEUTRES<select id="neutral-forts"><option value="terrain" selected>Selon la carte</option><option value="0">Aucun</option><option value="1">1 fort central</option><option value="3">3 forts</option></select></label><label for="difficulty">ADVERSAIRE<select id="difficulty"><option value="easy">IA · Facile</option><option value="normal" selected>IA · Normal</option><option value="hard">IA · Difficile</option></select></label><label for="lesson">ACCOMPAGNEMENT<select id="lesson" title="Les guides vous laissent 25 secondes avant la première action de l’IA"><option value="none">Partie libre</option><option value="orders">Apprendre les ordres</option><option value="forts">Comprendre les forts</option><option value="missiles">Utiliser les missiles</option></select></label></div><button id="start" class="primary">Lancer la conquête <span>↗</span></button><small class="menu-version">Jelly Wars · Version 0.7.0</small><small id="overlay-footnote">Capturez les bâtiments et éliminez les dernières troupes.</small></div></div>
 </div>
-<div class="battle-footer"><span><i class="legend-dot blue"></i>VOUS</span><span><i class="legend-dot coral"></i>IA</span><span><i class="legend-dot gray"></i>NEUTRE</span><span class="footer-note">Les troupes se combattent aussi en chemin.</span></div>
+<div class="battle-footer"><span><i class="legend-dot blue"></i><b id="legend-blue">VOUS</b></span><span><i class="legend-dot coral"></i><b id="legend-red">IA</b></span><span><i class="legend-dot gray"></i>NEUTRE</span><span class="footer-note">Les troupes se combattent aussi en chemin.</span></div>
 </section>
-<aside class="sidebar"><section class="panel audio-panel" aria-label="Réglages audio"><div class="audio-heading"><h2>Audio</h2><button id="audio-mute" type="button" aria-pressed="false" aria-label="Couper le son">Son activé</button></div><label for="audio-volume">Volume <output id="audio-value" for="audio-volume">35 %</output></label><input id="audio-volume" type="range" min="0" max="100" value="35" step="1" aria-label="Volume des effets sonores"></section>
-<section class="panel overview"><div class="panel-heading"><h2>Rapport de force</h2><span class="tiny-label">EN DIRECT</span></div><div class="faction player"><div class="faction-title"><span class="faction-icon">◧</span><strong>Votre camp</strong><span class="faction-tag">VOUS</span></div><div class="metrics"><div><strong id="p-units">20</strong><span>UNITÉS</span></div><div><strong id="p-bases">1</strong><span>BÂTIMENTS</span></div><div><strong id="p-rate">+0.5</strong><span>PAR SEC.</span></div></div></div><div class="faction enemy"><div class="faction-title"><span class="faction-icon">◨</span><strong>Intelligence artificielle</strong></div><div class="metrics"><div><strong id="e-units">20</strong><span>UNITÉS</span></div><div><strong id="e-bases">1</strong><span>BÂTIMENTS</span></div><div><strong id="e-rate">+0.5</strong><span>PAR SEC.</span></div></div></div><div class="territory"><div><span>Contrôle du terrain</span><strong id="territory-count">2 / 9</strong></div><div id="territory-bar" class="territory-bar"><i></i><i></i><i></i></div></div></section>
+<aside class="sidebar">
+<section class="panel overview"><div class="panel-heading"><h2>Rapport de force</h2><span class="tiny-label">EN DIRECT</span></div><div class="faction player"><div class="faction-title"><span class="faction-icon">◧</span><strong id="player-label">Votre camp</strong><span id="player-tag" class="faction-tag">VOUS</span></div><div class="metrics"><div><strong id="p-units">20</strong><span>UNITÉS</span></div><div><strong id="p-bases">1</strong><span>BÂTIMENTS</span></div><div><strong id="p-rate">+0.5</strong><span>PAR SEC.</span></div></div></div><div class="faction enemy"><div class="faction-title"><span class="faction-icon">◨</span><strong id="opponent-label">Intelligence artificielle</strong></div><div class="metrics"><div><strong id="e-units">20</strong><span>UNITÉS</span></div><div><strong id="e-bases">1</strong><span>BÂTIMENTS</span></div><div><strong id="e-rate">+0.5</strong><span>PAR SEC.</span></div></div></div><div class="territory"><div><span>Contrôle du terrain</span><strong id="territory-count">2 / 9</strong></div><div id="territory-bar" class="territory-bar"><i></i><i></i><i></i></div></div></section>
 
-<section class="panel intelligence"><div class="panel-heading"><h2><span class="ai-icon">✳</span> Dans la tête de l’IA</h2><label class="switch" title="Afficher les calculs réels de l’IA"><input id="debug-toggle" type="checkbox" aria-label="Activer le mode développeur"><span></span></label></div><p id="ai-hint">Activez le mode développeur pour voir ses cibles et comprendre ses décisions.</p><div id="debug" hidden><div class="strategy-line"><span>STRATÉGIE</span><strong id="ai-strategy">Observation</strong></div><div id="ai-targets"></div><div class="debug-log" id="ai-log"></div><small id="ai-performance"></small></div><div class="fair-play"><span>◇</span> Mêmes règles. Même production.</div></section>
+<details class="panel intelligence"><summary>Analyse de l’IA</summary><div class="panel-heading"><h2><span class="ai-icon">✳</span> Dans la tête de l’IA</h2><label class="switch" title="Afficher les calculs réels de l’IA"><input id="debug-toggle" type="checkbox" aria-label="Activer le mode développeur"><span></span></label></div><p id="ai-hint">Activez le mode développeur pour voir ses cibles et comprendre ses décisions.</p><div id="debug" hidden><div class="strategy-line"><span>STRATÉGIE</span><strong id="ai-strategy">Observation</strong></div><div id="ai-targets"></div><div class="debug-log" id="ai-log"></div><small id="ai-performance"></small></div><div class="fair-play"><span>◇</span> Mêmes règles. Même production.</div></details>
 </aside></div>
-<section class="controls-strip" aria-label="Commandes"><div class="control-intro"><span>↗</span><strong>Votre prochain mouvement</strong></div><div><span class="control-num">01</span><p><b>Glissez vers une cible</b><small>Glisser : 50 % · Maj + glisser : tout.</small></p></div><div><span class="control-num">02</span><p><b>Coordonnez vos forces</b><small>Maj + clic ou rectangle de sélection.</small></p></div><div><span class="key">ESPACE</span><p><b>Prenez le temps</b><small>Mettez la partie en pause.</small></p></div></section>
-<footer class="page-footer"><span>JELLY WARS <b>/</b> UN JEU DE DÉCISIONS.</span><span>Solo v0.5.0 <i>·</i> Multijoueur prévu à la dernière étape</span></footer>
+<section id="building-guide" class="building-guide" aria-label="Types de bâtiments"></section><section class="controls-strip" aria-label="Commandes"><div class="control-intro"><span>↗</span><strong>Votre prochain mouvement</strong></div><div><span class="control-num">01</span><p><b>Glissez vers une cible</b><small>Glisser : 50 % · Maj + glisser : tout.</small></p></div><div><span class="control-num">02</span><p><b>Coordonnez vos forces</b><small>Maj + clic ou rectangle de sélection.</small></p></div><div><span class="key">ESPACE</span><p><b>Prenez le temps</b><small>Mettez la partie en pause.</small></p></div></section>
+<footer class="page-footer"><span>JELLY WARS <b>/</b> UN JEU DE DÉCISIONS.</span><span>Solo v0.7.0 <i>·</i> Duel multijoueur</span></footer>
 </main>
-<dialog id="help-dialog"><button id="close-help" class="icon-btn close-dialog" aria-label="Fermer">×</button><div class="eyebrow">GUIDE TACTIQUE</div><h2>Le terrain est à vous.</h2><p>Au niveau 1, les maisons produisent <strong>0,5 troupe/s</strong> et les forts ne produisent pas de troupes. Les neutres ne produisent pas avant leur capture.</p><ul><li><strong>Terrain :</strong> les montagnes bloquent les troupes et les tirs de fort. Les groupes contournent automatiquement les reliefs ; les missiles les survolent. Sur l’eau, les troupes apparaissent en bateau sans changement de vitesse ni de combat. Les routes traversant l’eau sont des ponts. Les forts neutres ne tirent pas avant leur capture et ne produisent pas de troupes.</li><li><strong>Glissez</strong> d’un bâtiment bleu vers un autre pour envoyer 50 % des troupes.</li><li><strong>Maj + glissez vers une cible</strong> pour envoyer toutes les troupes disponibles des bâtiments sélectionnés. Fonctionne vers les bâtiments alliés, neutres et ennemis.</li><li><strong>Maj + clic</strong> ajoute un bâtiment à votre sélection. Vous pouvez aussi tracer un rectangle sur le fond.</li><li>Glissez depuis un bâtiment sélectionné pour donner le même ordre à tout le groupe.</li> <li>En chemin, une unité élimine une unité adverse. Au bâtiment, les attaquants sont divisés par sa défense : défense 1 sans réduction, défense 2 dégâts divisés par deux. Les survivants continuent leur route.</li><li>Survolez un bâtiment pour consulter ses statistiques. Les maisons sont rondes, les forts hexagonaux et les silos carrés.</li><li>Survolez une maison de votre camp et cliquez sur une petite icône pour la transformer : 10 troupes pour un fort (défense 2, production 0/s) ou un silo (production 0/s, capacité 50). Transformation immédiate et définitive. Une garnison au-dessus de sa capacité subit une attrition progressive.</li><li>Un fort avec au moins 1 troupe tire automatiquement : 1 dégât par tir, 2 tirs/s, portée de 240 unités de carte. Survolez le fort ou le bouton Fort avant construction pour prévisualiser sa portée. Sa garnison ne consomme pas de munition. Le type est conservé après capture.</li><li>La capacité dépend du type et du niveau : consultez la fiche au survol. Au niveau 1 : 20 pour les maisons, 50 pour les forts. Les envois ne sont pas limités par la capacité de la cible, alliée ou ennemie. Au-delà de sa capacité, un bâtiment arrête sa production et perd progressivement 10 % de ses troupes excédentaires par seconde. Les pertes cessent à la limite ou après avoir libéré assez de place. Un bâtiment est capturé lorsqu’il reste au moins un attaquant.</li><li><strong>Quatre niveaux pour maisons et forts, trois pour le silo.</strong> La flèche au survol améliore le bâtiment : 10, puis 20, puis 30 troupes pour les niveaux 2, 3 et 4. Améliorer une maison verrouille son type : elle ne peut plus devenir un fort. La spécialisation en fort ou silo est aussi définitive. Type et niveau sont conservés après capture. Le coût et les prochaines statistiques sont visibles sur le bouton.</li><li><strong>Silo :</strong> capacité 50/75/100, améliorations 20 puis 40 troupes. Il ne produit pas de troupes : envoyez-lui des renforts pour payer ses missiles. Un seul missile stocké ou en fabrication. Balistique N1 : 25 troupes, 10 s, cible rendue neutre. Poison N2 : 30 troupes, 10 s, −1 troupe toutes les 2 s jusqu’à capture. EMP N3 : 40 troupes, 15 s, cible capturée. La garnison est conservée lors de la neutralisation et de l’EMP.</li><li>Survolez le silo, cliquez sur un missile pour le fabriquer, puis sur son bouton marqué ✓ pour viser. Cliquez ensuite sur un bâtiment adverse ; l’EMP peut aussi capturer un neutre. Échap annule le ciblage sans perdre le missile. Portée : toute la carte. Le vol balistique dure 1,5 s après le lancement. Si le silo est capturé ou neutralisé, la fabrication est annulée sans remboursement et le missile stocké est perdu. Les missiles déjà en vol continuent. Le poison ne se cumule pas et ne disparaît pas lors d’une simple neutralisation.</li><li>La victoire exige l’élimination de tous les bâtiments et groupes ennemis.</li><li><strong>Espace</strong> : pause. <strong>Échap</strong> : désélectionner. Sur écran tactile, glissez pour attaquer.</li></ul><button id="help-ok" class="primary">À moi de jouer <span>↗</span></button></dialog>
-<script>(()=>{
+<dialog id="help-dialog"><button id="close-help" class="icon-btn close-dialog" aria-label="Fermer">×</button><div class="eyebrow">GUIDE TACTIQUE</div><h2>Le terrain est à vous.</h2><p>Au niveau 1, les maisons produisent <strong>0,5 troupe/s</strong> et les forts ne produisent pas de troupes. Les neutres ne produisent pas avant leur capture.</p><ul><li><strong>Terrain :</strong> les montagnes bloquent les troupes et les tirs de fort. Les groupes contournent automatiquement les reliefs ; les missiles les survolent. Sur l’eau, les troupes apparaissent en bateau sans changement de vitesse ni de combat. Les routes traversant l’eau sont des ponts. Les forts neutres tirent sur les deux camps tant qu’ils ont une garnison, sans produire de troupes.</li><li><strong>Glissez</strong> d’un bâtiment bleu vers un autre pour envoyer 50 % des troupes.</li><li><strong>Maj + glissez vers une cible</strong> pour envoyer toutes les troupes disponibles des bâtiments sélectionnés. Fonctionne vers les bâtiments alliés, neutres et ennemis.</li><li><strong>Maj + clic</strong> ajoute un bâtiment à votre sélection. Vous pouvez aussi tracer un rectangle sur le fond.</li><li>Glissez depuis un bâtiment sélectionné pour donner le même ordre à tout le groupe.</li> <li>En chemin, une unité élimine une unité adverse. Au bâtiment, les attaquants sont divisés par sa défense : défense 1 sans réduction, défense 2 dégâts divisés par deux. Les survivants continuent leur route.</li><li>Survolez un bâtiment pour consulter ses statistiques. Les maisons sont rondes, les forts hexagonaux et les silos carrés.</li><li>Survolez une maison de votre camp et cliquez sur une petite icône pour la transformer : 10 troupes pour un fort (défense 2, production 0/s) ou un silo (production 0/s, capacité 50). Transformation immédiate et définitive. Une garnison au-dessus de sa capacité subit une attrition progressive.</li><li>Un fort avec au moins 1 troupe tire automatiquement : 1 dégât par tir, 2 tirs/s, portée de 240 unités de carte. Survolez le fort ou le bouton Fort avant construction pour prévisualiser sa portée. Sa garnison ne consomme pas de munition. Le type est conservé après capture.</li><li>La capacité dépend du type et du niveau : consultez la fiche au survol. Au niveau 1 : 20 pour les maisons, 50 pour les forts. Les envois ne sont pas limités par la capacité de la cible, alliée ou ennemie. Au-delà de sa capacité, un bâtiment arrête sa production et perd progressivement 10 % de ses troupes excédentaires par seconde. Les pertes cessent à la limite ou après avoir libéré assez de place. Un bâtiment est capturé lorsqu’il reste au moins un attaquant.</li><li><strong>Quatre niveaux pour maisons et forts, trois pour le silo.</strong> La flèche au survol améliore le bâtiment : 10, puis 20, puis 30 troupes pour les niveaux 2, 3 et 4. Améliorer une maison verrouille son type : elle ne peut plus devenir un fort. La spécialisation en fort ou silo est aussi définitive. Type et niveau sont conservés après capture. Le coût et les prochaines statistiques sont visibles sur le bouton.</li><li><strong>Silo :</strong> capacité 50/75/100, améliorations 20 puis 40 troupes. Il ne produit pas de troupes : envoyez-lui des renforts pour payer ses missiles. Un seul missile stocké ou en fabrication. Balistique N1 : 25 troupes, 10 s, cible rendue neutre. Poison N2 : 30 troupes, 10 s, −1 troupe toutes les 2 s jusqu’à capture. EMP N3 : 40 troupes, 15 s, cible capturée. La garnison est conservée lors de la neutralisation et de l’EMP.</li><li>Survolez le silo, cliquez sur un missile pour le fabriquer, puis sur son bouton marqué ✓ pour viser. Cliquez ensuite sur un bâtiment adverse ; l’EMP peut aussi capturer un neutre. Échap annule le ciblage sans perdre le missile. Portée : toute la carte. Le vol dure 4 s, avec un compte à rebours sur la cible après le lancement. Si le silo est capturé ou neutralisé, la fabrication est annulée sans remboursement et le missile stocké est perdu. Les missiles déjà en vol continuent. Le poison ne se cumule pas et ne disparaît pas lors d’une simple neutralisation.</li><li>La victoire exige l’élimination de tous les bâtiments et groupes ennemis.</li><li><strong>Espace</strong> : pause. <strong>Échap</strong> : désélectionner. Sur écran tactile, glissez pour attaquer.</li></ul><button id="help-ok" class="primary">À moi de jouer <span>↗</span></button></dialog>
+<dialog id="network-dialog"><button id="close-network" class="icon-btn close-dialog" aria-label="Fermer le multijoueur">×</button><section class="panel multiplayer-panel" aria-label="Multijoueur"><h2>Jouer à deux</h2><p>L’hôte choisit la carte, crée une invitation et l’envoie à son ami. L’ami colle l’invitation et renvoie sa réponse. L’hôte colle la réponse et confirme.</p><div id="net-setup"><div class="net-actions"><button id="net-host" type="button">Créer</button><button id="net-join" type="button">Rejoindre</button><button id="net-accept" type="button" disabled>Confirmer</button></div><label for="net-in">Code reçu</label><textarea id="net-in" rows="2" spellcheck="false" placeholder="Colle ici l’invitation ou la réponse"></textarea><label for="net-out">Code à partager</label><textarea id="net-out" rows="2" readonly spellcheck="false" aria-label="Code à partager"></textarea><button id="net-copy" type="button">Copier le code</button><button id="net-link" type="button">Copier le lien d’invitation</button><button id="net-local" type="button">Tester dans 2 onglets</button><small>Le code LOCAL fonctionne seulement entre onglets du même navigateur.</small></div><p id="net-status" role="status" aria-live="polite">Mode solo · aucune connexion</p><button id="net-leave" type="button" hidden>Quitter et revenir au solo</button><small>Connexion directe. Certains réseaux restrictifs peuvent la bloquer. Gardez l’onglet de l’hôte ouvert.</small></section></dialog><dialog id="settings-dialog"><button id="close-settings" class="icon-btn close-dialog" aria-label="Fermer les réglages">×</button><section class="panel audio-panel" aria-label="Réglages audio"><div class="audio-heading"><h2>Audio</h2><button id="audio-mute" type="button" aria-pressed="false" aria-label="Couper le son">Son activé</button></div><label for="audio-volume">Volume <output id="audio-value" for="audio-volume">35 %</output></label><input id="audio-volume" type="range" min="0" max="100" value="35" step="1" aria-label="Volume des effets sonores"></section></dialog><script>(()=>{
 'use strict';
-const modules={"src/audio/SoundManager.js":(exports,__require)=>{
-// Small synthesized cues: no downloads, dependencies or audio before a gesture.
-class SoundManager{
- constructor(env=globalThis){
-  this.env=env;this.context=null;this.master=null;this.voices=new Set();this.last=new Map();this.volume=.35;this.muted=false;
-  try{const saved=JSON.parse(env.localStorage?.getItem('jelly-wars-audio')??'null');if(saved){if(Number.isFinite(saved.volume))this.volume=Math.max(0,Math.min(1,saved.volume));this.muted=saved.muted===true;}}catch{}
- }
- save(){try{this.env.localStorage?.setItem('jelly-wars-audio',JSON.stringify({volume:this.volume,muted:this.muted}));}catch{}}
- setVolume(value){const n=Number(value);if(!Number.isFinite(n))return;this.volume=Math.max(0,Math.min(1,n));this.apply();this.save();}
- setMuted(value){this.muted=!!value;this.apply();this.save();}
- apply(){if(this.master)this.master.gain.setValueAtTime(this.muted?0:this.volume*.35,this.context.currentTime);}
- unlock(){
-  try{
-   const Audio=this.env.AudioContext??this.env.webkitAudioContext;if(!Audio)return;
-   if(!this.context){this.context=new Audio();this.master=this.context.createGain();this.master.connect(this.context.destination);this.apply();}
-   if(this.context.state==='suspended')this.context.resume()?.catch(()=>{});
-  }catch{/* Browsers without Web Audio still run the game. */}
- }
- stop(){for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.last.clear();}
- play(event){
-  const c=this.context;if(!c||c.state!=='running'||this.muted||this.volume===0||this.voices.size>=12)return;
-  const kind=event.type,now=c.currentTime;
-  if(now-(this.last.get(kind)??-Infinity)<(kind==='shot'?.08:.045))return;
-  const cues={send:[400,650,.1,'sine'],capture:[520,1040,.32,'sine'],neutralize:[400,180,.25,'triangle'],shot:[190,65,.09,'triangle'],missileLaunch:[150,850,.4,'sawtooth'],missileImpact:[130,35,.28,'triangle'],upgrade:[600,900,.16,'sine'],transform:[330,660,.16,'sine']};
-  const cue=cues[kind];if(!cue)return;this.last.set(kind,now);
-  try{
-   const [from,to,duration,type]=cue,osc=c.createOscillator(),gain=c.createGain();osc.type=type;
-   osc.frequency.setValueAtTime(from,now);osc.frequency.exponentialRampToValueAtTime(to,now+duration);
-   const strength=kind==='shot'?.22:kind==='missileLaunch'?.18:.4;
-   gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(strength,now+.008);gain.gain.exponentialRampToValueAtTime(.0001,now+duration);
-   osc.connect(gain);gain.connect(this.master);this.voices.add(osc);
-   osc.onended=()=>{this.voices.delete(osc);osc.disconnect();gain.disconnect();};osc.start(now);osc.stop(now+duration+.01);
-  }catch{/* An unavailable audio device must never interrupt simulation. */}
- }
-}
-
-Object.assign(exports,{SoundManager});
-},
-"src/game/BuildingTypes.js":(exports,__require)=>{
+const modules={"src/game/BuildingTypes.js":(exports,__require)=>{
 const TRANSFORM_COST = 10;
 const MAX_LEVEL = 4;
 const BUILDING_TYPES = Object.freeze({
@@ -144,6 +121,70 @@ const upgradeCost = b => typeOf(b)==='silo'?(levelOf(b)<3?levelOf(b)*20:null):le
 const statsFor = (type, level) => BUILDING_LEVELS[type]?.[level - 1];
 
 Object.assign(exports,{TRANSFORM_COST,MAX_LEVEL,BUILDING_TYPES,BUILDING_LEVELS,typeOf,levelOf,typeLabel,canTransform,upgradeCost,statsFor});
+},
+"src/game/BuildingStats.js":(exports,__require)=>{
+const {BUILDING_TYPES}=__require("src/game/BuildingTypes.js");
+
+const DEFAULT_BUILDING_STATS=Object.freeze({defense:BUILDING_TYPES.house.defense,rate:BUILDING_TYPES.house.rate,troopSpeed:BUILDING_TYPES.house.troopSpeed,capacity:BUILDING_TYPES.house.capacity});
+const capacityOf=b=>b.capacity??DEFAULT_BUILDING_STATS.capacity;
+const defenseOf=b=>Math.max(1,b.defense??DEFAULT_BUILDING_STATS.defense);
+const speedOf=b=>b.troopSpeed??DEFAULT_BUILDING_STATS.troopSpeed;
+function reservedFor(state,b,owner=b.owner){return state.armies.filter(a=>a.target===b.id&&a.owner===owner&&a.units>0).reduce((n,a)=>n+a.units,0);}
+function freeSpace(state,b,owner=b.owner){return Math.max(0,capacityOf(b)-(b.owner===owner?b.units:0));}
+const OVERFLOW_DECAY_RATE=.1;
+function predictedGarrison(state,b,seconds){
+ const time=Math.max(0,seconds),capacity=capacityOf(b);
+ const garrison=b.units>capacity?capacity+Math.ceil((b.units-capacity)*Math.exp(-OVERFLOW_DECAY_RATE*time)):Math.min(capacity,b.units+Math.floor(time*b.rate));
+ // Incoming troops are a conservative estimate: their exact arrival/decay ordering is unknown here.
+ return garrison+reservedFor(state,b);
+}
+
+
+Object.assign(exports,{DEFAULT_BUILDING_STATS,capacityOf,defenseOf,speedOf,reservedFor,freeSpace,OVERFLOW_DECAY_RATE,predictedGarrison});
+},
+"src/game/Map.js":(exports,__require)=>{
+const {BUILDING_TYPES}=__require("src/game/BuildingTypes.js");
+
+const {DEFAULT_BUILDING_STATS}=__require("src/game/BuildingStats.js");
+
+const MAP_SPACING=1.4;
+const WORLD={width:1120*MAP_SPACING,height:760*MAP_SPACING};
+// Symmetric maps: identical starting forces, rates and access for both factions.
+const layouts={
+ archipel:[[160,380,1,44],[960,380,2,44],[330,200,0,12],[790,560,0,12],[330,560,0,12],[790,200,0,12],[150,130,0,8],[970,630,0,8],[560,380,0,20]],
+ croisee:[[130,380,1,20],[990,380,2,20],[310,380,0,6],[810,380,0,6],[560,380,0,4,'fort'],[330,150,0,8],[790,610,0,8],[330,610,0,10],[790,150,0,10]],
+ couronne:[[150,380,1,20],[970,380,2,20],[280,180,0,5],[840,580,0,5],[280,580,0,9],[840,180,0,9],[510,140,0,12],[610,620,0,12],[560,380,0,6,'fort']],
+ vallee:[[130,380,1,20],[990,380,2,20],[350,160,0,8],[770,600,0,8],[350,600,0,10],[770,160,0,10],[150,130,0,8],[970,630,0,8],[560,380,0,12,'fort']],
+ rivieres:[[130,380,1,20],[990,380,2,20],[340,170,0,6,'fort'],[780,590,0,6,'fort'],[340,590,0,10],[780,170,0,10],[130,620,0,8],[990,140,0,8],[560,380,0,12,'fort']],
+ plateaux:[[140,380,1,20],[980,380,2,20],[330,150,0,8,'fort'],[790,610,0,8,'fort'],[330,610,0,10],[790,150,0,10],[540,140,0,10],[580,620,0,10],[560,380,0,12,'fort']],
+ littoral:[[160,380,1,20],[960,380,2,20],[350,190,0,8,'fort'],[770,570,0,8,'fort'],[350,570,0,10],[770,190,0,10],[140,650,0,8],[980,110,0,8],[560,380,0,18]],
+ bastion:[[140,380,1,20],[980,380,2,20],[340,200,0,5],[780,560,0,5],[340,560,0,9],[780,200,0,9],[540,120,0,12],[580,640,0,12],[560,380,0,4,'fort']]
+};
+const MAP_NAMES={archipel:'Archipel',croisee:'Carrefour',couronne:'Deux fronts',vallee:'Vallée',rivieres:'Rivières',plateaux:'Plateaux',littoral:'Littoral',bastion:'Forteresse'};
+function makeMap(name='archipel',neutralForts='terrain'){
+ const layout=layouts[name]??layouts.archipel,center=layout.findIndex(([x,y])=>x===560&&y===380);
+ return layout.map(([x,y,owner,units,type='house'],i)=>{
+  if(owner===0&&['0','1','3'].includes(neutralForts)){
+   type=neutralForts!=='0'&&(i===center||neutralForts==='3'&&[2,3].includes(i))?'fort':'house';
+   if(type==='fort')units=i===center?4:6;
+  }
+  const stats=type==='fort'?BUILDING_TYPES.fort:DEFAULT_BUILDING_STATS;
+  return {id:`b${i}`,name:String(i+1).padStart(2,'0'),x:x*MAP_SPACING,y:y*MAP_SPACING,owner,units:Math.min(units,stats.capacity),type,level:1,typeLocked:type!=='house',nextShotTick:0,range:0,shotDamage:0,shotInterval:1,production:0,...stats,defenseDamage:0,radius:37.2};
+ });
+}
+
+const MAP_BRIEFS={
+ archipel:{theme:'Traversées',description:'Un fleuve sépare les deux rives. Prenez pied autour des ponts ou traversez en bateau.',opening:'Commencez par la petite maison proche de votre rive.'},
+ croisee:{theme:'Centre disputé',description:'Le fort central contrôle les approches. Développez vos maisons latérales ou investissez dans sa capture.',opening:'La maison à 6 troupes ouvre la route ; le fort exige un assaut préparé.'},
+ couronne:{theme:'Deux fronts',description:'Une ouverture économique au nord et une route plus coûteuse au sud : répartissez vos forces ou concentrez-les.',opening:'La maison à 5 troupes accélère votre expansion ; surveillez l’autre front.'},
+ bastion:{theme:'Siège et contournement',description:'Un fort protégé par quatre massifs. Les passages extérieurs permettent d’éviter le centre.',opening:'Capturez une maison proche avant de préparer l’assaut du fort.'},
+ vallee:{theme:'Reliefs',description:'Les massifs imposent des détours autour du centre.',opening:'Comparez le trajet direct et l’ouverture latérale.'},
+ rivieres:{theme:'Forts et traversées',description:'Trois forts et deux rivières rendent les déplacements exposés.',opening:'Développez votre rive avant de traverser les zones de tir.'},
+ plateaux:{theme:'Positions fortifiées',description:'Des positions isolées et des passages entre les massifs.',opening:'Conservez une réserve et privilégiez les trajets protégés.'},
+ littoral:{theme:'Façades maritimes',description:'Deux forts encadrent un terrain ouvert entre les côtes.',opening:'L’eau ne ralentit pas : surveillez aussi les trajets hors des routes.'}
+};
+
+Object.assign(exports,{MAP_SPACING,WORLD,MAP_NAMES,makeMap,MAP_BRIEFS});
 },
 "src/game/Navigation.js":(exports,__require)=>{
 // Deterministic visibility graph around mountain footprints, with room for army bubbles.
@@ -216,59 +257,6 @@ function remainingRoute(army,time){return [positionOnRoute(army,time),...routeLe
 
 Object.assign(exports,{WALL_CLEARANCE,pathLength,segmentBlocked,lineClear,routeBetween,routeLegs,positionOnRoute,armyVelocity,remainingRoute});
 },
-"src/game/BuildingStats.js":(exports,__require)=>{
-const {BUILDING_TYPES}=__require("src/game/BuildingTypes.js");
-
-const DEFAULT_BUILDING_STATS=Object.freeze({defense:BUILDING_TYPES.house.defense,rate:BUILDING_TYPES.house.rate,troopSpeed:BUILDING_TYPES.house.troopSpeed,capacity:BUILDING_TYPES.house.capacity});
-const capacityOf=b=>b.capacity??DEFAULT_BUILDING_STATS.capacity;
-const defenseOf=b=>Math.max(1,b.defense??DEFAULT_BUILDING_STATS.defense);
-const speedOf=b=>b.troopSpeed??DEFAULT_BUILDING_STATS.troopSpeed;
-function reservedFor(state,b,owner=b.owner){return state.armies.filter(a=>a.target===b.id&&a.owner===owner&&a.units>0).reduce((n,a)=>n+a.units,0);}
-function freeSpace(state,b,owner=b.owner){return Math.max(0,capacityOf(b)-(b.owner===owner?b.units:0));}
-const OVERFLOW_DECAY_RATE=.1;
-function predictedGarrison(state,b,seconds){
- const time=Math.max(0,seconds),capacity=capacityOf(b);
- const garrison=b.units>capacity?capacity+Math.ceil((b.units-capacity)*Math.exp(-OVERFLOW_DECAY_RATE*time)):Math.min(capacity,b.units+Math.floor(time*b.rate));
- // Incoming troops are a conservative estimate: their exact arrival/decay ordering is unknown here.
- return garrison+reservedFor(state,b);
-}
-
-
-Object.assign(exports,{DEFAULT_BUILDING_STATS,capacityOf,defenseOf,speedOf,reservedFor,freeSpace,OVERFLOW_DECAY_RATE,predictedGarrison});
-},
-"src/game/Map.js":(exports,__require)=>{
-const {BUILDING_TYPES}=__require("src/game/BuildingTypes.js");
-
-const {DEFAULT_BUILDING_STATS}=__require("src/game/BuildingStats.js");
-
-const MAP_SPACING=1.4;
-const WORLD={width:1120*MAP_SPACING,height:760*MAP_SPACING};
-// Symmetric maps: identical starting forces, rates and access for both factions.
-const layouts={
- archipel:[[160,380,1,44],[960,380,2,44],[330,200,0,12],[790,560,0,12],[330,560,0,12],[790,200,0,12],[150,130,0,8],[970,630,0,8],[560,380,0,20]],
- croisee:[[130,380,1,48],[990,380,2,48],[330,380,0,10],[790,380,0,10],[560,380,0,26],[350,170,0,12],[770,590,0,12],[350,590,0,12],[770,170,0,12]],
- couronne:[[180,380,1,42],[940,380,2,42],[280,180,0,10],[840,580,0,10],[280,580,0,10],[840,180,0,10],[490,130,0,14],[630,630,0,14],[560,380,0,18]],
- vallee:[[130,380,1,20],[990,380,2,20],[350,160,0,8],[770,600,0,8],[350,600,0,10],[770,160,0,10],[150,130,0,8],[970,630,0,8],[560,380,0,12,'fort']],
- rivieres:[[130,380,1,20],[990,380,2,20],[340,170,0,6,'fort'],[780,590,0,6,'fort'],[340,590,0,10],[780,170,0,10],[130,620,0,8],[990,140,0,8],[560,380,0,12,'fort']],
- plateaux:[[140,380,1,20],[980,380,2,20],[330,150,0,8,'fort'],[790,610,0,8,'fort'],[330,610,0,10],[790,150,0,10],[540,140,0,10],[580,620,0,10],[560,380,0,12,'fort']],
- littoral:[[160,380,1,20],[960,380,2,20],[350,190,0,8,'fort'],[770,570,0,8,'fort'],[350,570,0,10],[770,190,0,10],[140,650,0,8],[980,110,0,8],[560,380,0,18]],
- bastion:[[140,380,1,20],[980,380,2,20],[340,200,0,10],[780,560,0,10],[340,560,0,10],[780,200,0,10],[540,120,0,8],[580,640,0,8],[560,380,0,12,'fort']]
-};
-const MAP_NAMES={archipel:'Archipel',croisee:'Croisée',couronne:'Couronne',vallee:'Vallée',rivieres:'Rivières',plateaux:'Plateaux',littoral:'Littoral',bastion:'Bastion'};
-function makeMap(name='archipel',neutralForts='terrain'){
- const layout=layouts[name]??layouts.archipel,center=layout.findIndex(([x,y])=>x===560&&y===380);
- return layout.map(([x,y,owner,units,type='house'],i)=>{
-  if(owner===0&&['0','1','3'].includes(neutralForts)){
-   type=neutralForts!=='0'&&(i===center||neutralForts==='3'&&[2,3].includes(i))?'fort':'house';
-   if(type==='fort')units=i===center?10:8;
-  }
-  const stats=type==='fort'?BUILDING_TYPES.fort:DEFAULT_BUILDING_STATS;
-  return {id:`b${i}`,name:String(i+1).padStart(2,'0'),x:x*MAP_SPACING,y:y*MAP_SPACING,owner,units:Math.min(units,stats.capacity),type,level:1,typeLocked:type!=='house',nextShotTick:0,range:0,shotDamage:0,shotInterval:1,production:0,...stats,defenseDamage:0,radius:37.2};
- });
-}
-
-Object.assign(exports,{MAP_SPACING,WORLD,MAP_NAMES,makeMap});
-},
 "src/game/Terrain.js":(exports,__require)=>{
 const {MAP_SPACING}=__require("src/game/Map.js");
 
@@ -276,8 +264,8 @@ const {routeBetween}=__require("src/game/Navigation.js");
 
 const layouts={
  archipel:{water:[[[420,0],[700,0],[650,150],[610,260],[665,470],[620,610],[700,760],[420,760],[470,610],[455,470],[510,260],[470,150]]],mountains:[],seed:11},
- croisee:{water:[[[0,50],[250,75],[450,260],[670,500],[870,685],[1120,710],[1120,760],[850,735],[610,540],[420,315],[230,135],[0,110]]],mountains:[],seed:22},
- couronne:{water:[[[365,270],[460,210],[625,220],[730,310],[740,470],[650,540],[480,550],[380,460]]],mountains:[],seed:33},
+ croisee:{water:[[[0,50],[250,75],[450,260],[670,500],[870,685],[1120,710],[1120,760],[850,735],[610,540],[420,315],[230,135],[0,110]]],mountains:[[465,130,190,100],[465,530,190,100]],seed:22},
+ couronne:{water:[[[365,270],[460,210],[625,220],[730,310],[740,470],[650,540],[480,550],[380,460]]],mountains:[[395,260,105,90],[620,410,105,90]],seed:33},
  vallee:{water:[[[0,660],[260,620],[430,690],[690,70],[860,140],[1120,100],[1120,145],[865,185],[710,115],[450,735],[265,665],[0,705]]],mountains:[[480,70,160,150],[480,540,160,150]],seed:44},
  rivieres:{water:[[[230,0],[300,0],[390,220],[440,410],[480,760],[415,760],[375,425],[330,240]],[[640,0],[705,0],[745,335],[790,520],[890,760],[820,760],[730,540],[680,350]]],mountains:[[420,270,90,100],[610,390,90,100]],seed:55},
  plateaux:{water:[[[0,0],[200,0],[160,100],[0,200]],[[1120,760],[920,760],[960,660],[1120,560]]],mountains:[[400,240,100,130],[620,390,100,130],[60,70,160,95],[900,595,160,95]],seed:66},
@@ -314,6 +302,173 @@ function makeTerrain(map,buildings=[]){
 
 Object.assign(exports,{pointInPolygon,isWater,makeTerrain});
 },
+"src/rendering/BuildingIcons.js":(exports,__require)=>{
+// One visual vocabulary for the map and the floating controls: roof, bastions, hatches.
+function buildingIcon(type,level=1,action=''){
+ const house=`<rect x="8" y="7" width="25" height="23" rx="2" fill="#e9ddc3" stroke="#52675e" stroke-width="2"/><path d="M8 18.5h25M20.5 7v23" stroke="currentColor" stroke-width="5"/><rect x="35" y="29" width="16" height="17" rx="2" fill="currentColor"/><circle cx="13" cy="45" r="6" fill="#6f9364"/>${level>1?'<rect x="36" y="8" width="15" height="16" fill="currentColor" rx="2"/>':''}${level>2?'<rect x="20" y="36" width="10" height="15" fill="#e9ddc3" stroke="currentColor" stroke-width="3"/>':''}`;
+ const fort=`<path d="M10 10h40v40H10Z" fill="#d5d9d0" stroke="#53675e" stroke-width="5"/>${[[5,5],[43,5],[5,43],[43,43]].map(([x,y])=>`<rect x="${x}" y="${y}" width="12" height="12" rx="1" fill="currentColor" stroke="#394f47" stroke-width="2"/>`).join('')}<circle cx="30" cy="30" r="${level>2?12:9}" fill="currentColor"/><path d="M30 25V13" stroke="#354c45" stroke-width="5"/>`;
+ const silo=`<rect x="12" y="3" width="36" height="54" rx="5" fill="#8c9e95" stroke="#415c50" stroke-width="2"/><path d="M16 7v46m28-46v46" stroke="#e7d990" stroke-width="1.5" stroke-dasharray="4 3"/>${[17,39].map((y,i)=>`<circle cx="30" cy="${y}" r="10" fill="#344f44" stroke="#c5cdc2" stroke-width="2"/>${i<level-1?`<path d="m27 ${y+6} 3-14 3 14-3-2Z" fill="#f1e9d3" stroke="#d16c50" stroke-width="1.5"/>`:`<path d="m23 ${y+6} 14-12" stroke="#e2e5d7" stroke-width="3"/>`}`).join('')}<path d="m27 23 3-15 3 15-3-2Z" fill="#f7edcd" stroke="#d16c50" stroke-width="1.2"/>`;
+ const badge=action==='build'?'<circle cx="53" cy="9" r="9" fill="#fff"/><path d="M48 9h10m-5-5v10" stroke="#315a47" stroke-width="2.5"/>':action==='upgrade'?`<rect x="35" y="0" width="25" height="17" rx="5" fill="#fff"/><text x="47" y="12" text-anchor="middle" font-family="system-ui" font-size="11" font-weight="800" fill="#315a47">N${level}</text>`:'';
+ return `<svg class="building-miniature" viewBox="0 0 64 64" aria-hidden="true" fill="none">${type==='fort'?fort:type==='silo'?silo:house}${badge}</svg>`;
+}
+
+Object.assign(exports,{buildingIcon});
+},
+"src/ui/MatchPresentation.js":(exports,__require)=>{
+const escapeText=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const {makeMap,WORLD,MAP_NAMES,MAP_BRIEFS}=__require("src/game/Map.js");
+
+const {makeTerrain}=__require("src/game/Terrain.js");
+
+const {buildingIcon}=__require("src/rendering/BuildingIcons.js");
+
+function mapPreview(map,forts='terrain'){
+ const buildings=makeMap(map,forts),terrain=makeTerrain(map,buildings),points=p=>p.map(v=>`${v.x},${v.y}`).join(' ');
+ return `<svg viewBox="0 0 ${WORLD.width} ${WORLD.height}" role="img" aria-label="Aperçu du terrain ${MAP_NAMES[map]}"><rect width="100%" height="100%" fill="#dfe9d5"/>${terrain.water.map(p=>`<polygon points="${points(p)}" fill="#83b6bf"/>`).join('')}${terrain.roads.map(p=>`<polyline points="${points(p)}" fill="none" stroke="#c6baa1" stroke-width="18"/>`).join('')}${terrain.mountains.map(w=>`<rect x="${w.x}" y="${w.y}" width="${w.w}" height="${w.h}" rx="12" fill="#829078"/>`).join('')}${buildings.map(b=>`<g transform="translate(${b.x-40},${b.y-40}) scale(1.25)" style="color:${['#8d9b90','#427df0','#e97769'][b.owner]}">${buildingIcon(b.type,b.level).replace('<svg ', '<svg width="64" height="64" ')}<text x="32" y="80" font-family="system-ui" font-size="16" fill="#2e473b" text-anchor="middle">${b.units}</text></g>`).join('')}</svg>`;
+}
+function resultMarkup(state,player){
+ const own=state.stats[player],other=state.stats[3-player];
+ const rows=[['Troupes produites',own.produced??0,other.produced??0],['Troupes envoyées',own.sent,other.sent],['Pertes',own.lost,other.lost],['Captures',own.captures,other.captures],['Missiles lancés',own.missilesLaunched??0,other.missilesLaunched??0],['Pertes en surcharge',own.overflowLost??0,other.overflowLost??0]];
+ return `<table><thead><tr><th>Bilan</th><th>Vous</th><th>Adversaire</th></tr></thead><tbody>${rows.map(([label,a,b])=>`<tr><th>${label}</th><td>${escapeText(a)}</td><td>${escapeText(b)}</td></tr>`).join('')}</tbody></table><div class="result-events">${(state.timeline??[]).slice(-5).map(e=>`<p>${Math.floor(e.time/60)}:${String(Math.floor(e.time%60)).padStart(2,'0')} · ${e.owner===player?'Votre camp':e.owner?'Adversaire':'Neutralisation'} · bâtiment ${escapeText(e.building)}</p>`).join('')}</div>`;
+}
+function lessonText(state,player,selected,lesson){
+ if(lesson==='none'||!lesson)return '';
+ const stats=state.stats[player];
+ if(lesson==='orders')return stats.captures?'Capture réussie. Développez la maison capturée, puis préparez votre prochaine attaque.':stats.sent?'Vos troupes sont parties. Suivez leur trajet ; Maj + glisser envoie toute la garnison.':'Glissez depuis votre maison vers une petite maison neutre. Glisser envoie 50 %, Maj + glisser envoie tout.';
+ if(lesson==='forts')return state.buildings.some(b=>b.owner===player&&b.type==='fort')?'Fort sous votre contrôle. Gardez une garnison : un fort vide ne tire plus.':'Survolez le fort neutre pour voir sa portée. Pendant un glisser, les zones exposées apparaissent en orange. Développez vos maisons avant l’assaut.';
+ return state.buildings.some(b=>b.owner===player&&b.readyMissile)?'Missile prêt : cliquez sur son bouton puis sur une cible. Observez le compte à rebours.':'Transformez une maison N1 en silo, envoyez-lui des renforts, puis fabriquez un missile. Le silo ne produit pas de troupes.';
+}
+
+Object.assign(exports,{mapPreview,resultMarkup,lessonText});
+},
+"src/network/Multiplayer.js":(exports,__require)=>{
+const randomToken=()=>Array.from(globalThis.crypto.getRandomValues(new Uint8Array(8)),n=>n.toString(16).padStart(2,'0')).join('');
+const NETWORK_VERSION='jw-0.7.0';
+function encodeSignal(description){return 'JW7.'+btoa(JSON.stringify({version:NETWORK_VERSION,type:description.type,sdp:description.sdp}));}
+function decodeSignal(value,expected){
+ if(typeof value!=='string'||value.length>100000||!value.trim().startsWith('JW7.'))throw Error('Code de connexion invalide.');
+ let data;try{data=JSON.parse(atob(value.trim().slice(4)));}catch{throw Error('Code de connexion incomplet.');}
+ if(data.version!==NETWORK_VERSION||data.type!==expected||typeof data.sdp!=='string'||!data.sdp.startsWith('v=0'))throw Error('Code incompatible ou mauvais type de code.');
+ return {type:data.type,sdp:data.sdp};
+}
+class Multiplayer{
+ constructor({getGame,onState=()=>{},onStatus=()=>{},onReady=()=>{},onResult=()=>{},Peer=globalThis.RTCPeerConnection,now=()=>Date.now()}){
+  Object.assign(this,{getGame,onState,onStatus,onReady,onResult,Peer,now});this.role='solo';this.connected=false;this.sequence=0;this.received=0;this.lastState=0;this.events=[];this.lastReceived=0;this.closed=false;
+ }
+ send(message){if(!this.connected||this.channel?.readyState!=='open'||this.channel.bufferedAmount>500000)return false;this.channel.send(JSON.stringify({version:NETWORK_VERSION,...message}));return true;}
+ attach(channel){
+  this.channel=channel;
+  channel.onopen=()=>{this.connected=true;this.lastReceived=this.now();this.onStatus(this.role==='host'?'Joueur connecté · vous êtes bleu':'Connecté · vous êtes rouge');this.onReady();if(this.role==='host')this.publish(true);};
+  channel.onmessage=e=>this.receive(e.data);channel.onclose=()=>this.disconnect('Connexion perdue. Partie arrêtée ; recréez une invitation.');channel.onerror=()=>this.disconnect('Erreur de connexion.');
+ }
+ init(role){
+  if(!this.Peer)throw Error('Ce navigateur ne prend pas en charge WebRTC.');
+  this.role=role;this.pc=new this.Peer({iceServers:[{urls:'stun:stun.l.google.com:19302'}]});
+  this.pc.ondatachannel=e=>this.attach(e.channel);
+  this.pc.onconnectionstatechange=()=>{if(['failed','closed','disconnected'].includes(this.pc.connectionState))this.disconnect('Connexion interrompue. Recréez une invitation.');};
+ }
+ async gather(){
+  if(this.pc.iceGatheringState==='complete')return;
+  await new Promise((resolve,reject)=>{const pc=this.pc,timer=setTimeout(()=>{cleanup();reject(Error('La recherche de connexion a expiré. Réessayez.'));},12000);const done=()=>{if(pc.iceGatheringState==='complete'){cleanup();resolve();}};const cleanup=()=>{clearTimeout(timer);pc.removeEventListener('icegatheringstatechange',done);};pc.addEventListener('icegatheringstatechange',done);done();});
+ }
+ async host(){this.init('host');this.attach(this.pc.createDataChannel('jelly-wars',{ordered:true}));await this.pc.setLocalDescription(await this.pc.createOffer());await this.gather();if(!this.pc.localDescription.sdp.includes('a=candidate:'))throw Error('Aucun chemin réseau WebRTC disponible. Essayez un autre navigateur ou réseau.');return encodeSignal(this.pc.localDescription);}
+ async join(code){const offer=decodeSignal(code,'offer');this.init('guest');await this.pc.setRemoteDescription(offer);await this.pc.setLocalDescription(await this.pc.createAnswer());await this.gather();if(!this.pc.localDescription.sdp.includes('a=candidate:'))throw Error('Aucun chemin réseau WebRTC disponible. Essayez un autre navigateur ou réseau.');return encodeSignal(this.pc.localDescription);}
+ async accept(code){if(this.role!=='host'||this.pc?.signalingState!=='have-local-offer')throw Error('Créez d’abord une invitation.');await this.pc.setRemoteDescription(decodeSignal(code,'answer'));}
+ command(command){
+  if(!this.connected)return {ok:false,reason:'Adversaire déconnecté.'};
+  if(this.role==='host')return this.getGame().command({...command,player:1});
+  if(!this.send({type:'command',id:++this.sequence,command}))return {ok:false,reason:'Connexion occupée. Réessayez.'};
+  return {ok:true,pending:true};
+ }
+ receive(raw){
+  if(this.closed||typeof raw!=='string'||raw.length>200000)return;
+  let m;try{m=JSON.parse(raw);}catch{return;}if(!m||m.version!==NETWORK_VERSION)return;
+  this.lastReceived=this.now();
+  if(m.type==='ping'){this.send({type:'pong'});return;}if(m.type==='pong')return;
+  if(this.role==='host'){
+   if(m.type==='command'&&Number.isSafeInteger(m.id)&&m.id>this.received&&m.command&&typeof m.command==='object'){
+    this.received=m.id;const now=this.now();if(this.windowStart===undefined||now-this.windowStart>1000){this.windowStart=now;this.commands=0;}if(++this.commands>30)return;
+    const c=m.command;const command={type:c.type,player:2,sources:c.sources,target:c.target,fraction:c.fraction,building:c.building,buildingType:c.buildingType,missileType:c.missileType};
+    const result=this.getGame().command(command);this.send({type:'result',id:m.id,result});
+   }else if(m.type==='pause'&&typeof m.paused==='boolean')this.togglePause(m.paused);
+  }else if(this.role==='guest'){
+   if(m.type==='state'&&Number.isSafeInteger(m.id)&&m.id>this.received&&m.state&&Array.isArray(m.state.buildings)&&m.state.buildings.length===9&&Array.isArray(m.state.armies)&&Number.isSafeInteger(m.state.tick)&&['ready','running','paused','finished'].includes(m.state.status)){
+    this.received=m.id;this.lastState=this.now();this.onState(m.state,Array.isArray(m.events)?m.events:[]);
+   }else if(m.type==='result')this.onResult(m.result);
+  }
+ }
+ local(code){
+  if(!globalThis.BroadcastChannel)throw Error('Test local indisponible dans ce navigateur.');
+  this.role=code?'guest':'host';const room=code??('LOCAL-'+randomToken().slice(0,8).toUpperCase());
+  if(!/^LOCAL-[A-Z0-9-]{8}$/.test(room))throw Error('Code local invalide.');
+  const bc=new globalThis.BroadcastChannel('jw7-'+room),id=randomToken();
+  const channel={readyState:'open',bufferedAmount:0,send:raw=>bc.postMessage({id,raw}),close:()=>{bc.postMessage({id,raw:'LOCAL-BYE'});bc.close();}};
+  this.attach(channel);
+  bc.onmessage=e=>{if(this.closed||e.data?.id===id)return;const raw=e.data?.raw;
+   if(raw==='LOCAL-HELLO'&&this.role==='host'&&!this.connected){channel.send('LOCAL-READY');channel.onopen();}
+   else if(raw==='LOCAL-READY'&&this.role==='guest'&&!this.connected)channel.onopen();
+   else if(raw==='LOCAL-BYE')this.disconnect('L’autre onglet a quitté la partie.');
+   else this.receive(raw);
+  };
+  if(code)channel.send('LOCAL-HELLO');return room;
+ }
+ togglePause(paused=this.getGame().state.status==='running'){
+  if(!this.connected)return;
+  if(this.role==='guest'){this.send({type:'pause',paused});return;}
+  const s=this.getGame().state;if(['running','paused'].includes(s.status))s.status=paused?'paused':'running';this.publish(true);
+ }
+ collect(event){if(this.role==='host'&&this.connected){this.events.push(event);if(this.events.length>200)this.events.shift();}}
+ publish(force=false){
+  if(this.role!=='host'||!this.connected)return;
+  const now=this.now();if(!force&&now-(this.lastPublish??0)<100)return;
+  const state={...this.getGame().state,events:[],commandLog:[]};
+  if(this.send({type:'state',id:++this.sequence,state,events:this.events})){this.events=[];this.lastPublish=now;}
+ }
+ check(){if(!this.connected)return;const now=this.now();if(now-(this.lastPing??0)>1000){this.send({type:'ping'});this.lastPing=now;}if(now-this.lastReceived>10000)this.disconnect('L’adversaire ne répond plus. Partie arrêtée.');}
+ disconnect(reason){if(this.closed)return;this.closed=true;this.connected=false;const s=this.getGame().state;if(s.status!=='finished')s.status='paused';this.channel?.close();this.pc?.close();this.onStatus(reason);}
+ close(){this.disconnect('Session fermée.');}
+}
+
+Object.assign(exports,{NETWORK_VERSION,encodeSignal,decodeSignal,Multiplayer});
+},
+"src/audio/SoundManager.js":(exports,__require)=>{
+// Small synthesized cues: no downloads, dependencies or audio before a gesture.
+class SoundManager{
+ constructor(env=globalThis){
+  this.env=env;this.context=null;this.master=null;this.voices=new Set();this.last=new Map();this.volume=.35;this.muted=false;
+  try{const saved=JSON.parse(env.localStorage?.getItem('jelly-wars-audio')??'null');if(saved){if(Number.isFinite(saved.volume))this.volume=Math.max(0,Math.min(1,saved.volume));this.muted=saved.muted===true;}}catch{}
+ }
+ save(){try{this.env.localStorage?.setItem('jelly-wars-audio',JSON.stringify({volume:this.volume,muted:this.muted}));}catch{}}
+ setVolume(value){const n=Number(value);if(!Number.isFinite(n))return;this.volume=Math.max(0,Math.min(1,n));this.apply();this.save();}
+ setMuted(value){this.muted=!!value;this.apply();this.save();}
+ apply(){if(this.master)this.master.gain.setValueAtTime(this.muted?0:this.volume*.35,this.context.currentTime);}
+ unlock(){
+  try{
+   const Audio=this.env.AudioContext??this.env.webkitAudioContext;if(!Audio)return;
+   if(!this.context){this.context=new Audio();this.master=this.context.createGain();this.master.connect(this.context.destination);this.apply();}
+   if(this.context.state==='suspended')this.context.resume()?.catch(()=>{});
+  }catch{/* Browsers without Web Audio still run the game. */}
+ }
+ stop(){for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.last.clear();}
+ play(event){
+  const c=this.context;if(!c||c.state!=='running'||this.muted||this.volume===0||this.voices.size>=12)return;
+  const kind=event.type,now=c.currentTime;
+  if(now-(this.last.get(kind)??-Infinity)<(kind==='shot'?.08:.045))return;
+  const cues={send:[400,650,.1,'sine'],capture:[520,1040,.32,'sine'],neutralize:[400,180,.25,'triangle'],shot:[190,65,.09,'triangle'],missileLaunch:[150,850,.4,'sawtooth'],missileImpact:[130,35,.28,'triangle'],upgrade:[600,900,.16,'sine'],transform:[330,660,.16,'sine']};
+  const cue=cues[kind];if(!cue)return;this.last.set(kind,now);
+  try{
+   const [from,to,duration,type]=cue,osc=c.createOscillator(),gain=c.createGain();osc.type=type;
+   osc.frequency.setValueAtTime(from,now);osc.frequency.exponentialRampToValueAtTime(to,now+duration);
+   const strength=kind==='shot'?.22:kind==='missileLaunch'?.18:.4;
+   gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(strength,now+.008);gain.gain.exponentialRampToValueAtTime(.0001,now+duration);
+   osc.connect(gain);gain.connect(this.master);this.voices.add(osc);
+   osc.onended=()=>{this.voices.delete(osc);osc.disconnect();gain.disconnect();};osc.start(now);osc.stop(now+duration+.01);
+  }catch{/* An unavailable audio device must never interrupt simulation. */}
+ }
+}
+
+Object.assign(exports,{SoundManager});
+},
 "src/game/GameState.js":(exports,__require)=>{
 const {positionOnRoute}=__require("src/game/Navigation.js");
 
@@ -346,6 +501,7 @@ function changeOwner(state,building,owner,time=state.time){
  building.missileProduction=null;building.readyMissile=null;
  // Neutralisation is not a conquest: poison persists until a faction captures it.
  if(owner!==0){building.poison=null;state.stats[owner].captures++;}
+ state.timeline??=[];state.timeline.push({type:owner===0?'neutralize':'capture',building:building.name,owner,time});if(state.timeline.length>80)state.timeline.shift();
  state.events.push({type:owner===0?'neutralize':'capture',x:building.x,y:building.y,owner,time});
 }
 
@@ -365,7 +521,7 @@ const MISSILE_TYPES=Object.freeze({
  poison:Object.freeze({label:'Poison',level:2,cost:30,seconds:10,color:'#78a74b'}),
  emp:Object.freeze({label:'EMP',level:3,cost:40,seconds:15,color:'#779fe8'})
 });
-const MISSILE_FLIGHT_SECONDS=1.5;
+const MISSILE_FLIGHT_SECONDS=4;
 function produceMissile(state,command){
  const b=state.buildings.find(b=>b.id===command.building),spec=typeof command.missileType==='string'&&Object.hasOwn(MISSILE_TYPES,command.missileType)?MISSILE_TYPES[command.missileType]:null;
  if(!b||b.owner!==command.player||typeOf(b)!=='silo')return {ok:false,reason:'Choisissez un silo de votre camp.'};
@@ -387,7 +543,7 @@ function launchMissile(state,command){
  if(kind==='poison'&&target.poison)return {ok:false,reason:'Ce bâtiment est déjà empoisonné.'};
  state.missiles??=[];state.nextMissileId??=1;
  state.missiles.push({id:`m${state.nextMissileId++}`,type:kind,owner:command.player,source:b.id,target:target.id,x:b.x,y:b.y,tx:target.x,ty:target.y,startTick:state.tick,impactTick:state.tick+Math.round(MISSILE_FLIGHT_SECONDS/STEP)});
- b.readyMissile=null;
+ b.readyMissile=null;state.stats[command.player].missilesLaunched=(state.stats[command.player].missilesLaunched??0)+1;
  state.events.push({type:'missileLaunch',kind,owner:command.player,x:b.x,y:b.y,time:state.time});
  state.commandLog.push({type:'launchMissile',player:command.player,building:b.id,target:target.id,tick:state.tick});
  return {ok:true};
@@ -397,7 +553,7 @@ function advanceMissiles(state){
  for(const b of state.buildings){
   const job=b.missileProduction;
   if(job&&job.owner!==b.owner){b.missileProduction=null;continue;}
-  if(job&&endTick>=job.finishTick){b.readyMissile=job.type;b.missileProduction=null;}
+  if(job&&endTick>=job.finishTick){state.stats[job.owner].missilesProduced=(state.stats[job.owner].missilesProduced??0)+1;b.readyMissile=job.type;b.missileProduction=null;}
  }
  const active=[];
  for(const missile of state.missiles??[]){
@@ -429,6 +585,8 @@ function applyPoison(state){
 Object.assign(exports,{MISSILE_TYPES,MISSILE_FLIGHT_SECONDS,produceMissile,launchMissile,advanceMissiles,applyPoison});
 },
 "src/ui/BuildingPopover.js":(exports,__require)=>{
+const {buildingIcon}=__require("src/rendering/BuildingIcons.js");
+
 const {MISSILE_TYPES}=__require("src/game/Missiles.js");
 
 const {STEP}=__require("src/game/GameState.js");
@@ -483,7 +641,8 @@ class BuildingPopover{
   else if(!this.pointerInside&&!this.focusInside&&!this.inCorridor()&&now>=this.keepUntil){this.hide();return;}
   const b=game.state.buildings.find(b=>b.id===this.buildingId);if(!b){this.hide();return;}
   const box=this.element;box.hidden=false;this.canvas.setAttribute('aria-describedby',box.id);
-  this.find('stats-title').textContent=`${typeLabel(b)} ${b.name} · N${levelOf(b)} · ${['Neutre','Votre camp','IA'][b.owner]}`;
+  const iconKey=typeOf(b)+':'+levelOf(b);if(this.iconKey!==iconKey){this.iconKey=iconKey;this.find('icon-upgrade-building').innerHTML=buildingIcon(typeOf(b),Math.min(typeOf(b)==='silo'?3:4,levelOf(b)+1),'upgrade');this.find('icon-transform-fort').innerHTML=buildingIcon('fort',1,'build');this.find('icon-transform-silo').innerHTML=buildingIcon('silo',1,'build');}
+  this.find('stats-title').textContent=`${typeLabel(b)} ${b.name} · N${levelOf(b)} · ${b.owner===0?'Neutre':b.owner===(this.input.player??1)?'Votre camp':'Adversaire'}`;
   this.find('stats-defense').textContent=defenseOf(b);
   this.find('stats-rate').textContent=`${b.rate}/s`;
   this.find('stats-speed').textContent=speedOf(b);
@@ -493,14 +652,14 @@ class BuildingPopover{
   if(fort){
    this.find('stats-range').textContent=b.range;
    this.find('stats-shot-rate').textContent=`${b.shotDamage/b.shotInterval}/s`;
-   fortInfo.style.opacity=b.owner&&b.units?1:.45;
-   fortInfo.setAttribute('aria-label',`Portée ${b.range}, ${b.shotDamage/b.shotInterval} dégâts par seconde, ${b.owner===0?'fort neutre, capture requise':b.units?'garnison présente':'garnison requise'}`);
+   fortInfo.style.opacity=b.units?1:.45;
+   fortInfo.setAttribute('aria-label',`Portée ${b.range}, ${b.shotDamage/b.shotInterval} dégâts par seconde, ${b.owner===0&&b.units?'fort neutre hostile aux deux camps':b.units?'garnison présente':'garnison requise'}`);
   }
   const excess=Math.max(0,b.units-capacityOf(b));
   this.find('stats-status-row').hidden=b.owner===0||excess===0;
   this.find('stats-status').textContent=excess>0?`+${excess} · −${(excess*OVERFLOW_DECAY_RATE).toFixed(1)}/s`:'';
   this.find('stats-capacity').style.color=excess>0?'#b75b28':'';
-  const own=b.owner===1,specialize=canTransform(b),cost=upgradeCost(b);
+  const own=b.owner===(this.input.player??1),specialize=canTransform(b),cost=upgradeCost(b);
   const next=statsFor(typeOf(b),levelOf(b)+1);
   const previewRange=fort&&this.previewUpgrade&&next?next.range:fort?b.range:BUILDING_TYPES.fort.range;
   this.renderer.rangePreview=fort||own&&specialize&&this.previewFort?{building:b.id,range:previewRange}:null;
@@ -531,8 +690,8 @@ class BuildingPopover{
   const upgrade=this.find('upgrade-building');upgrade.hidden=cost===null;upgrade.disabled=!own||!running||cost===null||b.units<cost;
   this.find('upgrade-cost').textContent=cost??'MAX';
   upgrade.setAttribute('aria-label',cost===null?'Niveau maximum':`Améliorer ${typeLabel(b)} au niveau ${levelOf(b)+1} pour ${cost} troupes`);
-  upgrade.setAttribute('title',next?`Niveau ${levelOf(b)+1} · ${cost} troupes · défense ${next.defense} · ${next.rate}/s · capacité ${next.capacity}${next.range?' · portée '+next.range:''}${specialize?' · verrouille le type Maison':''}`:'Niveau maximum atteint');
-  this.find('transform-hint').textContent=!running?'Reprenez la partie pour améliorer.':cost===null?'Niveau maximum atteint.':specialize?'Choisir Fort/Silo ou améliorer la Maison : le type sera définitif.':`${typeLabel(b)} verrouillé · niveau suivant : ${cost} troupes.`;
+  upgrade.setAttribute('title',next?`${typeLabel(b)} → niveau ${levelOf(b)+1} · ${cost} troupes · défense ${next.defense} · ${next.rate}/s · capacité ${next.capacity}${next.range?' · portée '+next.range:''}${specialize?' · verrouille le type Maison':''}`:'Niveau maximum atteint');
+  this.find('transform-hint').textContent=!running?'Reprenez la partie pour améliorer.':cost===null?'Niveau maximum atteint.':specialize?'Choisir Fort/Silo ou améliorer la Maison : le type sera définitif.':`Type ${typeLabel(b)} verrouillé · niveau suivant : ${cost} troupes.`;
   const v=this.renderer.view,x=v.x+b.x*v.scale,y=v.y+b.y*v.scale;
   // A transparent anchor keeps the building itself available for dragging.
   box.style.left=`${x}px`;box.style.top=`${y}px`;
@@ -582,7 +741,7 @@ const {typeOf}=__require("src/game/BuildingTypes.js");
 // Simulation ticks own firing, independently of rendering or wall-clock time.
 function fireForts(state){
  for(const b of state.buildings){
-  if(typeOf(b)!=='fort'||b.owner===0||b.units<1||state.tick<(b.nextShotTick??0))continue;
+  if(typeOf(b)!=='fort'||b.units<1||state.tick<(b.nextShotTick??0))continue;
   const candidates=state.armies.filter(a=>a.owner!==b.owner&&a.units>0).map(a=>({a,p:armyPosition(a,state.time)})).map(e=>({...e,d:Math.hypot(e.p.x-b.x,e.p.y-b.y)})).filter(e=>e.d<=b.range&&lineClear(b,e.p,state.terrain?.mountains??[])).sort((a,c)=>a.d-c.d||Number(a.a.id.slice(1))-Number(c.a.id.slice(1)));
   const target=candidates[0];if(!target)continue;
   const damage=Math.min(b.shotDamage,target.a.units);target.a.units-=damage;state.stats[target.a.owner].lost+=damage;
@@ -720,7 +879,7 @@ class Game{
   s.events=[];
   const start=s.time,end=(s.tick+1)*STEP;
   applyOverflow(s);
-  for(const b of s.buildings){if(b.owner===0)continue;const room=freeSpace(s,b);if(room===0){b.production=0;continue;}b.production+=b.rate*STEP;const n=Math.min(room,Math.floor(b.production+1e-9));b.units+=n;b.production-=n;if(n===room)b.production=0;}
+  for(const b of s.buildings){if(b.owner===0)continue;const room=freeSpace(s,b);if(room===0){b.production=0;continue;}b.production+=b.rate*STEP;const n=Math.min(room,Math.floor(b.production+1e-9));b.units+=n;s.stats[b.owner].produced=(s.stats[b.owner].produced??0)+n;b.production-=n;if(n===room)b.production=0;}
   fireForts(s);
   const events=[];
   for(let i=0;i<s.armies.length;i++){
@@ -775,7 +934,37 @@ class Game{
 
 Object.assign(exports,{Game});
 },
+"src/game/Tactics.js":(exports,__require)=>{
+const {routeBetween,pathLength,lineClear}=__require("src/game/Navigation.js");
+
+const {speedOf,defenseOf}=__require("src/game/BuildingStats.js");
+
+// Conservative exposure estimate, shared by player preview and AI. Not a combat prediction.
+function fortExposure(state,source,target,player){
+ const path=routeBetween(source,target,state.terrain?.mountains??[]);if(!path)return {loss:Infinity,forts:[]};
+ const forts=state.buildings.filter(b=>b.type==='fort'&&b.owner!==player&&b.units>0),exposure=new Map();
+ for(let i=1;i<path.length;i++){
+  const a=path[i-1],b=path[i],length=Math.hypot(b.x-a.x,b.y-a.y),steps=Math.max(1,Math.ceil(length/20));
+  for(let j=0;j<steps;j++){const t=(j+.5)/steps,p={x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t};
+   for(const fort of forts)if(Math.hypot(fort.x-p.x,fort.y-p.y)<=fort.range&&lineClear(fort,p,state.terrain?.mountains??[]))exposure.set(fort,(exposure.get(fort)??0)+length/steps/speedOf(source));
+  }
+ }
+ return {loss:[...exposure].reduce((sum,[b,seconds])=>sum+Math.ceil(seconds/b.shotInterval)*b.shotDamage,0),forts:[...exposure.keys()].map(b=>b.id)};
+}
+function orderPreview(state,sources,target,fraction,player){
+ const routes=[],forts=new Set();let units=0,eta=0,risk=0;
+ for(const source of sources){if(source===target||source.owner!==player)continue;const sent=Math.floor(source.units*fraction);if(!sent)continue;
+  const path=routeBetween(source,target,state.terrain?.mountains??[]);if(!path)return null;
+  const exposure=fortExposure(state,source,target,player);routes.push(path);units+=sent;eta=Math.max(eta,pathLength(path)/speedOf(source));risk+=Math.min(sent,exposure.loss);for(const id of exposure.forts)forts.add(id);
+ }
+ return {routes,units,eta,risk,forts:[...forts],defense:Math.max(0,Math.ceil(target.units*defenseOf(target)-(target.defenseDamage??0)))};
+}
+
+Object.assign(exports,{fortExposure,orderPreview});
+},
 "src/ai/Evaluation.js":(exports,__require)=>{
+const {fortExposure}=__require("src/game/Tactics.js");
+
 const {routeBetween,pathLength}=__require("src/game/Navigation.js");
 
 const {speedOf,defenseOf,predictedGarrison}=__require("src/game/BuildingStats.js");
@@ -788,11 +977,14 @@ function targetScore(state,target,sources,player){
  const garrison=target.owner?predictedGarrison(state,target,eta):target.units;
  const defense=garrison*defenseOf(target)-(target.defenseDamage??0);
  const friendly=incoming(state,target,player);
- const needed=Math.max(1,defense+3-friendly);
+ const routeLoss=Math.min(...sources.map(b=>fortExposure(state,b,target,player).loss),10000);
+ const needed=Math.max(1,defense+3+routeLoss-friendly);
  const nearestEnemy=Math.min(...state.buildings.filter(b=>b.owner!==0&&b.owner!==player).map(b=>distance(b,target)),1000);
- const strategic=target.owner===0?1:1.35;
+ const control=target.type==='fort'?1+Math.min(1,state.buildings.filter(b=>b!==target&&Math.hypot(b.x-target.x,b.y-target.y)<target.range+160).length*.15):1;
+ const threat=target.type==='silo'?1+(target.readyMissile ? .5 : target.missileProduction ? .35 : .15):1;
+ const strategic=(target.owner===0?1:1.35)*control*threat;
  const score=strategic*(18+target.rate*16)/(needed+eta*4)*(0.8+Math.min(nearestEnemy,400)/1200);
- return {target:target.id,score,needed,eta,defense,friendly};
+ return {target:target.id,score,needed,eta,defense,friendly,routeLoss};
 }
 
 Object.assign(exports,{distance,travelTime,incoming,targetScore});
@@ -839,6 +1031,8 @@ function allocateAttack(state,target,sources,needed,reserves,maxSources=99){
 Object.assign(exports,{allocateAttack});
 },
 "src/ai/AIController.js":(exports,__require)=>{
+const {fortExposure}=__require("src/game/Tactics.js");
+
 const {MISSILE_TYPES}=__require("src/game/Missiles.js");
 
 const {typeOf,typeLabel,TRANSFORM_COST,canTransform,upgradeCost,levelOf}=__require("src/game/BuildingTypes.js");
@@ -860,6 +1054,10 @@ class AIController{
  think(config){
   const s=this.game.state,p=this.player,own=s.buildings.filter(b=>b.owner===p);this.debug.decisions++;this.debug.routes=[];
   const threats=analyzeThreats(s,p);this.debug.threats=threats;
+  if(config.defend){const danger=(s.missiles??[]).find(m=>m.owner!==p&&m.type==='emp'&&(m.impactTick-s.tick)/30<3);
+   const threatened=own.find(b=>b.id===danger?.target);
+   if(threatened?.units){const refuge=own.filter(b=>b!==threatened).sort((a,b)=>travelTime(threatened,a,s)-travelTime(threatened,b,s))[0];if(refuge&&this.send(threatened.id,refuge.id,threatened.units)){this.debug.strategy='Évacuation EMP';this.log(`Garnison de ${threatened.name} évacuée avant l’EMP.`);return;}}
+  }
   for(const silo of own.filter(b=>typeOf(b)==='silo')){
    if(silo.readyMissile){
     const target=s.buildings.filter(b=>b.owner!==p&&(silo.readyMissile==='emp'||b.owner!==0)&&!(silo.readyMissile==='poison'&&b.poison))
@@ -904,7 +1102,7 @@ class AIController{
    let needed=evaluation.needed;let plan=allocateAttack(s,target,own,needed,reserves,config.coordination);
    if(!plan)continue;
    const maxEta=Math.max(...plan.selected.map(a=>travelTime(own.find(b=>b.id===a.source),target,s)));
-   if(target.owner!==0){needed=Math.max(1,predictedGarrison(s,target,maxEta)*defenseOf(target)-(target.defenseDamage??0)+4-incoming(s,target,p));plan=allocateAttack(s,target,own,needed,reserves,config.coordination);if(!plan)continue;}
+   if(target.owner!==0){needed=Math.max(1,predictedGarrison(s,target,maxEta)*defenseOf(target)-(target.defenseDamage??0)+4+plan.selected.reduce((sum,a)=>sum+fortExposure(s,own.find(b=>b.id===a.source),target,p).loss,0)-incoming(s,target,p));plan=allocateAttack(s,target,own,needed,reserves,config.coordination);if(!plan)continue;}
    for(const a of plan.selected)if(this.send(a.source,target.id,a.amount))this.debug.routes.push({from:a.source,to:target.id,kind:'attack'});
    this.debug.strategy=target.owner===0?'Expansion':'Offensive';this.log(`${target.owner===0?'Expansion':'Attaque'} vers ${target.name} : ${plan.committed} unités, ${plan.selected.length} départ(s).`);return;
   }
@@ -1125,85 +1323,48 @@ Object.assign(exports,{drawMissiles});
 "src/rendering/BuildingArt.js":(exports,__require)=>{
 const {typeOf,levelOf}=__require("src/game/BuildingTypes.js");
 
-// Canvas-native contemporary buildings: concrete, painted roofs and guard posts.
-// All levels share the same footprint and leave the troop count unobstructed.
-function buildingPath(ctx,type,radius){
- ctx.beginPath();
- if(type==='house')ctx.arc(0,0,radius,0,Math.PI*2);
- else if(type==='silo')ctx.roundRect(-radius,-radius,2*radius,2*radius,6);
-
- else{
-  for(let i=0;i<6;i++){
-   const angle=i*Math.PI/3-Math.PI/2,x=Math.cos(angle)*radius,y=Math.sin(angle)*radius;
-   if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
-  }
-  ctx.closePath();
- }
-}
-function roof(ctx,x,y,width,height,angle,color){
- ctx.save();ctx.translate(x,y);ctx.rotate(angle);
- ctx.fillStyle='#26374a20';ctx.fillRect(-width/2+1,-height/2+2,width,height);
- ctx.beginPath();ctx.roundRect(-width/2,-height/2,width,height,1.5);
- ctx.fillStyle=color;ctx.fill();ctx.strokeStyle='#263d5c85';ctx.lineWidth=.8;ctx.stroke();
- ctx.beginPath();ctx.moveTo(-width/2+2,0);ctx.lineTo(width/2-2,0);ctx.strokeStyle='#ffffff45';ctx.stroke();
- ctx.restore();
-}
-function guard(ctx,x,y,size,reinforced){
- ctx.beginPath();ctx.roundRect(x-size/2,y-size/2,size,size,2);
- ctx.fillStyle='#e2e0d9';ctx.fill();ctx.lineWidth=.8;ctx.strokeStyle='#9dabae';ctx.stroke();
- ctx.fillStyle=reinforced?'#384956':'#6d7d87';
- ctx.fillRect(x-size*.16,y-size*.16,size*.32,size*.32);
-}
-function drawBuilding(ctx,building,color){
- const type=typeOf(building),level=levelOf(building);
- ctx.save();ctx.translate(0,2);buildingPath(ctx,type,34);ctx.fillStyle='#243a4b15';ctx.fill();ctx.restore();
- buildingPath(ctx,type,32);ctx.fillStyle='#e4e2dc';ctx.fill();ctx.strokeStyle='#aeb8ba';ctx.lineWidth=1;ctx.stroke();
- buildingPath(ctx,type,type==='fort'?26:25);ctx.fillStyle=building.owner?color:'#b3bec9';ctx.fill();
- ctx.strokeStyle='#ffffff85';ctx.stroke();
+function buildingPath(c,type,r){c.beginPath();if(type==='house')c.arc(0,0,r,0,Math.PI*2);else if(type==='silo')c.roundRect(-r*.72,-r*1.13,r*1.44,r*2.26,5);else c.roundRect(-r,-r,r*2,r*2,2);}
+function rect(c,x,y,w,h,fill,stroke='#60736a',line=1){c.beginPath();c.roundRect(x,y,w,h,2);c.fillStyle=fill;c.fill();c.strokeStyle=stroke;c.lineWidth=line;c.stroke();}
+function roof(c,x,y,w,h,color){rect(c,x+1,y+2,w,h,'#283b3625','#283b3600');rect(c,x,y,w,h,color,'#34534a',1);c.beginPath();c.moveTo(x+w/2,y+1);c.lineTo(x+w/2,y+h-1);c.strokeStyle='#ffffff90';c.lineWidth=1.4;c.stroke();}
+function drawBuilding(c,b,color){
+ const type=typeOf(b),level=levelOf(b);c.save();
  if(type==='house'){
-  // Circular residential courtyard with low roofs and small planted edges.
-  if(level>=2){roof(ctx,-25,-17,18,9,-.8,color);roof(ctx,25,-17,18,9,.8,color);}
-  if(level>=3)roof(ctx,0,-31,24,10,0,color);
-  if(level>=4){roof(ctx,0,-34,25,8,0,color);guard(ctx,-29,10,7,false);guard(ctx,29,10,7,false);}
-  for(const x of [-26,26]){
-   ctx.beginPath();ctx.arc(x,17,level>=3?3:2.5,0,Math.PI*2);ctx.fillStyle='#718a6b';ctx.fill();
-   if(level>=3){ctx.beginPath();ctx.arc(x*1.08,8,2.3,0,Math.PI*2);ctx.fill();}
-  }
- }else if(type==='silo'){
-  for(const x of [-24,24])for(const y of [-24,24]){
-   ctx.beginPath();ctx.arc(x,y,7,0,Math.PI*2);ctx.fillStyle='#d9ddd9';ctx.fill();ctx.strokeStyle='#7b8a91';ctx.lineWidth=1.5;ctx.stroke();
-   ctx.beginPath();ctx.moveTo(x-4,y+4);ctx.lineTo(x+4,y-4);ctx.stroke();
-  }
-  if(level>=2)roof(ctx,0,-31,24,7,0,color);
-  if(level>=3){roof(ctx,-31,0,20,6,Math.PI/2,color);roof(ctx,31,0,20,6,Math.PI/2,color);}
+  c.beginPath();c.arc(0,0,32,0,Math.PI*2);c.fillStyle='#d9d6bf';c.fill();c.strokeStyle='#9aab8d';c.lineWidth=2;c.stroke();
+  roof(c,-26,-23,27,20,color);roof(c,9,3,19,23,color);
+  if(level>=2)roof(c,8,-27,20,19,color);
+  if(level>=3)roof(c,-24,8,17,21,color);
+  if(level>=4){roof(c,-4,-35,14,14,color);rect(c,-35,-6,10,19,'#e7e5cb',color,2);}
+  for(const [x,y]of [[-20,26],[27,-9],[-29,-1]]){c.beginPath();c.arc(x,y,3.8,0,Math.PI*2);c.fillStyle='#658d58';c.fill();}
+ }else if(type==='fort'){
+  rect(c,-31,-31,62,62,'#cbd0c3','#52685c',2);rect(c,-24,-24,48,48,'#8c9b88','#52685c',3);
+  for(const x of [-34,20])for(const y of [-34,20]){rect(c,x,y,14,14,color,'#3d574c',1.4);if(level>=3)rect(c,x+4,y+4,6,6,'#40594c');}
+  for(const y of [-27,24])rect(c,-18,y,36,5,level>=2?color:'#697e6d');
+  c.beginPath();c.arc(0,-8,level>=4?13:10,0,Math.PI*2);c.fillStyle='#4b6355';c.fill();c.strokeStyle=color;c.lineWidth=3;c.stroke();
+  c.beginPath();c.moveTo(0,-12);c.lineTo(0,-29-(level>=4?5:0));c.strokeStyle='#304b3e';c.lineWidth=5;c.stroke();rect(c,-6,25,12,7,'#e9d9aa');
  }else{
-  if(level>=2){
-   for(let i=0;i<6;i++){
-    const angle=i*Math.PI/3;
-    roof(ctx,Math.cos(angle)*27,Math.sin(angle)*27,17,5,angle+Math.PI/2,color);
-   }
+  rect(c,-23,-38,46,76,'#95a39a','#486454',2);rect(c,14,-25,15,24,color,'#365548',1.2);
+  for(const x of [-19,19]){c.beginPath();c.moveTo(x,-32);c.lineTo(x,32);c.setLineDash([4,4]);c.strokeStyle='#eadb96';c.lineWidth=1;c.stroke();c.setLineDash([]);}
+  for(const [i,y]of [-18,18].entries()){
+   c.beginPath();c.arc(0,y,13,0,Math.PI*2);c.fillStyle='#314d41';c.fill();c.strokeStyle='#cfdbca';c.lineWidth=2;c.stroke();
+   rect(c,i?9:-20,y-11,10,23,color,'#45654f',1);
+   if(i===0||level>=2){c.beginPath();c.moveTo(0,y-11);c.lineTo(4,y+8);c.lineTo(0,y+5);c.lineTo(-4,y+8);c.closePath();c.fillStyle='#f4ecd3';c.fill();c.strokeStyle='#bf6551';c.lineWidth=1;c.stroke();}
   }
-  if(level>=3)for(let i=0;i<6;i++){
-   const angle=i*Math.PI/3-Math.PI/2;
-   guard(ctx,Math.cos(angle)*30,Math.sin(angle)*30,level===4?11:8,level===4);
-  }
+  if(level>=3){roof(c,-29,-11,11,19,color);rect(c,15,28,11,12,'#536d5d');}
  }
- // A concrete entrance and faction-colored gate are shared by all buildings.
- ctx.beginPath();ctx.roundRect(-7,25,14,11,2);ctx.fillStyle='#e6e4df';ctx.fill();ctx.strokeStyle='#aeb8ba';ctx.stroke();
- ctx.fillStyle=color;ctx.fillRect(-4,29,8,7);
- if(level===4){ctx.strokeStyle='#718492';ctx.lineWidth=1;buildingPath(ctx,type,35);ctx.stroke();}
- ctx.fillStyle='#fff';ctx.font='750 21px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(building.units,0,0);
- // Four pips communicate level without increasing the collision footprint.
- const maxLevel=type==='silo'?3:4;
- for(let i=0;i<maxLevel;i++){
-  ctx.beginPath();ctx.arc((i-(maxLevel-1)/2)*8,43,2.2,0,Math.PI*2);
-  ctx.fillStyle=i<level?color:'#cdd5dd';ctx.fill();
- }
+ // Count is always on a separate dark plate; architectural silhouettes remain visible.
+ const countY=type==='house'?4:type==='fort'?12:0;
+ rect(c,-15,countY-10,30,20,'#263f36e8','#ffffff85',1);c.fillStyle='#fff';c.font='800 18px system-ui';c.textAlign='center';c.textBaseline='middle';c.fillText(b.units,0,countY+.5);
+ for(let i=0;i<(type==='silo'?3:4);i++){c.beginPath();c.arc((i-(type==='silo'?2:3)/2)*8,45,2.4,0,Math.PI*2);c.fillStyle=i<level?color:'#a7b59f';c.fill();}
+ c.restore();
 }
 
 Object.assign(exports,{buildingPath,drawBuilding});
 },
 "src/rendering/Renderer.js":(exports,__require)=>{
+const {orderPreview}=__require("src/game/Tactics.js");
+
+const {STEP}=__require("src/game/GameState.js");
+
 const {createTerrainLayer,drawTerrain}=__require("src/rendering/TerrainArt.js");
 
 const {drawArmy}=__require("src/rendering/ArmyArt.js");
@@ -1244,8 +1405,16 @@ class Renderer{
    drawArmy(c,a,p,col,isWater(p,state.terrain,state.buildings),armyVelocity(a,state.time));
   }
   if(input.missileAim){const target=input.hit(input.pointer);if(target){c.beginPath();c.arc(target.x,target.y,target.radius+14,0,Math.PI*2);c.strokeStyle='#c47b42';c.lineWidth=3;c.setLineDash([6,5]);c.stroke();c.setLineDash([]);}}
-  if(input.drag?.kind==='send'){for(const b of state.buildings.filter(b=>input.selected.has(b.id)&&b.owner===1)){const target=input.hit(input.pointer);this.path(target?(routeBetween(b,target,state.terrain?.mountains??[])??[]):[b,input.pointer],'#427df0a0',true);}const target=input.hit(input.pointer);if(target){c.beginPath();c.arc(target.x,target.y,44,0,Math.PI*2);c.strokeStyle='#427df090';c.lineWidth=2;c.stroke();}}
-  for(const b of state.buildings){const selected=input.selected.has(b.id)&&b.owner===1,hover=input.hit(input.pointer)?.id===b.id,col=colors[b.owner];
+  if(input.drag?.kind==='send'){
+   const target=input.hit(input.pointer),sources=state.buildings.filter(b=>input.selected.has(b.id)&&b.owner===(input.player??1));
+   const preview=target?orderPreview(state,sources,target,input.drag.sendAll||input.shiftHeld?1:.5,input.player??1):null;
+   this.orderPreview=preview;
+   for(const path of preview?.routes??sources.map(b=>[b,input.pointer]))this.path(path,preview?.risk?'#c26d3cbb':'#427df0aa',true);
+   if(target){c.beginPath();c.arc(target.x,target.y,44,0,Math.PI*2);c.strokeStyle=preview?.risk?'#b66335':'#427df0';c.lineWidth=2;c.stroke();}
+   for(const fort of state.buildings.filter(b=>preview?.forts.includes(b.id))){c.beginPath();c.arc(fort.x,fort.y,fort.range,0,Math.PI*2);c.strokeStyle='#bb694b80';c.lineWidth=2;c.setLineDash([7,6]);c.stroke();c.setLineDash([]);}
+  }else this.orderPreview=null;
+
+  for(const b of state.buildings){const selected=input.selected.has(b.id)&&b.owner===(input.player??1),hover=input.hit(input.pointer)?.id===b.id,col=colors[b.owner];
    const preview=this.rangePreview?.building===b.id;
    if(preview||typeOf(b)==='fort'&&(selected||hover)){const range=preview?this.rangePreview.range:b.range;c.beginPath();c.arc(b.x,b.y,range,0,Math.PI*2);c.fillStyle=col+'0b';c.fill();c.setLineDash([7,8]);c.strokeStyle=col+'90';c.lineWidth=2;c.stroke();c.setLineDash([]);c.fillStyle=col;c.font='600 12px system-ui';c.textAlign='center';c.fillText(`PORTÉE ${range}`,b.x,b.y-range+18);}
    c.save();c.translate(b.x,b.y);
@@ -1268,6 +1437,14 @@ class Renderer{
    c.restore();
   }
   if(input.drag?.kind==='box'){const a=input.drag.start,b=input.pointer;c.fillStyle='#427df00d';c.strokeStyle='#427df080';c.lineWidth=1.5;c.fillRect(a.x,a.y,b.x-a.x,b.y-a.y);c.strokeRect(a.x,a.y,b.x-a.x,b.y-a.y);}
+  // Warnings use simulation time, so they remain coherent in pause and multiplayer.
+  for(const missile of state.missiles??[]){const target=state.buildings.find(b=>b.id===missile.target);if(!target)continue;
+   const seconds=Math.max(0,(missile.impactTick-state.tick)*STEP),hostile=missile.owner!==(input.player??1);
+   c.beginPath();c.arc(target.x,target.y,target.radius+19,0,Math.PI*2);c.strokeStyle=hostile?'#c64c44':'#4f84c5';c.lineWidth=3;c.setLineDash([5,4]);c.stroke();c.setLineDash([]);
+   c.font='800 15px system-ui';c.fillStyle=hostile?'#a63c35':'#315f95';c.textAlign='center';c.fillText(`${missile.type.toUpperCase()} · ${seconds.toFixed(1)} s`,target.x,target.y-target.radius-45);
+  }
+  // Reveal the last travelling groups when the enemy has lost every building.
+  if(!state.buildings.some(b=>b.owner===3-(input.player??1)))for(const army of state.armies.filter(a=>a.owner!==(input.player??1))){const p=armyPosition(army,state.time);c.beginPath();c.arc(p.x,p.y,42,0,Math.PI*2);c.strokeStyle='#ca6b48';c.lineWidth=2;c.stroke();}
   drawMissiles(c,state);
   this.effects=this.effects.filter(event=>wallTime-event.born<effectLifetime(event));
   if(!this.reducedMotion)drawCombatEffects(c,this.effects,wallTime);
@@ -1284,7 +1461,7 @@ const OUTSIDE = {x: -999, y: -999};
 class InputController {
  constructor(canvas, renderer, getGame, getFraction, toast) {
   Object.assign(this, {canvas, renderer, getGame, getFraction, toast});
-  this.selected = new Set();
+  this.shiftHeld=false;this.player=1;this.selected = new Set();
   this.pointer = {...OUTSIDE};
   this.drag = null;
   this.missileAim = null;
@@ -1317,7 +1494,7 @@ class InputController {
    this.drag={kind:'missile',pointerId:event.pointerId,start:{...this.pointer},source:this.missileAim};
    this.canvas.setPointerCapture(event.pointerId);return;
   }
-  if (building?.owner === 1) {
+  if (building?.owner === this.player) {
    const wasSelected = this.selected.has(building.id);
    if (!event.shiftKey && !wasSelected) this.selected.clear();
    this.selected.add(building.id);
@@ -1340,6 +1517,7 @@ class InputController {
  }
 
  move(event) {
+  this.shiftHeld=!!event.shiftKey;
   if (this.drag && this.drag.pointerId !== event.pointerId) return;
   this.pointer = this.renderer.point(event.clientX, event.clientY);
   if (this.drag?.kind === 'send' && this.movedFromPress(event, this.drag)) this.drag.moved = true;
@@ -1357,7 +1535,7 @@ class InputController {
   if(drag.kind==='missile'){
    const target=this.hit(this.pointer);
    if(!target){this.toast('Choisissez un bâtiment cible.');return;}
-   const result=this.getGame().command({type:'launchMissile',player:1,building:drag.source,target:target.id});
+   const result=this.getGame().command({type:'launchMissile',player:this.player,building:drag.source,target:target.id});
    if(result.ok){this.missileAim=null;this.toast('Missile lancé.');}else this.toast(result.reason);
    return;
   }
@@ -1375,15 +1553,15 @@ class InputController {
   const sources = [...this.selected].filter(id => id !== target.id);
   if (!sources.length) return;
   const fraction = drag.sendAll || event.shiftKey ? 1 : this.getFraction();
-  const result = this.getGame().command({type: 'send', player: 1, sources, target: target.id, fraction});
-  this.toast(result.ok
+  const result = this.getGame().command({type: 'send', player: this.player, sources, target: target.id, fraction});
+  this.toast(result.pending?'Ordre transmis à l’hôte.':result.ok
    ? `${result.sent} unités → bâtiment ${target.name}${fraction === 1 ? ' · Tout envoyé' : ''}`
    : result.reason);
  }
 
  selectRectangle(start, end) {
   for (const building of this.getGame().state.buildings) {
-   if (building.owner === 1 &&
+   if (building.owner === this.player &&
        building.x >= Math.min(start.x, end.x) && building.x <= Math.max(start.x, end.x) &&
        building.y >= Math.min(start.y, end.y) && building.y <= Math.max(start.y, end.y)) {
     this.selected.add(building.id);
@@ -1393,15 +1571,15 @@ class InputController {
 
  aimMissile(building){
   const source=this.getGame().state.buildings.find(b=>b.id===building);
-  if(this.getGame().state.status!=='running'||source?.owner!==1||!source.readyMissile)return;
+  if(this.getGame().state.status!=='running'||source?.owner!==this.player||!source.readyMissile)return;
   this.drag=null;this.missileAim=building;this.canvas.focus();
   this.toast('Choisissez la cible du missile · Échap pour annuler.');
  }
 
  clean() {
-  const owned = new Set(this.getGame().state.buildings.filter(b => b.owner === 1).map(b => b.id));
+  const owned = new Set(this.getGame().state.buildings.filter(b => b.owner === this.player).map(b => b.id));
   for (const id of this.selected) if (!owned.has(id)) this.selected.delete(id);
-  if(this.missileAim&&!this.getGame().state.buildings.some(b=>b.id===this.missileAim&&b.owner===1&&b.readyMissile))this.missileAim=null;
+  if(this.missileAim&&!this.getGame().state.buildings.some(b=>b.id===this.missileAim&&b.owner===this.player&&b.readyMissile))this.missileAim=null;
  }
 
  reset() {
@@ -1415,6 +1593,14 @@ class InputController {
 Object.assign(exports,{InputController});
 },
 "src/main.js":(exports,__require)=>{
+const {mapPreview,resultMarkup,lessonText}=__require("src/ui/MatchPresentation.js");
+
+const {buildingIcon}=__require("src/rendering/BuildingIcons.js");
+
+const {MAP_BRIEFS}=__require("src/game/Map.js");
+
+const {Multiplayer}=__require("src/network/Multiplayer.js");
+
 const {SoundManager}=__require("src/audio/SoundManager.js");
 
 const {MISSILE_TYPES}=__require("src/game/Missiles.js");
@@ -1437,6 +1623,7 @@ const {InputController}=__require("src/input/InputController.js");
 
 const $=id=>document.getElementById(id),clock=t=>`${Math.floor(t/60).toString().padStart(2,'0')}:${Math.floor(t%60).toString().padStart(2,'0')}`;
 let game=new Game(createState()),ai=new AIController(game),debug=false,accumulator=0,last=performance.now(),lastHUD=0,toastTimer,aiMs=0;
+let session=null;
 const renderer=new Renderer($('board'));
 const sound=new SoundManager();let seenEvents=new WeakSet();
 function audioUI(){
@@ -1448,37 +1635,94 @@ $('audio-volume').oninput=e=>{sound.unlock();sound.setVolume(Number(e.target.val
 $('audio-mute').onclick=()=>{sound.unlock();sound.setMuted(!sound.muted);audioUI();};
 document.addEventListener('pointerdown',()=>sound.unlock());
 document.addEventListener('keydown',()=>sound.unlock());audioUI();
-function feedback(now){for(const event of game.state.events){if(seenEvents.has(event))continue;seenEvents.add(event);renderer.event(event,now/1000);if(['running','finished'].includes(game.state.status))sound.play(event);}}
+function feedback(now){for(const event of game.state.events){if(seenEvents.has(event))continue;seenEvents.add(event);renderer.event(event,now/1000);session?.collect(event);if(['running','finished'].includes(game.state.status))sound.play(event);}}
 
 function toast(message){$('toast').textContent=message;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2200);}
-const input=new InputController($('board'),renderer,()=>game,()=>.5,toast);
+const controlledGame={get state(){return game.state;},command(command){return session?session.command(command):game.command(command);}};
+const input=new InputController($('board'),renderer,()=>controlledGame,()=>.5,toast);
 const buildingPopover=new BuildingPopover($('building-stats'),$('board'),input,renderer,()=>game,()=>!$('overlay').hidden,(building,buildingType)=>{
  if(buildingType==='launch'){input.aimMissile(building.id);buildingPopover.hide();return;}
  if(buildingType.startsWith('missile:')){
-  const kind=buildingType.split(':')[1],result=game.command({type:'produceMissile',player:1,building:building.id,missileType:kind});
-  toast(result.ok?`${MISSILE_TYPES[kind].label} · fabrication ${MISSILE_TYPES[kind].seconds} s`:result.reason);hud();return;
+  const kind=buildingType.split(':')[1],result=controlledGame.command({type:'produceMissile',player:input.player,building:building.id,missileType:kind});
+  toast(result.pending?'Ordre transmis à l’hôte.':result.ok?`${MISSILE_TYPES[kind].label} · fabrication ${MISSILE_TYPES[kind].seconds} s`:result.reason);hud();return;
  }
  const upgrade=buildingType==='upgrade';
- const r=game.command(upgrade?{type:'upgrade',player:1,building:building.id}:{type:'transform',player:1,building:building.id,buildingType});
- toast(r.ok?`${typeLabel(building)} · niveau ${levelOf(building)} · ${r.cost} troupes utilisées`:r.reason);hud();
+ const r=controlledGame.command(upgrade?{type:'upgrade',player:input.player,building:building.id}:{type:'transform',player:input.player,building:building.id,buildingType});
+ toast(r.pending?'Ordre transmis à l’hôte.':r.ok?`${typeLabel(building)} · niveau ${levelOf(building)} · ${r.cost} troupes utilisées`:r.reason);hud();
 });
-function reset(){sound.stop();seenEvents=new WeakSet();game=new Game(createState($('map-select').value,$('neutral-forts').value));ai=new AIController(game,2,$('difficulty').value);input.reset();renderer.effects=[];accumulator=0;$('overlay').hidden=false;$('setup').hidden=false;$('overlay-title').textContent='Chaque mouvement compte.';$('overlay-description').innerHTML='Une carte. Deux camps. Aucune unité gratuite.<br>Le meilleur stratège l’emporte.';$('start').innerHTML='Lancer la conquête <span>↗</span>';$('overlay-footnote').textContent='Capturez les bâtiments et éliminez les dernières troupes.';hud();}
-function start(){sound.unlock();if(game.state.status==='finished')reset();game.state.status='running';$('overlay').hidden=true;accumulator=0;last=performance.now();hud();}
-function pause(){if(game.state.status==='running'){game.state.status='paused';input.drag=null;sound.stop();}else if(game.state.status==='paused')game.state.status='running';else return;accumulator=0;last=performance.now();hud();}
+
+let previewKey='';
+function presentation(){
+ const map=game.state.map,brief=MAP_BRIEFS[map]??MAP_BRIEFS.archipel,key=map+':'+game.state.neutralForts;
+ $('mission-title').textContent=MAP_NAMES[map];$('mission-subtitle').textContent=brief.theme+' · '+brief.description;
+ if(key!==previewKey){previewKey=key;$('map-preview').innerHTML=mapPreview(map,game.state.neutralForts);$('map-opening').textContent=game.state.neutralForts==='0'?'Variante sans forts neutres : développez vos maisons et préparez vos attaques.':brief.opening;}
+}
+for(const map of ['croisee','couronne','bastion'])$('map-'+map).onclick=()=>{if(session)return;$('map-select').value=map;reset();};
+$('building-guide').innerHTML=[['house','Maison','Produit des troupes'],['fort','Fort','Contrôle les passages'],['silo','Silo','Fabrique des missiles']].map(([type,name,role])=>`<div>${buildingIcon(type,1)}<span><strong>${name}</strong><small>${role}</small></span></div>`).join('');
+let panelPaused=false;
+function openPanel(id){panelPaused=game.state.status==='running';if(panelPaused)pause();$(id).showModal();}
+for(const [button,id,close]of [['menu-multi','network-dialog','close-network'],['menu-settings','settings-dialog','close-settings']]){
+ $(button).onclick=()=>openPanel(id);$(close).onclick=()=>$(id).close();$(id).addEventListener('close',()=>{if(panelPaused&&!session&&game.state.status==='paused')pause();panelPaused=false;});
+}
+function networkUI(active){$('legend-blue').textContent=active?'HÔTE':'VOUS';$('legend-red').textContent=active?'INVITÉ':'IA';
+ for(const id of ['map-select','neutral-forts','difficulty','lesson','start','new-game'])$(id).disabled=active;
+ $('net-leave').hidden=!active;$('net-local').disabled=active;$('net-host').disabled=active;$('net-join').disabled=active;
+ $('debug-toggle').disabled=active;debug=false;$('debug').hidden=true;
+ $('ai-hint').textContent=active?'Duel humain · aucune IA. L’hôte valide les commandes et synchronise les deux camps.':'Activez le mode développeur pour voir ses cibles et comprendre ses décisions.';
+ $('mode-label').textContent=active?'MULTIJOUEUR · CONNEXION DIRECTE':'SOLO CONTRE L’IA';
+ $('player-label').textContent=active?'Hôte · Bleu':'Votre camp';$('player-tag').textContent=active?'BLEU':'VOUS';$('opponent-label').textContent=active?'Invité · Rouge':'Intelligence artificielle';
+}
+function makeSession(){
+ session=new Multiplayer({getGame:()=>game,onStatus:text=>{$('net-status').textContent=text;},onReady:()=>{
+  $('net-setup').hidden=true;if($('network-dialog').open)$('network-dialog').close();input.player=session.role==='host'?1:2;$('board').setAttribute('aria-label',`Carte interactive. Glissez depuis un bâtiment ${input.player===1?'bleu':'rouge'} pour envoyer vos troupes.`);
+  $('player-label').textContent=input.player===1?'Vous · Bleu':'Hôte · Bleu';$('opponent-label').textContent=input.player===2?'Vous · Rouge':'Invité · Rouge';
+  $('overlay').hidden=true;game.state.status='running';accumulator=0;last=performance.now();hud();
+ },onState:(state,events)=>{
+  const was=game.state.status;if(state.map===game.state.map&&state.neutralForts===game.state.neutralForts)state.terrain=game.state.terrain;game.state=state;if(state.status!=='running'){input.drag=null;sound.stop();}for(const event of events){renderer.event(event,performance.now()/1000);sound.play(event);}if(state.status==='finished'&&was!=='finished')finish();hud();
+ },onResult:r=>{if(!r?.ok)toast(r?.reason??'Ordre refusé.');}});
+ networkUI(true);$('net-setup').hidden=false;
+}
+async function networkAction(action){
+ sound.unlock();let attempt=session;try{
+  if(action==='accept'){await session.accept($('net-in').value);$('net-status').textContent='Connexion en cours…';return;}
+  $('lesson').value='none';reset();makeSession();attempt=session;$('net-status').textContent='Préparation de la connexion…';
+  const current=session;if(action==='local'||action==='join'&&$('net-in').value.trim().startsWith('LOCAL-')){const code=session.local(action==='local'?undefined:$('net-in').value.trim());$('net-out').value=code;$('net-status').textContent='Test local uniquement · ouvrez ce jeu dans un second onglet, collez '+code+' et cliquez Rejoindre.';return;}
+  const code=action==='host'?await session.host():await session.join($('net-in').value);
+  if(session!==current||current.closed)return;$('net-out').value=code;$('net-accept').disabled=action!=='host';
+  $('net-status').textContent=action==='host'?'Invitation prête : partagez le code, puis collez la réponse et confirmez.':'Réponse prête : partagez-la avec l’hôte. Attente de sa confirmation…';
+ }catch(error){if(session!==attempt)return;session?.close();session=null;input.player=1;networkUI(false);$('net-setup').hidden=false;$('net-accept').disabled=true;$('net-status').textContent=error.message;}
+}
+$('net-local').onclick=()=>networkAction('local');
+$('net-host').onclick=()=>networkAction('host');$('net-join').onclick=()=>networkAction('join');$('net-accept').onclick=()=>networkAction('accept');
+$('net-leave').onclick=()=>{session?.close();session=null;input.player=1;networkUI(false);$('net-setup').hidden=false;$('net-accept').disabled=true;$('net-out').value='';$('net-in').value='';$('net-status').textContent='Mode solo · session fermée';reset();if($('network-dialog').open)$('network-dialog').close();};
+$('menu-solo').onclick=()=>{if(session)$('net-leave').onclick();else reset();};
+$('net-link').onclick=async()=>{const code=$('net-out').value;if(!code||session?.role!=='host'){toast('Créez d’abord une invitation.');return;}try{const url=globalThis.location.origin+globalThis.location.pathname+'#join='+encodeURIComponent(code);await navigator.clipboard.writeText(url);toast('Lien d’invitation copié.');}catch{toast('Copiez le code à partager ; le presse-papiers est indisponible.');}};
+$('net-copy').onclick=async()=>{try{await navigator.clipboard.writeText($('net-out').value);toast('Code copié.');}catch{toast('Sélectionnez le code à partager et copiez-le avec Ctrl+C.');}};
+
+function reset(){if(session)return;$('overlay-badge').textContent='PRÉPARER UNE OPÉRATION';$('result-box').hidden=true;$('map-preview').hidden=false;$('map-opening').hidden=false;sound.stop();seenEvents=new WeakSet();game=new Game(createState($('map-select').value,$('neutral-forts').value));ai=new AIController(game,2,$('difficulty').value);input.reset();renderer.effects=[];accumulator=0;$('overlay').hidden=false;$('setup').hidden=false;$('overlay-title').textContent='Choisissez votre terrain.';$('overlay-description').textContent='Développez votre territoire et éliminez les forces adverses.';$('start').innerHTML='Lancer la conquête <span>↗</span>';$('overlay-footnote').textContent='Capturez les bâtiments et éliminez les dernières troupes.';hud();}
+function start(){if(session)return;sound.unlock();if(game.state.status==='finished')reset();game.state.status='running';$('overlay').hidden=true;if(['orders','forts','missiles'].includes($('lesson').value))ai.nextThink=Math.max(ai.nextThink,25);accumulator=0;last=performance.now();hud();}
+function pause(){if(session){session.togglePause();input.drag=null;sound.stop();return;}if(game.state.status==='running'){game.state.status='paused';input.drag=null;sound.stop();}else if(game.state.status==='paused')game.state.status='running';else return;accumulator=0;last=performance.now();hud();}
 $('start').onclick=start;$('pause').onclick=pause;$('new-game').onclick=reset;$('map-select').onchange=reset;$('neutral-forts').onchange=reset;$('difficulty').onchange=()=>{ai=new AIController(game,2,$('difficulty').value);hud();};
 $('debug-toggle').onchange=e=>{debug=e.target.checked;$('debug').hidden=!debug;$('ai-hint').hidden=debug;hud();};
 let helpPaused=false;function help(){helpPaused=game.state.status==='running';if(helpPaused)pause();$('help-dialog').showModal();}
 $('help').onclick=help;$('help-dialog').addEventListener('close',()=>{if(helpPaused&&game.state.status==='paused')pause();helpPaused=false;});$('close-help').onclick=$('help-ok').onclick=()=>$('help-dialog').close();
 document.addEventListener('keydown',e=>{if(e.target.matches('input,select,textarea,button')||$('help-dialog').open)return;if(e.code==='Space'){e.preventDefault();pause();}if(e.key==='Escape')input.reset();if(e.key==='?')help();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&game.state.status==='running')pause();});
-function finish(){const s=game.state;$('overlay').hidden=false;$('setup').hidden=true;$('overlay-title').textContent=s.winner===1?'Le territoire est à vous.':s.winner===2?'L’IA prend le contrôle.':'Égalité tactique.';$('overlay-description').textContent=`${clock(s.time)} de combat · ${s.stats[1].captures} captures · ${s.stats[1].sent} unités déployées.`;$('overlay-footnote').textContent='Tous les bâtiments et toutes les troupes adverses ont été éliminés.';$('start').innerHTML='Rejouer ce terrain <span>↗</span>';}
-function hud(){const s=game.state;input.clean();buildingPopover.update();for(const [p,prefix]of [[1,'p'],[2,'e']]){const t=totals(s,p);$(prefix+'-units').textContent=t.units;$(prefix+'-bases').textContent=t.buildings;$(prefix+'-rate').textContent='+'+t.production;}
+function finish(){const s=game.state;$('overlay-badge').textContent='BILAN DE L’OPÉRATION';$('result-box').innerHTML=resultMarkup(s,input.player);$('result-box').hidden=false;$('map-preview').hidden=true;$('map-opening').hidden=true;$('overlay').hidden=false;$('setup').hidden=true;$('overlay-title').textContent=s.winner===input.player?'Le territoire est à vous.':s.winner?'Votre adversaire l’emporte.':'Égalité tactique.';$('overlay-description').textContent=`${clock(s.time)} de combat · ${s.stats[input.player].captures} captures · ${s.stats[input.player].sent} unités déployées.`;$('overlay-footnote').textContent='Tous les bâtiments et toutes les troupes adverses ont été éliminés.';$('start').innerHTML='Rejouer ce terrain <span>↗</span>';}
+function hud(){const s=game.state;presentation();input.clean();buildingPopover.update();for(const [p,prefix]of [[1,'p'],[2,'e']]){const t=totals(s,p);$(prefix+'-units').textContent=t.units;$(prefix+'-bases').textContent=t.buildings;$(prefix+'-rate').textContent='+'+t.production;}
  $('timer').textContent=clock(s.time);$('status').textContent={ready:'PRÊT À JOUER',running:'CONQUÊTE EN COURS',paused:'EN PAUSE',finished:'PARTIE TERMINÉE'}[s.status];$('running-dot').style.background=s.status==='running'?'#427df0':'#b4becb';$('pause').textContent=s.status==='paused'?'▶':'Ⅱ';$('pause').disabled=!['running','paused'].includes(s.status);$('pause').setAttribute('aria-label',s.status==='paused'?'Reprendre la partie':'Mettre en pause');$('map-title').textContent=MAP_NAMES[s.map];$('sector').textContent=String(Object.keys(MAP_NAMES).indexOf(s.map)+1).padStart(2,'0');
  const counts=[1,0,2].map(owner=>s.buildings.filter(b=>b.owner===owner).length);$('territory-count').textContent=`${counts[0]+counts[2]} / ${s.buildings.length}`;[...$('territory-bar').children].forEach((el,i)=>el.style.width=100*counts[i]/s.buildings.length+'%');
+ const order=renderer.orderPreview;$('order-preview').hidden=!order||!input.drag;
+ if(order)$('order-preview').textContent=`${order.units} troupes · arrivée ${order.eta.toFixed(1)} s${order.risk?' · exposition aux forts ≈ '+order.risk+' pertes possibles':' · trajet hors des zones de tir'} · ${input.drag?.sendAll||input.shiftHeld?'100 %':'50 %'}`;
+ const danger=(s.missiles??[]).filter(m=>m.owner!==input.player&&s.buildings.some(b=>b.id===m.target&&b.owner===input.player));
+ $('missile-alert').hidden=!danger.length;if(danger.length)$('missile-alert').textContent='MISSILE EN APPROCHE · '+danger.map(m=>`${m.type.toUpperCase()} sur ${s.buildings.find(b=>b.id===m.target).name} · ${Math.max(0,(m.impactTick-s.tick)*STEP).toFixed(1)} s`).join(' / ');
+ const lesson=session?'':lessonText(s,input.player,input.selected,$('lesson').value);$('lesson-hint').hidden=!lesson||s.status==='ready'||s.status==='finished';$('lesson-hint').textContent=lesson;
  if(debug){$('ai-strategy').textContent=ai.debug.strategy;$('ai-targets').replaceChildren(...ai.debug.targets.slice(0,3).map(t=>{const row=document.createElement('div');row.className='target-row';const b=s.buildings.find(b=>b.id===t.target);row.innerHTML=`<span>Bâtiment ${b.name}</span><span>score ${t.score.toFixed(2)}</span>`;return row;}));$('ai-log').replaceChildren(...ai.debug.log.slice(0,5).map(l=>{const p=document.createElement('p');p.textContent=`${clock(l.time)} · ${l.text}`;return p;}));$('ai-performance').textContent=`${ai.debug.decisions} évaluations · dernière : ${aiMs.toFixed(2)} ms`;}
 }
-function frame(now){const dt=Math.min((now-last)/1000,.2);last=now;feedback(now);if(game.state.status==='running'){accumulator+=dt;while(accumulator>=STEP){const decisions=ai.debug.decisions,t=performance.now();ai.update();feedback(now);if(ai.debug.decisions!==decisions)aiMs=performance.now()-t;game.step();feedback(now);accumulator-=STEP;if(game.state.status==='finished'){finish();break;}}}if(now-lastHUD>100){hud();lastHUD=now;}renderer.draw(game.state,input,ai.debug,debug,now/1000);requestAnimationFrame(frame);}
-hud();requestAnimationFrame(frame);
+function frame(now){const dt=Math.min((now-last)/1000,.2);last=now;feedback(now);session?.check();session?.publish();if(game.state.status==='running'&&session?.role!=='guest'){accumulator+=dt;while(accumulator>=STEP){const decisions=ai.debug.decisions,t=performance.now();if(!session)ai.update();feedback(now);if(ai.debug.decisions!==decisions)aiMs=performance.now()-t;game.step();feedback(now);accumulator-=STEP;if(game.state.status==='finished'){finish();break;}}}if(now-lastHUD>100){hud();lastHUD=now;}renderer.draw(game.state,input,ai.debug,debug,now/1000);requestAnimationFrame(frame);}
+hud();
+try{const hash=globalThis.location?.hash??'';if(hash.startsWith('#join=')){const code=decodeURIComponent(hash.slice(6));if(code.length<100000&&(code.startsWith('JW7.')||code.startsWith('LOCAL-'))){$('net-in').value=code;$('net-status').textContent='Invitation reçue · cliquez Rejoindre pour créer votre réponse.';$('network-dialog').showModal();}}}catch{toast('Lien d’invitation invalide.');}
+requestAnimationFrame(frame);
 
 Object.assign(exports,{});
 }},cache=Object.create(null);
