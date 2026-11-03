@@ -20,7 +20,7 @@ async function boot(){
  }
  for(const [,id]of html.matchAll(/\bid="([^"]+)"/g))elements.set(id,new Element(id));
  assert.equal(elements.has('fraction'),false);
- elements.get('map-select').value='archipel';elements.get('difficulty').value='normal';
+ elements.get('neutral-forts').value='terrain';elements.get('map-select').value='archipel';elements.get('difficulty').value='normal';
  elements.get('territory-bar').children=[new Element(),new Element(),new Element()];
  const document=Object.assign(new EventTarget(),{hidden:false,getElementById:id=>elements.get(id)??null,createElement:()=>new Element()});
  let now=0,frame;
@@ -58,4 +58,10 @@ test('les contrôles audio restent utilisables sans Web Audio et après une nouv
  e.get('audio-mute').onclick();assert.equal(e.get('audio-mute').textContent,'Son coupé');
  e.get('start').onclick();tick(1);e.get('new-game').onclick();assert.equal(e.get('audio-value').textContent,'60 %');
  e.get('audio-mute').onclick();assert.equal(e.get('audio-mute').textContent,'Son activé');
+});
+
+test('les nouvelles cartes et le choix de forts neutres démarrent puis se réinitialisent',async()=>{
+ const {elements:e,tick}=await boot();e.get('map-select').value='bastion';e.get('map-select').onchange();e.get('neutral-forts').value='3';e.get('neutral-forts').onchange();
+ assert.equal(e.get('map-title').textContent,'Bastion');e.get('start').onclick();tick(2);assert.equal(e.get('status').textContent,'CONQUÊTE EN COURS');
+ e.get('new-game').onclick();assert.equal(e.get('map-title').textContent,'Bastion');assert.equal(e.get('timer').textContent,'00:00');
 });

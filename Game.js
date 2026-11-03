@@ -1,3 +1,4 @@
+import {routeBetween,pathLength,routeLegs,armyVelocity,lineClear} from './Navigation.js';
 import {produceMissile,launchMissile,advanceMissiles,applyPoison} from './Missiles.js';
 import {changeOwner} from './Ownership.js';
 import {applyOverflow} from './Overflow.js';
@@ -23,13 +24,15 @@ export class Game{
   const target=s.buildings.find(b=>b.id===command.target);
   const sources=command.sources.map(id=>s.buildings.find(b=>b.id===id));
   if(!target||sources.some(b=>!b||b.owner!==command.player||b===target))return {ok:false,reason:'Bâtiment invalide'};
+  const routes=sources.map(b=>routeBetween(b,target,s.terrain?.mountains??[]));
+  if(routes.some(path=>!path))return {ok:false,reason:'Aucun passage disponible autour des montagnes.'};
   let sent=0;
-  for(const b of sources){
+  for(const [index,b] of sources.entries()){
    const units=Math.floor(b.units*command.fraction);if(units<1)continue;
-   const dx=target.x-b.x,dy=target.y-b.y,d=Math.hypot(dx,dy),nx=dx/d,ny=dy/d;
-   const duration=Math.max(STEP,(d-b.radius-target.radius)/speedOf(b));
+   const path=routes[index],first=path[0],last=path.at(-1);
+   const duration=Math.max(STEP,pathLength(path)/speedOf(b));
    b.units-=units;if(b.units===0)b.defenseDamage=0;if(b.units<=capacityOf(b))b.overflowLoss=0;sent+=units;
-   s.armies.push({id:`a${s.nextArmyId++}`,owner:command.player,source:b.id,target:target.id,units,sx:b.x+nx*b.radius,sy:b.y+ny*b.radius,tx:target.x-nx*target.radius,ty:target.y-ny*target.radius,departure:s.time,speed:speedOf(b),duration});
+   s.armies.push({id:`a${s.nextArmyId++}`,owner:command.player,source:b.id,target:target.id,units,sx:first.x,sy:first.y,tx:last.x,ty:last.y,path:path.map(p=>({...p})),departure:s.time,speed:speedOf(b),duration});
   }
   if(!sent)return {ok:false,reason:'Pas assez de troupes'};
   s.stats[command.player].sent+=sent;
@@ -78,10 +81,14 @@ export class Game{
    if(arrival<=end+1e-9)events.push({t:Math.max(start,arrival),type:'arrival',a});
    for(let j=i+1;j<s.armies.length;j++){
     const b=s.armies[j];if(a.owner===b.owner)continue;
-    const until=Math.min(end,arrival,b.departure+b.duration)-start;if(until<0)continue;
-    const v={x:(a.tx-a.sx)/a.duration,y:(a.ty-a.sy)/a.duration},w={x:(b.tx-b.sx)/b.duration,y:(b.ty-b.sy)/b.duration};
-    const t=collisionTime(armyPosition(a,start),armyPosition(b,start),v,w,14,until);
-    if(t!==null)events.push({t:start+t,type:'collision',a,b});
+    const until=Math.min(end,arrival,b.departure+b.duration);if(until<start)continue;
+    // Split at every corner: swept collisions remain exact even when turning mid-tick.
+    const cuts=[start,...routeLegs(a).concat(routeLegs(b)).map(l=>l.end).filter(t=>t>start+1e-10&&t<until-1e-10),until].sort((x,y)=>x-y);
+    for(let k=0;k<cuts.length-1;k++){
+     const begin=cuts[k],v=armyVelocity(a,begin+1e-9),w=armyVelocity(b,begin+1e-9);
+     const t=collisionTime(armyPosition(a,begin),armyPosition(b,begin),v,w,14,cuts[k+1]-begin);
+     if(t!==null){const pa=armyPosition(a,begin+t),pb=armyPosition(b,begin+t);if(lineClear(pa,pb,s.terrain?.mountains??[])){events.push({t:begin+t,type:'collision',a,b});break;}}
+    }
    }
   }
   events.sort((a,b)=>a.t-b.t);

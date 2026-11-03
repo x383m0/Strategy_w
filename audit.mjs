@@ -1,3 +1,5 @@
+import {MAP_NAMES} from '../src/game/Map.js';
+import {lineClear,WALL_CLEARANCE} from '../src/game/Navigation.js';
 import assert from 'node:assert/strict';
 import {Game} from '../src/game/Game.js';
 import {createState,snapshot} from '../src/game/GameState.js';
@@ -7,7 +9,7 @@ let seed=39381;
 const random=()=>((seed=(seed*1664525+1013904223)>>>0)/4294967296);
 const pick=items=>items[Math.floor(random()*items.length)];
 let commands=0,ticks=0;
-for(const map of ['archipel','croisee','couronne']){
+for(const map of Object.keys(MAP_NAMES)){
  for(let run=0;run<3;run++){
   const game=new Game(createState(map));
   game.state.status='running';
@@ -35,6 +37,7 @@ for(const map of ['archipel','croisee','couronne']){
    for(const army of game.state.armies){
     assert.ok(Number.isInteger(army.units)&&army.units>0);
     assert.ok(Number.isFinite(army.duration)&&army.duration>0);
+    for(let i=1;i<(army.path?.length??0);i++)assert.ok(lineClear(army.path[i-1],army.path[i],game.state.terrain.mountains,WALL_CLEARANCE));
    }
   }
   const replay=new Game(initial);
@@ -49,4 +52,4 @@ for(const map of ['archipel','croisee','couronne']){
   assert.deepEqual(replay.state,game.state,`Replay diverged: ${map}, run ${run}`);
  }
 }
-console.log(`Audit OK : 9 simulations, ${commands} commandes, ${ticks} ticks, 9 replays identiques.`);
+console.log(`Audit OK : 24 simulations, ${commands} commandes, ${ticks} ticks, 24 replays identiques.`);

@@ -44,3 +44,7 @@
 .missile-progress .progress-track{stroke:currentColor;opacity:.16}
 .missile-progress .progress-value{stroke:currentColor;stroke-dasharray:100;stroke-dashoffset:100;stroke-linecap:round}
 @media(max-width:760px){.audio-panel{grid-column:1/-1}}
+
+/* Terrain stays behind high-contrast controls and troop counts. */
+.canvas-wrap{background:#e4edda}.map-corner{color:#63755f}.bottom-right{color:#6f806b}
+.start-card #setup{display:grid;grid-template-columns:1fr 1fr;gap:10px}.start-card #setup label:first-child{grid-column:1/-1}

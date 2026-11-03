@@ -11,8 +11,8 @@ export function analyzeThreats(state,player){
  }).filter(t=>t.enemy>0).sort((a,b)=>a.eta-b.eta);
 }
 export function reserveFor(state,b,player){
- const enemy=state.buildings.filter(x=>x.owner!==0&&x.owner!==player).sort((x,y)=>travelTime(b,x)-travelTime(b,y))[0];
+ const enemy=state.buildings.filter(x=>x.owner!==0&&x.owner!==player).sort((x,y)=>travelTime(b,x,state)-travelTime(b,y,state))[0];
  if(!enemy)return 2;
- const eta=travelTime(b,enemy);
+ const eta=travelTime(b,enemy,state);
  return eta<3?Math.min(14,Math.ceil(enemy.units*.24)+3):4;
 }

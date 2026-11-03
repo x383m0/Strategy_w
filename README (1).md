@@ -1,4 +1,4 @@
-# Jelly Wars — v0.4.3
+# Jelly Wars — v0.5.0
 
 Jeu de conquête en temps réel, en français, contre une IA heuristique équitable. JavaScript natif, HTML5 Canvas et CSS, sans dépendance ni serveur de jeu en solo.
 
@@ -16,7 +16,7 @@ Ouvrir `http://localhost:8000`. Le fichier `index.html` fourni contient tout le 
 
 Pour corriger le lancement, remplacer le fichier `index.html` à la racine du dépôt par celui de la version fournie. Vous pouvez aussi importer tout le contenu de ce dossier pour conserver les sources à jour. Dans Settings → Pages, choisir Deploy from a branch, puis la branche principale et le dossier `/ (root)`. Le jeu publié utilise uniquement `index.html`, autonome : aucun chargement de `src/` ou de `style.css` ne peut mélanger les versions. Il fonctionne sous un sous-dossier de dépôt.
 
-Aucune compilation n’est nécessaire pour publier les fichiers fournis. Après une modification des sources, lancer `npm run build` : il assemble `templates/page.html`, `style.css` et `src/` dans le fichier autonome `index.html`, ainsi que dans `dist/index.html`. Ne pas modifier directement le fichier HTML généré. Après publication, vérifier que le menu indique 0.4.3.
+Aucune compilation n’est nécessaire pour publier les fichiers fournis. Après une modification des sources, lancer `npm run build` : il assemble `templates/page.html`, `style.css` et `src/` dans le fichier autonome `index.html`, ainsi que dans `dist/index.html`. Ne pas modifier directement le fichier HTML généré. Après publication, vérifier que le menu indique 0.5.0.
 
 ## Commandes
 
@@ -38,7 +38,7 @@ npm test
 npm run build
 ```
 
-Les 113 tests automatisés passent. Ils couvrent production, commandes invalides, captures, égalités, renforts, collisions continues, arrivées simultanées, pause, victoire, conservation des unités de l’IA replay des commandes, renfort défensif de l’IA, engagements à trois groupes et simulations déterministes IA contre IA sur les trois cartes.
+Les 124 tests automatisés passent. Ils couvrent production, commandes invalides, captures, égalités, renforts, collisions continues, arrivées simultanées, pause, victoire, conservation des unités de l’IA replay des commandes, renfort défensif de l’IA, engagements à trois groupes et simulations déterministes IA contre IA sur les trois cartes.
 
 ## Architecture et limites
 
@@ -285,3 +285,14 @@ Les trois boutons de missile utilisent une silhouette pleine de 32 px, avec poin
 - Captures : double onde de couleur, particules et légère impulsion du bâtiment. Les préférences système de réduction des animations sont respectées.
 - Anneau de fabrication coloré autour du bouton missile, compteur en secondes et coche à la fin. La progression suit la simulation et se fige en pause.
 - Correction de la collecte des événements : les commandes exécutées entre deux pas de simulation conservent leurs retours visuels et sonores, sans doublon. Aucun changement des dégâts, coûts, délais ou règles de conquête.
+
+## v0.5.0 — Terrains, reliefs et forts neutres
+
+Huit cartes de neuf bâtiments : Archipel, Croisée, Couronne, Vallée, Rivières, Plateaux, Littoral et Bastion. Les cinq nouvelles cartes proposent des positions et des massifs différents. Les trois premières conservent leurs positions et leur rythme de départ.
+
+- Choix avant partie : forts neutres selon la carte, aucun, un central ou trois. Les positions et les forces restent symétriques. Les forts neutres ont une défense de 2, une capacité de 50, aucune production et ne tirent pas avant leur capture. Après capture, ils fonctionnent comme les forts construits, avec type verrouillé.
+- Décor dessiné en Canvas : prairies, arbres, routes, ponts et eau. Les massifs rocheux sont représentés directement du dessus avec crêtes, facettes et courbes de relief. Le fond fixe est mis en cache pour limiter le coût par image.
+- Montagnes bloquantes : chemins déterministes par graphe de visibilité, marge pour les groupes, tirs de fort soumis à une ligne de vue. Les missiles survolent les murs.
+- Trajets en plusieurs segments : vitesse constante de 45, prévisualisations et routes restantes affichées, collisions continues subdivisées aux virages, durées utilisées par l’IA pour ses attaques et ses renforts. Un ordre sans passage est refusé sans dépenser de troupes.
+- Eau : les groupes deviennent visuellement des bateaux avec couleur de faction et effectif à bord. Retour automatique aux cercles sur terre et sur les ponts. Vitesse, dégâts, capacité et collisions ne changent pas. Les routes sont des repères visuels, sans bonus ni obligation de les suivre.
+- Validation : 124 tests, audit de 24 simulations et replays exacts sur les huit cartes, plus essais de l’IA sur les cinq nouveaux terrains.

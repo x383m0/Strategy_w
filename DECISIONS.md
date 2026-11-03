@@ -121,3 +121,10 @@ Demandé : aucune limite de capacité sur les envois, même groupés et dirigés
 Confirmé par l’utilisateur : maison N1 → silo pour 10 troupes ; garnison conservée par neutralisation et EMP ; fabrication puis choix de cible. Silo : trois niveaux, production 0, capacités 50/75/100, améliorations 20/40. Balistique : 25, 10 s, rend neutre. Poison : 30, 10 s, débloqué N2, −1 troupe/2 s jusqu’à capture. EMP : 40, 15 s, débloquée N3, capture au tireur. Annulation de fabrication si silo conquis.
 
 Première implémentation : un seul missile stocké par silo, portée carte entière, coûts en garnison, vol balistique 1,5 s, pas d’interception. Stock prêt détruit aussi lors du changement de propriétaire, sans remboursement de fabrication. Poison non cumulatif, conservé lors de neutralisation seule, guéri par conquête. Un bâtiment devenu allié avant impact n’est pas affecté. Les missiles en vol maintiennent leur camp même après capture du lanceur et empêchent une victoire prématurée.
+
+## v0.5.0 — Terrain
+
+- Cinq cartes supplémentaires, neuf bâtiments par carte, départs symétriques. Le réglage de forts neutres remplace des maisons neutres ; il n’ajoute pas de bâtiments.
+- Les montagnes sont des obstacles terrestres qui bloquent aussi la ligne de vue des forts. Les missiles passent au-dessus. L’IA et les contrôles utilisent les mêmes chemins.
+- Routes et eau ne modifient pas les statistiques. Les ponts maintiennent l’apparence terrestre ; les groupes sur l’eau libre utilisent une coque de bateau.
+- Massifs dessinés verticalement du dessus, sans triangles de montagne vus de côté. Les obstacles conservent une marge de circulation pour la lisibilité des groupes.

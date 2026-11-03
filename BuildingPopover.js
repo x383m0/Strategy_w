@@ -58,8 +58,8 @@ export class BuildingPopover{
   if(fort){
    this.find('stats-range').textContent=b.range;
    this.find('stats-shot-rate').textContent=`${b.shotDamage/b.shotInterval}/s`;
-   fortInfo.style.opacity=b.units?1:.45;
-   fortInfo.setAttribute('aria-label',`Portée ${b.range}, ${b.shotDamage/b.shotInterval} dégâts par seconde, ${b.units?'garnison présente':'garnison requise'}`);
+   fortInfo.style.opacity=b.owner&&b.units?1:.45;
+   fortInfo.setAttribute('aria-label',`Portée ${b.range}, ${b.shotDamage/b.shotInterval} dégâts par seconde, ${b.owner===0?'fort neutre, capture requise':b.units?'garnison présente':'garnison requise'}`);
   }
   const excess=Math.max(0,b.units-capacityOf(b));
   this.find('stats-status-row').hidden=b.owner===0||excess===0;

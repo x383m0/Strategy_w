@@ -1,9 +1,10 @@
+import {routeBetween,pathLength} from '../game/Navigation.js';
 import {speedOf,defenseOf,predictedGarrison} from '../game/BuildingStats.js';
 export const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
-export const travelTime=(a,b)=>Math.max(1/30,(distance(a,b)-a.radius-b.radius)/speedOf(a));
+export function travelTime(a,b,state){const path=routeBetween(a,b,state?.terrain?.mountains??[]);return path?Math.max(1/30,pathLength(path)/speedOf(a)):Infinity;}
 export function incoming(state,target,owner){return state.armies.filter(a=>a.target===target.id&&a.owner===owner).reduce((sum,a)=>sum+a.units,0);}
 export function targetScore(state,target,sources,player){
- const eta=Math.min(...sources.map(b=>travelTime(b,target)));
+ const eta=Math.min(...sources.map(b=>travelTime(b,target,state)));
  const garrison=target.owner?predictedGarrison(state,target,eta):target.units;
  const defense=garrison*defenseOf(target)-(target.defenseDamage??0);
  const friendly=incoming(state,target,player);

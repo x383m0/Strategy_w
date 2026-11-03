@@ -27,11 +27,11 @@ export class AIController{
   if(config.defend){for(const threat of threats){
    const b=own.find(b=>b.id===threat.id);reserves.set(b.id,Math.max(reserves.get(b.id),Math.ceil(threat.enemy/defenseOf(b))-threat.friendly));
    if(!threat.deficit)continue;
-   const donors=own.filter(d=>d.id!==b.id&&travelTime(d,b)+.1<threat.eta);
+   const donors=own.filter(d=>d.id!==b.id&&travelTime(d,b,s)+.1<threat.eta);
    const plan=allocateAttack(s,b,donors,threat.deficit+2,reserves,config.coordination);
    if(plan){for(const a of plan.selected)if(this.send(a.source,b.id,a.amount))this.debug.routes.push({from:a.source,to:b.id,kind:'defend'});this.debug.strategy='Défense';this.log(`Renfort vers ${b.name} : ${plan.committed} unités.`);return;}
    // Evacuate a doomed position if no timely reinforcement can save it.
-   if(threat.eta<2&&b.units>3){const safe=own.filter(d=>d!==b&&!threats.some(t=>t.id===d.id&&t.deficit>0)).sort((a,c)=>travelTime(b,a)-travelTime(b,c))[0];if(safe&&this.send(b.id,safe.id,Math.min(b.units,freeSpace(s,safe)))){this.debug.strategy='Repli';this.debug.routes.push({from:b.id,to:safe.id,kind:'defend'});this.log(`Évacuation de ${b.name} vers ${safe.name}.`);return;}}
+   if(threat.eta<2&&b.units>3){const safe=own.filter(d=>d!==b&&!threats.some(t=>t.id===d.id&&t.deficit>0)).sort((a,c)=>travelTime(b,a,s)-travelTime(b,c,s))[0];if(safe&&this.send(b.id,safe.id,Math.min(b.units,freeSpace(s,safe)))){this.debug.strategy='Repli';this.debug.routes.push({from:b.id,to:safe.id,kind:'defend'});this.log(`Évacuation de ${b.name} vers ${safe.name}.`);return;}}
   }}
   // Specialize at most one house per strategic decision; pay the same cost as the player.
   const houses=own.filter(b=>canTransform(b)&&b.units>=TRANSFORM_COST+6&&!threats.some(t=>t.id===b.id));
@@ -56,14 +56,14 @@ export class AIController{
    // Conservative production estimate uses the latest contributor, not only the closest.
    let needed=evaluation.needed;let plan=allocateAttack(s,target,own,needed,reserves,config.coordination);
    if(!plan)continue;
-   const maxEta=Math.max(...plan.selected.map(a=>travelTime(own.find(b=>b.id===a.source),target)));
+   const maxEta=Math.max(...plan.selected.map(a=>travelTime(own.find(b=>b.id===a.source),target,s)));
    if(target.owner!==0){needed=Math.max(1,predictedGarrison(s,target,maxEta)*defenseOf(target)-(target.defenseDamage??0)+4-incoming(s,target,p));plan=allocateAttack(s,target,own,needed,reserves,config.coordination);if(!plan)continue;}
    for(const a of plan.selected)if(this.send(a.source,target.id,a.amount))this.debug.routes.push({from:a.source,to:target.id,kind:'attack'});
    this.debug.strategy=target.owner===0?'Expansion':'Offensive';this.log(`${target.owner===0?'Expansion':'Attaque'} vers ${target.name} : ${plan.committed} unités, ${plan.selected.length} départ(s).`);return;
   }
   // Move idle rear reserves toward the enemy frontier.
   const enemies=s.buildings.filter(b=>b.owner!==0&&b.owner!==p);
-  if(own.length>1&&enemies.length){const nearest=b=>Math.min(...enemies.map(e=>travelTime(b,e)));const front=[...own].sort((a,b)=>nearest(a)-nearest(b))[0],rear=[...own].filter(b=>b!==front&&b.units>16&&nearest(b)>nearest(front)+1.5).sort((a,b)=>b.units-a.units)[0];if(rear&&this.send(rear.id,front.id,Math.min(Math.floor(rear.units*.55),freeSpace(s,front)))){this.debug.strategy='Regroupement';this.debug.routes.push({from:rear.id,to:front.id,kind:'defend'});this.log(`Réserves de ${rear.name} vers le front ${front.name}.`);return;}}
+  if(own.length>1&&enemies.length){const nearest=b=>Math.min(...enemies.map(e=>travelTime(b,e,s)));const front=[...own].sort((a,b)=>nearest(a)-nearest(b))[0],rear=[...own].filter(b=>b!==front&&b.units>16&&nearest(b)>nearest(front)+1.5).sort((a,b)=>b.units-a.units)[0];if(rear&&this.send(rear.id,front.id,Math.min(Math.floor(rear.units*.55),freeSpace(s,front)))){this.debug.strategy='Regroupement';this.debug.routes.push({from:rear.id,to:front.id,kind:'defend'});this.log(`Réserves de ${rear.name} vers le front ${front.name}.`);return;}}
   this.debug.strategy='Consolidation';
  }
 }
